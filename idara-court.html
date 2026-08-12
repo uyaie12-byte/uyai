@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Idara Court — Serviced apartments in Uyo</title>
+<meta name="description" content="Nine serviced apartments off Nwaniba Road, Uyo. See which units are open, then tell us which one you want." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --limewash:#E9E7DD;
+  --chalk:#F6F5F0;
+  --ink:#16211C;
+  --moss:#33513F;
+  --brass:#C08A2E;
+  --rule:rgba(22,33,28,.16);
+  --muted:rgba(22,33,28,.58);
+
+  --display:"Archivo", system-ui, sans-serif;
+  --body:"Newsreader", Georgia, serif;
+  --mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  --gut:clamp(20px, 5vw, 64px);
+  --maxw:1240px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--limewash);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:clamp(16px,1.05vw,18px);
+  line-height:1.6;
+  font-optical-sizing:auto;
+}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut);}
+
+/* type helpers */
+.display{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 118,"wght" 700;
+  letter-spacing:-.015em;
+  line-height:.98;
+  text-transform:uppercase;
+  margin:0;
+}
+.mono{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 1.1rem;
+}
+
+/* focus */
+:focus-visible{outline:2.5px solid var(--brass);outline-offset:3px;}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  position:sticky;top:0;z-index:40;
+  background:rgba(233,231,221,.92);
+  backdrop-filter:blur(8px);
+}
+.masthead__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding-block:14px;
+}
+.logo{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 125,"wght" 800;
+  text-transform:uppercase;letter-spacing:.02em;
+  font-size:1rem;text-decoration:none;
+}
+.logo span{color:var(--brass);}
+.masthead nav{display:flex;gap:1.6rem;align-items:center;}
+.masthead nav a{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;color:var(--muted);
+}
+.masthead nav a:hover{color:var(--ink);}
+.masthead nav a.is-cta{
+  color:var(--ink);border-bottom:1.5px solid var(--brass);padding-bottom:2px;
+}
+@media(max-width:620px){ .masthead nav a.is-hide{display:none;} }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding-block:clamp(48px,7vw,90px) clamp(40px,6vw,72px);}
+.hero__grid{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(32px,5vw,68px);align-items:end;
+}
+.hero h1{
+  font-size:clamp(2.6rem,7.4vw,5.4rem);
+  font-variation-settings:"wdth" 112,"wght" 750;
+}
+.hero h1 em{
+  font-style:normal;color:var(--brass);
+  font-variation-settings:"wdth" 78,"wght" 750;
+}
+.hero__lede{
+  margin:1.5rem 0 0;max-width:44ch;font-size:1.08rem;color:rgba(22,33,28,.78);
+}
+.hero__meta{
+  margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;
+  color:var(--muted);
+}
+
+/* availability board */
+.board{
+  background:var(--ink);color:var(--limewash);
+  padding:20px 20px 12px;
+  box-shadow:14px 14px 0 rgba(22,33,28,.09);
+}
+.board__head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:1rem;padding-bottom:12px;border-bottom:1px solid rgba(233,231,221,.24);
+}
+.board__title{
+  font-family:var(--display);font-variation-settings:"wdth" 118,"wght" 700;
+  text-transform:uppercase;font-size:.95rem;letter-spacing:.04em;
+}
+.board__stamp{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(233,231,221,.55);text-align:right;}
+.board__row{
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:.9rem;align-items:center;
+  width:100%;background:none;border:0;
+  padding:9px 4px;color:inherit;text-align:left;cursor:pointer;
+  border-bottom:1px solid rgba(233,231,221,.1);
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;
+  transition:background .18s ease,padding-left .18s ease;
+}
+.board__row:hover,.board__row:focus-visible{
+  background:rgba(233,231,221,.08);padding-left:10px;
+}
+.board__code{color:var(--brass);font-weight:500;}
+.board__type{color:rgba(233,231,221,.62);text-transform:uppercase;font-size:.68rem;}
+.board__state{display:flex;align-items:center;gap:.5rem;text-transform:uppercase;font-size:.66rem;}
+.dot{width:7px;height:7px;border-radius:50%;flex:none;}
+.dot--open{background:#7FBF8E;box-shadow:0 0 0 3px rgba(127,191,142,.2);}
+.dot--held{background:var(--brass);}
+.dot--taken{background:rgba(233,231,221,.28);}
+.board__row[data-state="taken"] .board__code{color:rgba(233,231,221,.4);}
+.board__row[data-state="taken"] .board__state{color:rgba(233,231,221,.42);}
+.board__foot{
+  padding:11px 4px 4px;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(233,231,221,.45);
+}
+
+@media(max-width:900px){
+  .hero__grid{grid-template-columns:1fr;align-items:start;}
+  .board{box-shadow:8px 8px 0 rgba(22,33,28,.09);}
+}
+
+/* ============================================================
+   SECTION FURNITURE
+   ============================================================ */
+.band{padding-block:clamp(52px,7vw,96px);border-top:1px solid var(--rule);}
+.band__head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:2rem;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,46px);
+}
+.band__head h2{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 118,"wght" 720;
+  text-transform:uppercase;letter-spacing:-.01em;line-height:1;
+  font-size:clamp(1.8rem,4vw,3rem);margin:0;
+}
+.band__note{max-width:36ch;color:var(--muted);font-size:.95rem;margin:0;}
+
+/* ============================================================
+   UNIT CARDS
+   ============================================================ */
+.units{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+}
+.unit{
+  background:var(--chalk);padding:24px 24px 26px;
+  display:flex;flex-direction:column;gap:16px;
+  scroll-margin-top:90px;transition:background .25s ease;
+}
+.unit.is-flash{background:#FBF6E7;}
+.unit[data-state="taken"]{background:#E4E2D8;}
+
+.unit__top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.unit__code{
+  font-family:var(--display);font-variation-settings:"wdth" 125,"wght" 800;
+  font-size:1.45rem;text-transform:uppercase;letter-spacing:.01em;line-height:1;
+}
+.unit__tag{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid currentColor;padding:4px 8px;white-space:nowrap;
+}
+.unit__tag--open{color:var(--moss);}
+.unit__tag--held{color:var(--brass);}
+.unit__tag--taken{color:rgba(22,33,28,.42);}
+
+.plan{
+  background:var(--limewash);border:1px solid var(--rule);padding:10px;
+}
+.unit[data-state="taken"] .plan{opacity:.5;}
+.plan svg{width:100%;height:auto;}
+.plan .wall{fill:none;stroke:var(--ink);stroke-width:3.2;}
+.plan .part{fill:none;stroke:var(--ink);stroke-width:1.2;}
+.plan .swing{fill:none;stroke:var(--brass);stroke-width:1.2;}
+.plan .lbl{
+  font-family:var(--mono);font-size:6.4px;letter-spacing:.1em;
+  fill:rgba(22,33,28,.55);text-transform:uppercase;
+}
+/* draw-on */
+.plan .wall,.plan .part,.plan .swing{
+  stroke-dasharray:1;stroke-dashoffset:1;
+}
+.plan.is-drawn .wall{transition:stroke-dashoffset .9s ease .05s;stroke-dashoffset:0;}
+.plan.is-drawn .part{transition:stroke-dashoffset .7s ease .5s;stroke-dashoffset:0;}
+.plan.is-drawn .swing{transition:stroke-dashoffset .4s ease .95s;stroke-dashoffset:0;}
+
+.unit__specs{
+  display:flex;flex-wrap:wrap;gap:.35rem .9rem;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+}
+.unit__desc{margin:0;font-size:.95rem;color:rgba(22,33,28,.75);}
+.unit__foot{
+  margin-top:auto;padding-top:16px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+}
+.unit__rate b{
+  font-family:var(--display);font-variation-settings:"wdth" 100,"wght" 700;
+  font-size:1.15rem;
+}
+.unit__rate span{
+  display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-top:2px;
+}
+.pick{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--ink);color:var(--limewash);border:0;
+  padding:11px 15px;cursor:pointer;white-space:nowrap;
+  transition:background .18s ease;
+}
+.pick:hover{background:var(--moss);}
+.pick--ghost{
+  background:none;color:var(--muted);border:1px solid var(--rule);
+}
+.pick--ghost:hover{background:none;color:var(--ink);border-color:var(--ink);}
+
+/* ============================================================
+   ENQUIRY
+   ============================================================ */
+.enquire{background:var(--moss);color:var(--limewash);}
+.enquire .band__head h2{color:var(--limewash);}
+.enquire .band__note{color:rgba(233,231,221,.7);}
+.enquire .eyebrow{color:rgba(233,231,221,.55);}
+
+.form{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:22px 26px;max-width:820px;
+}
+.field{display:flex;flex-direction:column;gap:7px;}
+.field--wide{grid-column:1/-1;}
+.field label{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(233,231,221,.75);
+}
+.field input,.field select,.field textarea{
+  font-family:var(--body);font-size:1rem;color:var(--limewash);
+  background:transparent;border:0;border-bottom:1.5px solid rgba(233,231,221,.32);
+  padding:9px 2px;border-radius:0;
+  transition:border-color .18s ease;
+}
+.field textarea{resize:vertical;min-height:76px;line-height:1.5;}
+.field select{
+  appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,rgba(233,231,221,.7) 50%),
+                   linear-gradient(135deg,rgba(233,231,221,.7) 50%,transparent 50%);
+  background-position:calc(100% - 12px) 18px,calc(100% - 7px) 18px;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+  padding-right:28px;cursor:pointer;
+}
+.field select option{background:var(--moss);color:var(--limewash);}
+.field input::placeholder,.field textarea::placeholder{color:rgba(233,231,221,.34);}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-bottom-color:var(--brass);
+}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{
+  outline:2.5px solid var(--brass);outline-offset:4px;
+}
+.field .err{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;
+  color:#F0B86B;min-height:0;text-transform:none;
+}
+.field.is-bad input,.field.is-bad select{border-bottom-color:#F0B86B;}
+
+.optin{
+  grid-column:1/-1;display:flex;gap:13px;align-items:flex-start;
+  border-top:1px solid rgba(233,231,221,.2);padding-top:22px;
+}
+.optin input{
+  appearance:none;width:19px;height:19px;flex:none;margin-top:3px;
+  border:1.5px solid rgba(233,231,221,.5);background:transparent;cursor:pointer;
+  transition:background .15s ease,border-color .15s ease;
+}
+.optin input:checked{background:var(--brass);border-color:var(--brass);}
+.optin input:checked::after{
+  content:"";display:block;width:5px;height:10px;margin:1px auto 0;
+  border:solid var(--ink);border-width:0 2px 2px 0;transform:rotate(42deg);
+}
+.optin label{cursor:pointer;font-size:.95rem;color:rgba(233,231,221,.88);line-height:1.45;}
+.optin label small{
+  display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(233,231,221,.45);margin-top:5px;
+}
+
+.submit{
+  grid-column:1/-1;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;
+}
+.submit button{
+  font-family:var(--display);font-variation-settings:"wdth" 118,"wght" 750;
+  text-transform:uppercase;letter-spacing:.02em;font-size:1rem;
+  background:var(--brass);color:var(--ink);border:0;
+  padding:16px 30px;cursor:pointer;transition:transform .16s ease,background .16s ease;
+}
+.submit button:hover{background:var(--limewash);transform:translateY(-2px);}
+.submit small{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(233,231,221,.5);}
+
+.done{
+  max-width:560px;border:1px solid rgba(233,231,221,.32);padding:32px;
+}
+.done h3{
+  font-family:var(--display);font-variation-settings:"wdth" 118,"wght" 750;
+  text-transform:uppercase;font-size:1.5rem;margin:0 0 12px;
+}
+.done p{margin:0 0 1rem;color:rgba(233,231,221,.82);}
+.done p:last-child{margin:0;}
+.done .again{
+  background:none;border:1px solid rgba(233,231,221,.4);color:var(--limewash);
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 16px;cursor:pointer;margin-top:.6rem;
+}
+.done .again:hover{border-color:var(--brass);color:var(--brass);}
+[hidden]{display:none !important;}
+
+@media(max-width:640px){ .form{grid-template-columns:1fr;} }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.foot{background:var(--ink);color:rgba(233,231,221,.66);padding-block:44px 34px;}
+.foot__grid{
+  display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;
+  padding-bottom:30px;border-bottom:1px solid rgba(233,231,221,.16);
+}
+.foot h4{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(233,231,221,.42);margin:0 0 12px;font-weight:400;
+}
+.foot p{margin:0 0 .5rem;font-size:.92rem;}
+.foot a{color:rgba(233,231,221,.82);text-decoration:none;border-bottom:1px solid transparent;}
+.foot a:hover{border-bottom-color:var(--brass);color:var(--brass);}
+.foot__logo{
+  font-family:var(--display);font-variation-settings:"wdth" 125,"wght" 800;
+  text-transform:uppercase;font-size:1.3rem;color:var(--limewash);margin-bottom:10px;
+}
+.foot__base{
+  padding-top:22px;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(233,231,221,.4);
+}
+@media(max-width:760px){ .foot__grid{grid-template-columns:1fr;} }
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{animation:none !important;transition:none !important;}
+  .plan .wall,.plan .part,.plan .swing{stroke-dashoffset:0;}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="#top">Idara<span>·</span>Court</a>
+    <nav>
+      <a class="is-hide" href="#units">Units</a>
+      <a class="is-hide" href="#visit">Visit</a>
+      <a class="is-cta" href="#enquire">Enquire</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO ---------------------------------------------------->
+  <section class="hero wrap">
+    <div class="hero__grid">
+      <div>
+        <p class="eyebrow">Uyo · Akwa Ibom · Off Nwaniba Road</p>
+        <h1 class="display">Nine units.<br><em id="keyCount">Four</em> keys<br>still on<br>the board.</h1>
+        <p class="hero__lede">Furnished serviced apartments with 20-hour power, weekly housekeeping, and fibre that holds through a call. Check the board, pick a unit, and we'll hold it for 48 hours.</p>
+        <p class="hero__meta mono">
+          <span>Nightly &amp; monthly</span>
+          <span>Min. 2 nights</span>
+          <span>Inspections daily, 10am–6pm</span>
+        </p>
+      </div>
+
+      <div class="board" aria-labelledby="boardTitle">
+        <div class="board__head">
+          <span class="board__title" id="boardTitle">Availability</span>
+          <span class="board__stamp">Updated<br>11 Aug 2026</span>
+        </div>
+        <div id="boardRows"></div>
+        <div class="board__foot">Tap a unit to see the plan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNITS --------------------------------------------------->
+  <section class="band wrap" id="units">
+    <div class="band__head">
+      <div>
+        <p class="eyebrow">The Building</p>
+        <h2>Every unit,<br>drawn to plan</h2>
+      </div>
+      <p class="band__note">Blocks A and B, three floors each. Plans are to scale — what you see is the space you get, minus the cat we drew in for scale (there is no cat).<br><br><em>Sample data — unit codes, sizes and rates below are placeholders. Swap in the real numbers in the <code>UNITS</code> list before publishing.</em></p>
+    </div>
+    <div class="units" id="unitGrid"></div>
+  </section>
+
+  <!-- VISIT --------------------------------------------------->
+  <section class="band wrap" id="visit">
+    <div class="band__head">
+      <div>
+        <p class="eyebrow">What's Included</p>
+        <h2>Move in with<br>a suitcase</h2>
+      </div>
+      <p class="band__note">Rates cover everything below. No caution fee on stays under a month, no agency fee at any length.</p>
+    </div>
+    <div class="units">
+      <article class="unit"><div class="unit__code">Power</div><p class="unit__desc">Grid plus inverter backup, roughly 20 hours daily. Generator covers the gap on outage days.</p></article>
+      <article class="unit"><div class="unit__code">Water</div><p class="unit__desc">Borehole and treated storage, heated in every bathroom.</p></article>
+      <article class="unit"><div class="unit__code">Internet</div><p class="unit__desc">Fibre to each unit, unmetered. Router in the living area, repeater in the bedroom.</p></article>
+      <article class="unit"><div class="unit__code">Cleaning</div><p class="unit__desc">Weekly housekeeping and linen change. Daily on request, ₦8,000 a visit.</p></article>
+      <article class="unit"><div class="unit__code">Security</div><p class="unit__desc">Gated compound, guard on duty overnight, cameras on both entrances.</p></article>
+      <article class="unit"><div class="unit__code">Parking</div><p class="unit__desc">One covered bay per unit. Visitor bays inside the gate.</p></article>
+    </div>
+  </section>
+
+  <!-- ENQUIRY ------------------------------------------------->
+  <section class="band enquire" id="enquire">
+    <div class="wrap">
+      <div class="band__head">
+        <div>
+          <p class="eyebrow">Enquire</p>
+          <h2>Tell us which<br>one you want</h2>
+        </div>
+        <p class="band__note">We reply the same day with photos, exact availability dates, and a viewing slot. If your unit is taken, we'll tell you when it opens.</p>
+      </div>
+
+      <form class="form" id="leadForm" novalidate>
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Uduak Etim" required />
+          <span class="err" data-err="name"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+          <span class="err" data-err="email"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-phone">Phone or WhatsApp</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+234 800 000 0000" />
+          <span class="err" data-err="phone"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-unit">Unit you want</label>
+          <select id="f-unit" name="unit" required>
+            <option value="">Choose a unit</option>
+          </select>
+          <span class="err" data-err="unit"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-from">Moving in from</label>
+          <input id="f-from" name="movein" type="date" />
+          <span class="err" data-err="movein"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-stay">How long</label>
+          <select id="f-stay" name="stay">
+            <option value="">Choose a length</option>
+            <option>2–6 nights</option>
+            <option>1–3 weeks</option>
+            <option>1–3 months</option>
+            <option>6 months or more</option>
+            <option>Still deciding</option>
+          </select>
+          <span class="err" data-err="stay"></span>
+        </div>
+
+        <div class="field field--wide">
+          <label for="f-note">Anything we should know</label>
+          <textarea id="f-note" name="note" placeholder="Travelling with a child, need a second parking bay, arriving late — whatever helps."></textarea>
+        </div>
+
+        <div class="optin">
+          <input id="f-list" name="newsletter" type="checkbox" checked />
+          <label for="f-list">
+            Send me the drop list.
+            <small>New units and cancelled dates, once a fortnight. Unsubscribe in one click.</small>
+          </label>
+        </div>
+
+        <div class="submit">
+          <button type="submit">Send enquiry</button>
+          <small>We don't share your number with agents.</small>
+        </div>
+      </form>
+
+      <div class="done" id="doneCard" hidden role="status" aria-live="polite">
+        <h3 id="doneTitle">Enquiry sent</h3>
+        <p id="doneBody"></p>
+        <p>Check spam if nothing lands within a few hours — we send from hello@idaracourt.ng.</p>
+        <button class="again" type="button" id="againBtn">Ask about another unit</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <div class="foot__logo">Idara Court</div>
+        <p>14 Nwaniba Road, Uyo,<br>Akwa Ibom State, Nigeria.</p>
+      </div>
+      <div>
+        <h4>Reach us</h4>
+        <p><a href="mailto:hello@idaracourt.ng">hello@idaracourt.ng</a></p>
+        <p><a href="tel:+2348000000000">+234 800 000 0000</a></p>
+        <p><a href="#enquire">Book an inspection</a></p>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Inspections daily, 10am–6pm</p>
+        <p>Check-in from 2pm</p>
+        <p>Front desk, 24 hours</p>
+      </div>
+    </div>
+    <div class="foot__base">
+      <span>© 2026 Idara Court</span>
+      <span>Rates in Naira, inclusive of service charge</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   1. YOUR UNITS — edit this list and the whole page updates.
+      state: "open" | "held" | "taken"
+      plan:  "studio" | "one" | "two" | "duplex"
+
+      ⚠ PLACEHOLDER DATA — codes, names, sizes and rates below are
+      samples so the page has something real to show. Replace every
+      row with the actual units before this goes live.
+   ============================================================ */
+const UNITS = [
+  { code:"A1", name:"Studio, ground floor", plan:"studio", state:"open",
+    beds:"Studio", baths:"1 bath", size:"38 m²", rate:"₦42,000", per:"per night",
+    desc:"Corner unit with the deepest window line in the building. Best light before noon." },
+
+  { code:"A2", name:"One bedroom",  plan:"one",   state:"taken",
+    beds:"1 bed", baths:"1 bath", size:"52 m²", rate:"₦58,000", per:"per night",
+    desc:"Bedroom faces the courtyard, so it stays quiet when the gate is busy." },
+
+  { code:"A3", name:"One bedroom",  plan:"one",   state:"open",
+    beds:"1 bed", baths:"1 bath", size:"52 m²", rate:"₦58,000", per:"per night",
+    desc:"Same plan as A2, one floor up. Comes with the covered bay nearest the stairs." },
+
+  { code:"B1", name:"Two bedroom",  plan:"two",   state:"open",
+    beds:"2 beds", baths:"2 baths", size:"74 m²", rate:"₦86,000", per:"per night",
+    desc:"Both bedrooms en-suite. Kitchen opens onto the living area with a four-seat island." },
+
+  { code:"B2", name:"Two bedroom",  plan:"two",   state:"held",
+    beds:"2 beds", baths:"2 baths", size:"74 m²", rate:"₦86,000", per:"per night",
+    desc:"Held until 18 August. Ask and we'll put you next in line if it drops." },
+
+  { code:"B3", name:"Two bedroom",  plan:"two",   state:"taken",
+    beds:"2 beds", baths:"2 baths", size:"74 m²", rate:"₦86,000", per:"per night",
+    desc:"Long stay through November. Opens again in December." },
+
+  { code:"B4", name:"Two bedroom, terrace", plan:"two", state:"open",
+    beds:"2 beds", baths:"2 baths", size:"81 m²", rate:"₦94,000", per:"per night",
+    desc:"Top floor with a private terrace off the living room. Loudest unit on event weekends." },
+
+  { code:"C1", name:"Duplex",       plan:"duplex", state:"taken",
+    beds:"3 beds", baths:"3 baths", size:"118 m²", rate:"₦145,000", per:"per night",
+    desc:"Two levels, internal stair, separate study. Sleeps six comfortably." },
+
+  { code:"C2", name:"Duplex",       plan:"duplex", state:"open",
+    beds:"3 beds", baths:"3 baths", size:"118 m²", rate:"₦145,000", per:"per night",
+    desc:"The only unit with a second entrance — useful if you're hosting or working from it." }
+];
+
+/* ============================================================
+   2. WHERE ENQUIRIES GO.
+      Leave as "" to just show the confirmation (demo mode).
+      Paste a Formspree / Getform / Mailchimp / your own URL here
+      and the form will POST the lead as JSON.
+   ============================================================ */
+const ENDPOINT = "";
+
+/* ---------- floor plans (schematic, drawn in SVG) ---------- */
+const PLANS = {
+  studio:`<svg viewBox="0 0 200 130" role="img" aria-label="Studio floor plan">
+    <rect class="wall" pathLength="1" x="8" y="8" width="184" height="114"/>
+    <path class="part" pathLength="1" d="M132 8 V56 H192"/>
+    <path class="part" pathLength="1" d="M8 92 H62 V122"/>
+    <path class="swing" pathLength="1" d="M62 122 A30 30 0 0 0 32 92"/>
+    <text class="lbl" x="22" y="52">Living / sleep</text>
+    <text class="lbl" x="146" y="34">Bath</text>
+    <text class="lbl" x="20" y="112">Kitchen</text>
+  </svg>`,
+
+  one:`<svg viewBox="0 0 200 130" role="img" aria-label="One bedroom floor plan">
+    <rect class="wall" pathLength="1" x="8" y="8" width="184" height="114"/>
+    <path class="part" pathLength="1" d="M118 8 V122"/>
+    <path class="part" pathLength="1" d="M118 74 H192"/>
+    <path class="part" pathLength="1" d="M8 86 H62"/>
+    <path class="swing" pathLength="1" d="M118 46 A26 26 0 0 1 144 72"/>
+    <text class="lbl" x="24" y="48">Living</text>
+    <text class="lbl" x="22" y="108">Kitchen</text>
+    <text class="lbl" x="132" y="44">Bedroom</text>
+    <text class="lbl" x="140" y="104">Bath</text>
+  </svg>`,
+
+  two:`<svg viewBox="0 0 200 130" role="img" aria-label="Two bedroom floor plan">
+    <rect class="wall" pathLength="1" x="8" y="8" width="184" height="114"/>
+    <path class="part" pathLength="1" d="M8 66 H108 V122"/>
+    <path class="part" pathLength="1" d="M108 66 H192"/>
+    <path class="part" pathLength="1" d="M150 8 V66"/>
+    <path class="part" pathLength="1" d="M158 66 V96 H192"/>
+    <path class="swing" pathLength="1" d="M84 66 A22 22 0 0 1 106 88"/>
+    <text class="lbl" x="24" y="42">Living / kitchen</text>
+    <text class="lbl" x="158" y="40">Bath</text>
+    <text class="lbl" x="26" y="100">Bedroom 1</text>
+    <text class="lbl" x="112" y="86">Bedroom 2</text>
+  </svg>`,
+
+  duplex:`<svg viewBox="0 0 200 130" role="img" aria-label="Duplex floor plan, two levels">
+    <rect class="wall" pathLength="1" x="8" y="8" width="86" height="114"/>
+    <rect class="wall" pathLength="1" x="106" y="8" width="86" height="114"/>
+    <path class="part" pathLength="1" d="M8 84 H94"/>
+    <path class="part" pathLength="1" d="M106 62 H192"/>
+    <path class="part" pathLength="1" d="M150 62 V122"/>
+    <path class="part" pathLength="1" d="M52 84 V122 M64 84 V122 M76 84 V122"/>
+    <path class="swing" pathLength="1" d="M106 34 A22 22 0 0 1 128 56"/>
+    <text class="lbl" x="18" y="46">Living</text>
+    <text class="lbl" x="14" y="102">Stair</text>
+    <text class="lbl" x="116" y="38">Bed 1</text>
+    <text class="lbl" x="112" y="98">Bed 2</text>
+    <text class="lbl" x="156" y="98">Bed 3</text>
+  </svg>`
+};
+
+const LABEL = { open:"Available", held:"On hold", taken:"Taken" };
+const WORDS = ["Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"];
+
+/* ---------- render the availability board ---------- */
+const boardRows = document.getElementById("boardRows");
+boardRows.innerHTML = UNITS.map(u => `
+  <button class="board__row" type="button" data-goto="${u.code}" data-state="${u.state}">
+    <span class="board__code">${u.code}</span>
+    <span class="board__type">${u.beds}</span>
+    <span class="board__state"><i class="dot dot--${u.state}"></i>${LABEL[u.state]}</span>
+  </button>`).join("");
+
+const openCount = UNITS.filter(u => u.state === "open").length;
+document.getElementById("keyCount").textContent = WORDS[openCount] || openCount;
+
+/* ---------- render the unit cards ---------- */
+const grid = document.getElementById("unitGrid");
+grid.innerHTML = UNITS.map(u => `
+  <article class="unit" id="unit-${u.code}" data-state="${u.state}">
+    <div class="unit__top">
+      <div>
+        <div class="unit__code">${u.code}</div>
+        <div class="mono" style="color:var(--muted);margin-top:5px">${u.name}</div>
+      </div>
+      <span class="unit__tag unit__tag--${u.state}">${LABEL[u.state]}</span>
+    </div>
+    <div class="plan">${PLANS[u.plan]}</div>
+    <div class="unit__specs"><span>${u.beds}</span><span>${u.baths}</span><span>${u.size}</span></div>
+    <p class="unit__desc">${u.desc}</p>
+    <div class="unit__foot">
+      <div class="unit__rate"><b>${u.rate}</b><span>${u.per}</span></div>
+      ${u.state === "taken"
+        ? `<button class="pick pick--ghost" data-pick="${u.code}">Tell me when it opens</button>`
+        : `<button class="pick" data-pick="${u.code}">Enquire about ${u.code}</button>`}
+    </div>
+  </article>`).join("");
+
+/* ---------- fill the unit dropdown ---------- */
+const unitSelect = document.getElementById("f-unit");
+UNITS.forEach(u => {
+  const o = document.createElement("option");
+  o.value = u.code;
+  o.textContent = `${u.code} — ${u.name}${u.state === "taken" ? " (waiting list)" : ""}`;
+  unitSelect.appendChild(o);
+});
+const anyOpt = document.createElement("option");
+anyOpt.value = "Any";
+anyOpt.textContent = "Not sure yet — show me what fits";
+unitSelect.appendChild(anyOpt);
+
+/* ---------- board row → scroll to card ---------- */
+boardRows.addEventListener("click", e => {
+  const btn = e.target.closest("[data-goto]");
+  if (!btn) return;
+  const card = document.getElementById("unit-" + btn.dataset.goto);
+  card.scrollIntoView({ behavior:"smooth", block:"center" });
+  card.classList.add("is-flash");
+  setTimeout(() => card.classList.remove("is-flash"), 1400);
+});
+
+/* ---------- card button → jump to form, unit preselected ---------- */
+grid.addEventListener("click", e => {
+  const btn = e.target.closest("[data-pick]");
+  if (!btn) return;
+  unitSelect.value = btn.dataset.pick;
+  document.getElementById("doneCard").hidden = true;
+  form.hidden = false;
+  document.getElementById("enquire").scrollIntoView({ behavior:"smooth" });
+  setTimeout(() => document.getElementById("f-name").focus({ preventScroll:true }), 500);
+});
+
+/* ---------- draw the plans as they scroll in ---------- */
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add("is-drawn"); obs.unobserve(en.target); }
+    });
+  }, { threshold:0.25 });
+  document.querySelectorAll(".plan").forEach(p => io.observe(p));
+} else {
+  document.querySelectorAll(".plan").forEach(p => p.classList.add("is-drawn"));
+}
+
+/* ---------- form ---------- */
+const form     = document.getElementById("leadForm");
+const doneCard = document.getElementById("doneCard");
+const doneBody = document.getElementById("doneBody");
+const doneTitle= document.getElementById("doneTitle");
+
+function showError(name, msg){
+  const span = form.querySelector(`[data-err="${name}"]`);
+  if (!span) return;
+  span.textContent = msg || "";
+  span.closest(".field").classList.toggle("is-bad", !!msg);
+}
+
+function validate(){
+  let firstBad = null;
+  ["name","email","unit"].forEach(n => showError(n, ""));
+
+  const name  = form.name.value.trim();
+  const email = form.email.value.trim();
+  const unit  = form.unit.value;
+
+  if (!name){ showError("name","Enter a name so we know who's asking."); firstBad ||= form.name; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+    showError("email", email ? "That email is missing something — check the @ and the domain."
+                             : "Enter an email so we can send the unit details.");
+    firstBad ||= form.email;
+  }
+  if (!unit){ showError("unit","Pick a unit, or choose \"Not sure yet\"."); firstBad ||= form.unit; }
+
+  if (firstBad){ firstBad.focus(); return false; }
+  return true;
+}
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!validate()) return;
+
+  const lead = {
+    name:      form.name.value.trim(),
+    email:     form.email.value.trim(),
+    phone:     form.phone.value.trim(),
+    unit:      form.unit.value,
+    moveIn:    form.movein.value,
+    stay:      form.stay.value,
+    note:      form.note.value.trim(),
+    newsletter:form.newsletter.checked,
+    sentAt:    new Date().toISOString()
+  };
+
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+
+  if (ENDPOINT){
+    try {
+      await fetch(ENDPOINT, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+        body: JSON.stringify(lead)
+      });
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = "Send enquiry";
+      showError("email","That didn't send. Check your connection and try again, or email hello@idaracourt.ng.");
+      return;
+    }
+  } else {
+    console.log("Lead captured (demo mode — no endpoint set):", lead);
+  }
+
+  const picked = UNITS.find(u => u.code === lead.unit);
+  doneTitle.textContent = picked ? `Enquiry sent for ${picked.code}` : "Enquiry sent";
+  doneBody.textContent = picked && picked.state === "taken"
+    ? `${picked.code} is occupied right now. You're on the waiting list — we'll write to ${lead.email} the moment it frees up.`
+    : `We'll write to ${lead.email} today with photos, open dates, and a viewing slot.${lead.newsletter ? " You're on the drop list too." : ""}`;
+
+  form.hidden = true;
+  doneCard.hidden = false;
+  doneCard.scrollIntoView({ behavior:"smooth", block:"center" });
+  btn.disabled = false;
+  btn.textContent = "Send enquiry";
+});
+
+document.getElementById("againBtn").addEventListener("click", () => {
+  form.reset();
+  form.newsletter.checked = true;
+  ["name","email","unit"].forEach(n => showError(n,""));
+  doneCard.hidden = true;
+  form.hidden = false;
+  document.getElementById("f-name").focus();
+});
+</script>
+</body>
+</html>
