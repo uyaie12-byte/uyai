@@ -13,13 +13,13 @@
    TOKENS
    ============================================================ */
 :root{
-  --limewash:#E9E7DD;
-  --chalk:#F6F5F0;
-  --ink:#16211C;
-  --moss:#33513F;
-  --brass:#C08A2E;
-  --rule:rgba(22,33,28,.16);
-  --muted:rgba(22,33,28,.58);
+  --limewash:#F1E9DD;
+  --chalk:#F7F1E7;
+  --ink:#211C18;
+  --moss:#5A3F32;
+  --brass:#B5502C;
+  --rule:rgba(33,28,24,.16);
+  --muted:rgba(33,28,24,.58);
 
   --display:"Archivo", system-ui, sans-serif;
   --body:"Newsreader", Georgia, serif;
@@ -78,7 +78,7 @@ a{color:inherit;}
 .masthead{
   border-bottom:1px solid var(--rule);
   position:sticky;top:0;z-index:40;
-  background:rgba(233,231,221,.92);
+  background:rgba(241,233,221,.92);
   backdrop-filter:blur(8px);
 }
 .masthead__inner{
@@ -103,6 +103,40 @@ a{color:inherit;}
 }
 @media(max-width:620px){ .masthead nav a.is-hide{display:none;} }
 
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* ============================================================
+   STANDALONE EMAIL TEASER
+   ============================================================ */
+.teaser{background:var(--brass);color:var(--chalk);}
+.teaser__inner{
+  padding-block:11px;display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;
+  align-items:center;justify-content:space-between;
+}
+.teaser__text{margin:0;font-size:.86rem;max-width:44ch;}
+.teaser__text strong{font-family:var(--display);font-variation-settings:"wdth" 110,"wght" 700;
+  text-transform:uppercase;letter-spacing:.01em;font-size:.82rem;}
+.teaser__form{display:flex;gap:.6rem;flex-wrap:wrap;}
+.teaser__form input{
+  font-family:var(--body);font-size:.92rem;color:var(--ink);
+  background:var(--chalk);border:1.5px solid transparent;border-radius:2px;
+  padding:7px 11px;min-width:200px;
+}
+.teaser__form input::placeholder{color:rgba(33,28,24,.45);}
+.teaser__form input:focus{outline:none;border-color:var(--ink);}
+.teaser__form button{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--ink);color:var(--chalk);border:0;border-radius:2px;
+  padding:9px 14px;cursor:pointer;white-space:nowrap;transition:opacity .15s ease;
+}
+.teaser__form button:hover{opacity:.85;}
+.teaser__done{margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+  text-transform:uppercase;}
+@media(max-width:560px){ .teaser__inner{justify-content:flex-start;} }
+
 /* ============================================================
    HERO
    ============================================================ */
@@ -120,7 +154,7 @@ a{color:inherit;}
   font-variation-settings:"wdth" 78,"wght" 750;
 }
 .hero__lede{
-  margin:1.5rem 0 0;max-width:44ch;font-size:1.08rem;color:rgba(22,33,28,.78);
+  margin:1.5rem 0 0;max-width:44ch;font-size:1.08rem;color:rgba(33,28,24,.78);
 }
 .hero__meta{
   margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;
@@ -131,47 +165,47 @@ a{color:inherit;}
 .board{
   background:var(--ink);color:var(--limewash);
   padding:20px 20px 12px;
-  box-shadow:14px 14px 0 rgba(22,33,28,.09);
+  box-shadow:14px 14px 0 rgba(33,28,24,.09);
 }
 .board__head{
   display:flex;justify-content:space-between;align-items:baseline;
-  gap:1rem;padding-bottom:12px;border-bottom:1px solid rgba(233,231,221,.24);
+  gap:1rem;padding-bottom:12px;border-bottom:1px solid rgba(241,233,221,.24);
 }
 .board__title{
   font-family:var(--display);font-variation-settings:"wdth" 118,"wght" 700;
   text-transform:uppercase;font-size:.95rem;letter-spacing:.04em;
 }
 .board__stamp{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;
-  text-transform:uppercase;color:rgba(233,231,221,.55);text-align:right;}
+  text-transform:uppercase;color:rgba(241,233,221,.55);text-align:right;}
 .board__row{
   display:grid;grid-template-columns:auto 1fr auto;
   gap:.9rem;align-items:center;
   width:100%;background:none;border:0;
   padding:9px 4px;color:inherit;text-align:left;cursor:pointer;
-  border-bottom:1px solid rgba(233,231,221,.1);
+  border-bottom:1px solid rgba(241,233,221,.1);
   font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;
   transition:background .18s ease,padding-left .18s ease;
 }
 .board__row:hover,.board__row:focus-visible{
-  background:rgba(233,231,221,.08);padding-left:10px;
+  background:rgba(241,233,221,.08);padding-left:10px;
 }
 .board__code{color:var(--brass);font-weight:500;}
-.board__type{color:rgba(233,231,221,.62);text-transform:uppercase;font-size:.68rem;}
+.board__type{color:rgba(241,233,221,.62);text-transform:uppercase;font-size:.68rem;}
 .board__state{display:flex;align-items:center;gap:.5rem;text-transform:uppercase;font-size:.66rem;}
 .dot{width:7px;height:7px;border-radius:50%;flex:none;}
 .dot--open{background:#7FBF8E;box-shadow:0 0 0 3px rgba(127,191,142,.2);}
 .dot--held{background:var(--brass);}
-.dot--taken{background:rgba(233,231,221,.28);}
-.board__row[data-state="taken"] .board__code{color:rgba(233,231,221,.4);}
-.board__row[data-state="taken"] .board__state{color:rgba(233,231,221,.42);}
+.dot--taken{background:rgba(241,233,221,.28);}
+.board__row[data-state="taken"] .board__code{color:rgba(241,233,221,.4);}
+.board__row[data-state="taken"] .board__state{color:rgba(241,233,221,.42);}
 .board__foot{
   padding:11px 4px 4px;font-family:var(--mono);font-size:.62rem;
-  letter-spacing:.1em;text-transform:uppercase;color:rgba(233,231,221,.45);
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(241,233,221,.45);
 }
 
 @media(max-width:900px){
   .hero__grid{grid-template-columns:1fr;align-items:start;}
-  .board{box-shadow:8px 8px 0 rgba(22,33,28,.09);}
+  .board{box-shadow:8px 8px 0 rgba(33,28,24,.09);}
 }
 
 /* ============================================================
@@ -202,8 +236,8 @@ a{color:inherit;}
   display:flex;flex-direction:column;gap:16px;
   scroll-margin-top:90px;transition:background .25s ease;
 }
-.unit.is-flash{background:#FBF6E7;}
-.unit[data-state="taken"]{background:#E4E2D8;}
+.unit.is-flash{background:#F8E9D9;}
+.unit[data-state="taken"]{background:#E6DED2;}
 
 .unit__top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
 .unit__code{
@@ -216,7 +250,7 @@ a{color:inherit;}
 }
 .unit__tag--open{color:var(--moss);}
 .unit__tag--held{color:var(--brass);}
-.unit__tag--taken{color:rgba(22,33,28,.42);}
+.unit__tag--taken{color:rgba(33,28,24,.42);}
 
 .plan{
   background:var(--limewash);border:1px solid var(--rule);padding:10px;
@@ -228,7 +262,7 @@ a{color:inherit;}
 .plan .swing{fill:none;stroke:var(--brass);stroke-width:1.2;}
 .plan .lbl{
   font-family:var(--mono);font-size:6.4px;letter-spacing:.1em;
-  fill:rgba(22,33,28,.55);text-transform:uppercase;
+  fill:rgba(33,28,24,.55);text-transform:uppercase;
 }
 /* draw-on */
 .plan .wall,.plan .part,.plan .swing{
@@ -243,7 +277,7 @@ a{color:inherit;}
   font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--muted);
 }
-.unit__desc{margin:0;font-size:.95rem;color:rgba(22,33,28,.75);}
+.unit__desc{margin:0;font-size:.95rem;color:rgba(33,28,24,.75);}
 .unit__foot{
   margin-top:auto;padding-top:16px;border-top:1px solid var(--rule);
   display:flex;justify-content:space-between;align-items:center;gap:1rem;
@@ -273,8 +307,8 @@ a{color:inherit;}
    ============================================================ */
 .enquire{background:var(--moss);color:var(--limewash);}
 .enquire .band__head h2{color:var(--limewash);}
-.enquire .band__note{color:rgba(233,231,221,.7);}
-.enquire .eyebrow{color:rgba(233,231,221,.55);}
+.enquire .band__note{color:rgba(241,233,221,.7);}
+.enquire .eyebrow{color:rgba(241,233,221,.55);}
 
 .form{
   display:grid;grid-template-columns:repeat(2,1fr);
@@ -284,25 +318,25 @@ a{color:inherit;}
 .field--wide{grid-column:1/-1;}
 .field label{
   font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(233,231,221,.75);
+  color:rgba(241,233,221,.75);
 }
 .field input,.field select,.field textarea{
   font-family:var(--body);font-size:1rem;color:var(--limewash);
-  background:transparent;border:0;border-bottom:1.5px solid rgba(233,231,221,.32);
+  background:transparent;border:0;border-bottom:1.5px solid rgba(241,233,221,.32);
   padding:9px 2px;border-radius:0;
   transition:border-color .18s ease;
 }
 .field textarea{resize:vertical;min-height:76px;line-height:1.5;}
 .field select{
   appearance:none;
-  background-image:linear-gradient(45deg,transparent 50%,rgba(233,231,221,.7) 50%),
-                   linear-gradient(135deg,rgba(233,231,221,.7) 50%,transparent 50%);
+  background-image:linear-gradient(45deg,transparent 50%,rgba(241,233,221,.7) 50%),
+                   linear-gradient(135deg,rgba(241,233,221,.7) 50%,transparent 50%);
   background-position:calc(100% - 12px) 18px,calc(100% - 7px) 18px;
   background-size:5px 5px,5px 5px;background-repeat:no-repeat;
   padding-right:28px;cursor:pointer;
 }
 .field select option{background:var(--moss);color:var(--limewash);}
-.field input::placeholder,.field textarea::placeholder{color:rgba(233,231,221,.34);}
+.field input::placeholder,.field textarea::placeholder{color:rgba(241,233,221,.34);}
 .field input:focus,.field select:focus,.field textarea:focus{
   outline:none;border-bottom-color:var(--brass);
 }
@@ -311,17 +345,17 @@ a{color:inherit;}
 }
 .field .err{
   font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;
-  color:#F0B86B;min-height:0;text-transform:none;
+  color:#E8935A;min-height:0;text-transform:none;
 }
-.field.is-bad input,.field.is-bad select{border-bottom-color:#F0B86B;}
+.field.is-bad input,.field.is-bad select{border-bottom-color:#E8935A;}
 
 .optin{
   grid-column:1/-1;display:flex;gap:13px;align-items:flex-start;
-  border-top:1px solid rgba(233,231,221,.2);padding-top:22px;
+  border-top:1px solid rgba(241,233,221,.2);padding-top:22px;
 }
 .optin input{
   appearance:none;width:19px;height:19px;flex:none;margin-top:3px;
-  border:1.5px solid rgba(233,231,221,.5);background:transparent;cursor:pointer;
+  border:1.5px solid rgba(241,233,221,.5);background:transparent;cursor:pointer;
   transition:background .15s ease,border-color .15s ease;
 }
 .optin input:checked{background:var(--brass);border-color:var(--brass);}
@@ -329,10 +363,10 @@ a{color:inherit;}
   content:"";display:block;width:5px;height:10px;margin:1px auto 0;
   border:solid var(--ink);border-width:0 2px 2px 0;transform:rotate(42deg);
 }
-.optin label{cursor:pointer;font-size:.95rem;color:rgba(233,231,221,.88);line-height:1.45;}
+.optin label{cursor:pointer;font-size:.95rem;color:rgba(241,233,221,.88);line-height:1.45;}
 .optin label small{
   display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
-  text-transform:uppercase;color:rgba(233,231,221,.45);margin-top:5px;
+  text-transform:uppercase;color:rgba(241,233,221,.45);margin-top:5px;
 }
 
 .submit{
@@ -346,19 +380,19 @@ a{color:inherit;}
 }
 .submit button:hover{background:var(--limewash);transform:translateY(-2px);}
 .submit small{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(233,231,221,.5);}
+  text-transform:uppercase;color:rgba(241,233,221,.5);}
 
 .done{
-  max-width:560px;border:1px solid rgba(233,231,221,.32);padding:32px;
+  max-width:560px;border:1px solid rgba(241,233,221,.32);padding:32px;
 }
 .done h3{
   font-family:var(--display);font-variation-settings:"wdth" 118,"wght" 750;
   text-transform:uppercase;font-size:1.5rem;margin:0 0 12px;
 }
-.done p{margin:0 0 1rem;color:rgba(233,231,221,.82);}
+.done p{margin:0 0 1rem;color:rgba(241,233,221,.82);}
 .done p:last-child{margin:0;}
 .done .again{
-  background:none;border:1px solid rgba(233,231,221,.4);color:var(--limewash);
+  background:none;border:1px solid rgba(241,233,221,.4);color:var(--limewash);
   font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
   padding:11px 16px;cursor:pointer;margin-top:.6rem;
 }
@@ -370,17 +404,17 @@ a{color:inherit;}
 /* ============================================================
    FOOTER
    ============================================================ */
-.foot{background:var(--ink);color:rgba(233,231,221,.66);padding-block:44px 34px;}
+.foot{background:var(--ink);color:rgba(241,233,221,.66);padding-block:44px 34px;}
 .foot__grid{
   display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;
-  padding-bottom:30px;border-bottom:1px solid rgba(233,231,221,.16);
+  padding-bottom:30px;border-bottom:1px solid rgba(241,233,221,.16);
 }
 .foot h4{
   font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(233,231,221,.42);margin:0 0 12px;font-weight:400;
+  color:rgba(241,233,221,.42);margin:0 0 12px;font-weight:400;
 }
 .foot p{margin:0 0 .5rem;font-size:.92rem;}
-.foot a{color:rgba(233,231,221,.82);text-decoration:none;border-bottom:1px solid transparent;}
+.foot a{color:rgba(241,233,221,.82);text-decoration:none;border-bottom:1px solid transparent;}
 .foot a:hover{border-bottom-color:var(--brass);color:var(--brass);}
 .foot__logo{
   font-family:var(--display);font-variation-settings:"wdth" 125,"wght" 800;
@@ -389,7 +423,7 @@ a{color:inherit;}
 .foot__base{
   padding-top:22px;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(233,231,221,.4);
+  color:rgba(241,233,221,.4);
 }
 @media(max-width:760px){ .foot__grid{grid-template-columns:1fr;} }
 
@@ -413,6 +447,19 @@ a{color:inherit;}
   </div>
 </header>
 
+<!-- STANDALONE EMAIL CAPTURE — no unit pick required ---------->
+<div class="teaser">
+  <div class="wrap teaser__inner">
+    <p class="teaser__text"><strong>Just watching?</strong> Get new units and price drops by email — no unit pick needed.</p>
+    <form class="teaser__form" id="teaserForm" novalidate>
+      <label for="t-email" class="sr-only">Email address</label>
+      <input id="t-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+      <button type="submit">Join the list</button>
+    </form>
+    <p class="teaser__done" id="teaserDone" hidden role="status" aria-live="polite">You're on the list — watch your inbox.</p>
+  </div>
+</div>
+
 <main id="top">
 
   <!-- HERO ---------------------------------------------------->
@@ -421,7 +468,7 @@ a{color:inherit;}
       <div>
         <p class="eyebrow">Uyo · Akwa Ibom · Off Nwaniba Road</p>
         <h1 class="display">Nine units.<br><em id="keyCount">Four</em> keys<br>still on<br>the board.</h1>
-        <p class="hero__lede">Furnished serviced apartments with 20-hour power, weekly housekeeping, and fibre that holds through a call. Check the board, pick a unit, and we'll hold it for 48 hours.</p>
+        <p class="hero__lede">Furnished, 24-hour light, weekly housekeeping, fibre that holds through a call. Pick a unit below — we'll hold it 48 hours.</p>
         <p class="hero__meta mono">
           <span>Nightly &amp; monthly</span>
           <span>Min. 2 nights</span>
@@ -447,7 +494,7 @@ a{color:inherit;}
         <p class="eyebrow">The Building</p>
         <h2>Every unit,<br>drawn to plan</h2>
       </div>
-      <p class="band__note">Blocks A and B, three floors each. Plans are to scale — what you see is the space you get, minus the cat we drew in for scale (there is no cat).<br><br><em>Sample data — unit codes, sizes and rates below are placeholders. Swap in the real numbers in the <code>UNITS</code> list before publishing.</em></p>
+      <p class="band__note">Blocks A and B, three floors each. Plans are to scale.<br><br><em>Sample data — unit codes, sizes and rates below are placeholders. Swap in the real numbers in the <code>UNITS</code> list before publishing.</em></p>
     </div>
     <div class="units" id="unitGrid"></div>
   </section>
@@ -462,12 +509,12 @@ a{color:inherit;}
       <p class="band__note">Rates cover everything below. No caution fee on stays under a month, no agency fee at any length.</p>
     </div>
     <div class="units">
-      <article class="unit"><div class="unit__code">Power</div><p class="unit__desc">Grid plus inverter backup, roughly 20 hours daily. Generator covers the gap on outage days.</p></article>
-      <article class="unit"><div class="unit__code">Water</div><p class="unit__desc">Borehole and treated storage, heated in every bathroom.</p></article>
-      <article class="unit"><div class="unit__code">Internet</div><p class="unit__desc">Fibre to each unit, unmetered. Router in the living area, repeater in the bedroom.</p></article>
+      <article class="unit"><div class="unit__code">Power</div><p class="unit__desc">Light around the clock. Inverter picks up the rare grid outage.</p></article>
+      <article class="unit"><div class="unit__code">Water</div><p class="unit__desc">Borehole, treated, heated in every bathroom.</p></article>
+      <article class="unit"><div class="unit__code">Internet</div><p class="unit__desc">Fibre, unmetered. Router in the living area, repeater in the bedroom.</p></article>
       <article class="unit"><div class="unit__code">Cleaning</div><p class="unit__desc">Weekly housekeeping and linen change. Daily on request, ₦8,000 a visit.</p></article>
-      <article class="unit"><div class="unit__code">Security</div><p class="unit__desc">Gated compound, guard on duty overnight, cameras on both entrances.</p></article>
-      <article class="unit"><div class="unit__code">Parking</div><p class="unit__desc">One covered bay per unit. Visitor bays inside the gate.</p></article>
+      <article class="unit"><div class="unit__code">Security</div><p class="unit__desc">Gated compound, night guard, cameras on both entrances.</p></article>
+      <article class="unit"><div class="unit__code">Parking</div><p class="unit__desc">One covered bay per unit, visitor bays inside the gate.</p></article>
     </div>
   </section>
 
@@ -639,6 +686,26 @@ const UNITS = [
       and the form will POST the lead as JSON.
    ============================================================ */
 const ENDPOINT = "";
+
+/* Shared send path for both the enquiry form and the email-only
+   teaser banner. Returns true on success (or demo-mode log),
+   false only on a real network failure. */
+async function postLead(lead){
+  if (ENDPOINT){
+    try {
+      await fetch(ENDPOINT, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+        body: JSON.stringify(lead)
+      });
+    } catch (err) {
+      return false;
+    }
+  } else {
+    console.log("Lead captured (demo mode — no endpoint set):", lead);
+  }
+  return true;
+}
 
 /* ---------- floor plans (schematic, drawn in SVG) ---------- */
 const PLANS = {
@@ -814,6 +881,7 @@ form.addEventListener("submit", async e => {
   if (!validate()) return;
 
   const lead = {
+    source:    "enquiry",
     name:      form.name.value.trim(),
     email:     form.email.value.trim(),
     phone:     form.phone.value.trim(),
@@ -829,21 +897,12 @@ form.addEventListener("submit", async e => {
   btn.disabled = true;
   btn.textContent = "Sending…";
 
-  if (ENDPOINT){
-    try {
-      await fetch(ENDPOINT, {
-        method:"POST",
-        headers:{ "Content-Type":"application/json", "Accept":"application/json" },
-        body: JSON.stringify(lead)
-      });
-    } catch (err) {
-      btn.disabled = false;
-      btn.textContent = "Send enquiry";
-      showError("email","That didn't send. Check your connection and try again, or email hello@idaracourt.ng.");
-      return;
-    }
-  } else {
-    console.log("Lead captured (demo mode — no endpoint set):", lead);
+  const ok = await postLead(lead);
+  if (!ok){
+    btn.disabled = false;
+    btn.textContent = "Send enquiry";
+    showError("email","That didn't send. Check your connection and try again, or email hello@idaracourt.ng.");
+    return;
   }
 
   const picked = UNITS.find(u => u.code === lead.unit);
@@ -866,6 +925,41 @@ document.getElementById("againBtn").addEventListener("click", () => {
   doneCard.hidden = true;
   form.hidden = false;
   document.getElementById("f-name").focus();
+});
+
+/* ---------- standalone email teaser (no unit required) ---------- */
+const teaserForm = document.getElementById("teaserForm");
+const teaserDone = document.getElementById("teaserDone");
+
+teaserForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  const email = teaserForm.email.value.trim();
+  const input = teaserForm.email;
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+    input.setCustomValidity("Enter an email so we know where to send updates.");
+    input.reportValidity();
+    return;
+  }
+  input.setCustomValidity("");
+
+  const btn = teaserForm.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Joining…";
+
+  const ok = await postLead({ source:"banner", email, newsletter:true, sentAt:new Date().toISOString() });
+
+  btn.disabled = false;
+  btn.textContent = "Join the list";
+
+  if (!ok){
+    input.setCustomValidity("That didn't send — check your connection and try again.");
+    input.reportValidity();
+    return;
+  }
+
+  teaserForm.hidden = true;
+  teaserDone.hidden = false;
 });
 </script>
 </body>
