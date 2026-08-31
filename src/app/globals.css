@@ -1,41 +1,40 @@
 @import "tailwindcss";
 
 /*
- * Underground Draft design tokens (Skill §1).
- * These are the WORKING PLACEHOLDER palette/type pairing called out as an
- * open decision in Skill §9 — real brand colors/typeface can drop in here
- * without touching component code, since every component consumes the
- * Tailwind utilities generated from these variables (bg-bg, text-fg,
- * bg-accent, border-border, etc.) rather than raw hex values.
+ * The Underground Draft — design tokens.
  *
- * The site is dark-first by brand design (near-black canvas, off-white
- * type, matching Deeds Magazine / Purp Kulture) rather than following the
- * visitor's OS light/dark preference — so there is no prefers-color-scheme
- * branch here on purpose.
+ * Zine/print system: cream paper canvas, ink black, one poster red, and a
+ * muted charcoal for section variation (Skill brief: "red, black,
+ * off-white/cream and muted dark tones"). This is a fixed editorial
+ * palette, not a light/dark theme — paper and ink sections are used
+ * compositionally on the same page, like a printed spread, so there is no
+ * prefers-color-scheme branch here.
  */
 :root {
-  --bg: #0b0b0c;
-  --bg-raised: #16161a;
-  --fg: #f5f3ee;
-  --fg-muted: #9c9a96;
-  --accent: #e8a33d;
-  --accent-2: #7c5cff;
-  --border: #2a2a2e;
+  --paper: #f0e9d8;
+  --paper-dim: #e3d8bd;
+  --ink: #15120f;
+  --charcoal: #2a241d;
+  --red: #c22417;
+  --muted: #6e6455;
+  --muted-2: #a89d89;
 }
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-bg-raised: var(--bg-raised);
-  --color-fg: var(--fg);
-  --color-fg-muted: var(--fg-muted);
-  --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
-  --color-border: var(--border);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-red: var(--red);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
 
-  --font-display: var(--font-space-grotesk);
-  --font-sans: var(--font-inter);
+  --font-display: var(--font-anton);
+  --font-sans: var(--font-archivo);
+  --font-mono: var(--font-plex-mono);
 
   --animate-vinyl-spin: vinyl-spin 3.2s linear infinite;
+  --animate-marquee: marquee 22s linear infinite;
 }
 
 @keyframes vinyl-spin {
@@ -47,12 +46,59 @@
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--red);
+  color: var(--paper);
+}
+
+/*
+ * Film-grain overlay. Fixed, full-viewport, pointer-events:none. One
+ * static SVG turbulence texture rather than an animated/looped one —
+ * "subtle but noticeable," never a performance cost.
+ */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+}
+
+/* Halftone dot field — used sparingly behind headline blocks/images. */
+.halftone {
+  background-image: radial-gradient(var(--ink) 1px, transparent 1.4px);
+  background-size: 7px 7px;
+}
+
+.halftone-paper {
+  background-image: radial-gradient(var(--paper) 1px, transparent 1.4px);
+  background-size: 7px 7px;
+}
+
+/* Hairline + heavy rule utilities, so component code says rule-thin / rule-heavy. */
+.rule-thin {
+  border-color: var(--ink);
+  border-width: 1px;
+}
+.rule-heavy {
+  border-color: var(--ink);
+  border-width: 3px;
 }

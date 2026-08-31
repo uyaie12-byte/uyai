@@ -1,31 +1,39 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Anton, Archivo, IBM_Plex_Mono } from "next/font/google";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const anton = Anton({
+  variable: "--font-anton",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: "400",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://undergrounddraft.com"),
+  metadataBase: new URL("https://theundergrounddraft.com"),
   title: {
-    default: "Underground Draft",
-    template: "%s · Underground Draft",
+    default: "The Underground Draft",
+    template: "%s · The Underground Draft",
   },
   description:
-    "Underground Draft is a modern African music media brand — editorial, signature series, live & DJ sessions, and The Camp, an artist-development residency.",
+    "The Underground Draft is an independent music and culture platform — discovering, documenting and spotlighting the artists, sounds and movements shaping African music before the rest of the world catches on.",
   openGraph: {
-    title: "Underground Draft",
-    description:
-      "Discover, understand, and experience African music and culture — before it's obvious.",
-    siteName: "Underground Draft",
+    title: "The Underground Draft",
+    description: "The first draft of what's next.",
+    siteName: "The Underground Draft",
     type: "website",
   },
 };
@@ -36,10 +44,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} dark h-full`}
+      className={`${anton.variable} ${archivo.variable} ${plexMono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-fg font-sans antialiased selection:bg-accent selection:text-bg">
-        {children}
+      <body className="grain min-h-full flex flex-col bg-paper text-ink font-sans antialiased selection:bg-red selection:text-paper">
+        <SiteNav />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

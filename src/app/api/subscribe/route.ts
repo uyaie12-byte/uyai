@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addSubscriber, type SubscribeSource } from "@/lib/subscribers";
 
-const VALID_SOURCES: SubscribeSource[] = ["notify", "home", "article", "footer", "the-camp"];
+const VALID_SOURCES: SubscribeSource[] = ["home", "article", "footer", "about"];
 
 export async function POST(req: NextRequest) {
   let body: unknown;
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   const safeSource: SubscribeSource = VALID_SOURCES.includes(source as SubscribeSource)
     ? (source as SubscribeSource)
-    : "notify";
+    : "home";
 
   const result = await addSubscriber(email, safeSource);
 

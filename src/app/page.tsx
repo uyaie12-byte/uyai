@@ -1,8 +1,23 @@
-import { WaitlistLanding } from "@/components/waitlist-landing";
+import { Hero } from "@/components/home/hero";
+import { AboutBand } from "@/components/home/about-band";
+import { NewMusicSection } from "@/components/home/new-music-section";
+import { ArtistSpotlightSection } from "@/components/home/artist-spotlight-section";
+import { TheDraftSection } from "@/components/home/the-draft-section";
+import { ArtistPickSection } from "@/components/home/artist-pick-section";
+import { ThrowbackSection } from "@/components/home/throwback-section";
+import { NewsletterSection } from "@/components/home/newsletter-section";
 
-// TEMPORARY: the root route serves the pre-launch waitlist landing until
-// Phase 2 (core shell + real homepage, Skill §7) replaces it. `/notify`
-// carries the same page permanently as a standalone, shareable link.
 export default function HomePage() {
-  return <WaitlistLanding />;
+  return (
+    <>
+      <Hero />
+      <AboutBand />
+      <NewMusicSection />
+      <ArtistSpotlightSection />
+      <TheDraftSection />
+      <ArtistPickSection />
+      <ThrowbackSection />
+      <NewsletterSection />
+    </>
+  );
 }

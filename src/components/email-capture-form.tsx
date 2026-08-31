@@ -7,17 +7,18 @@ type Status = "idle" | "loading" | "success" | "error";
 
 type EmailCaptureFormProps = {
   source: SubscribeSource;
-  /** "standalone" = big centered form (notify page). "inline" = compact bar (home/article/footer). */
   variant?: "standalone" | "inline";
   buttonLabel?: string;
   placeholder?: string;
+  tone?: "ink" | "paper";
 };
 
 export function EmailCaptureForm({
   source,
   variant = "inline",
-  buttonLabel = "Get on the list",
-  placeholder = "you@wherever.com",
+  buttonLabel = "Join The Draft",
+  placeholder = "your@email.com",
+  tone = "ink",
 }: EmailCaptureFormProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -46,31 +47,21 @@ export function EmailCaptureForm({
     }
   }
 
+  const isPaper = tone === "paper";
+  const textColor = isPaper ? "text-paper" : "text-ink";
+  const borderColor = isPaper ? "border-paper" : "border-ink";
+
   if (status === "success") {
     return (
-      <div
-        className={
-          variant === "standalone"
-            ? "text-center"
-            : "flex items-center gap-3 text-left"
-        }
-      >
-        <p className="font-display text-lg text-fg">
-          You&apos;re in. 🎧 Keep an eye on your inbox.
-        </p>
-      </div>
+      <p className={`font-display text-xl ${textColor}`}>
+        YOU&apos;RE ON THE LIST. — check your inbox.
+      </p>
     );
   }
 
-  const isStandalone = variant === "standalone";
-
   return (
-    <div className={isStandalone ? "w-full max-w-md" : "w-full max-w-md"}>
-      <form
-        onSubmit={handleSubmit}
-        className="flex w-full flex-col gap-3 sm:flex-row"
-        noValidate
-      >
+    <div className={variant === "standalone" ? "w-full max-w-lg" : "w-full max-w-md"}>
+      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-0 sm:flex-row" noValidate>
         <label htmlFor={`email-${source}`} className="sr-only">
           Email address
         </label>
@@ -83,18 +74,18 @@ export function EmailCaptureForm({
           placeholder={placeholder}
           autoComplete="email"
           disabled={status === "loading"}
-          className="w-full flex-1 rounded-full border border-border bg-bg-raised px-5 py-3 text-fg placeholder:text-fg-muted outline-none transition-colors focus:border-accent disabled:opacity-60"
+          className={`w-full flex-1 border ${borderColor} bg-transparent px-4 py-3 font-mono text-sm ${textColor} outline-none transition-colors ${isPaper ? "placeholder:text-muted-2" : "placeholder:text-muted"} focus:bg-red/5 disabled:opacity-60`}
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="shrink-0 rounded-full bg-accent px-6 py-3 font-display font-semibold text-bg transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="shrink-0 border border-red bg-red px-6 py-3 font-mono text-sm font-semibold uppercase tracking-[0.15em] text-paper transition-opacity hover:opacity-85 disabled:opacity-60"
         >
           {status === "loading" ? "Sending…" : buttonLabel}
         </button>
       </form>
       {error && (
-        <p role="alert" className="mt-2 text-sm text-accent">
+        <p role="alert" className="mt-2 inline-block bg-red px-2 py-1 font-mono text-xs text-paper">
           {error}
         </p>
       )}
