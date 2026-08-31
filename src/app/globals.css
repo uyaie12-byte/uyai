@@ -93,6 +93,18 @@ body {
   background-size: 7px 7px;
 }
 
+/*
+ * Layered "poster print" headline shadow — a crisp (unblurred) offset
+ * duplicate behind the type, like a badly-registered print run. em-based
+ * so the offset scales with the headline's own font-size.
+ */
+.poster-shadow {
+  text-shadow: 0.045em 0.045em 0 var(--ink);
+}
+.poster-shadow-paper {
+  text-shadow: 0.045em 0.045em 0 var(--paper);
+}
+
 /* Hairline + heavy rule utilities, so component code says rule-thin / rule-heavy. */
 .rule-thin {
   border-color: var(--ink);

@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/hero";
+import { CampPromo } from "@/components/home/camp-promo";
 import { AboutBand } from "@/components/home/about-band";
 import { NewMusicSection } from "@/components/home/new-music-section";
 import { ArtistSpotlightSection } from "@/components/home/artist-spotlight-section";
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <CampPromo />
       <AboutBand />
       <NewMusicSection />
       <ArtistSpotlightSection />

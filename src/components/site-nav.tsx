@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: "/new-music", label: "New Music" },
   { href: "/artists", label: "Artists" },
   { href: "/archive", label: "Archive" },
+  { href: "/the-camp", label: "The Camp" },
   { href: "/about", label: "About" },
 ];
 
@@ -19,7 +20,7 @@ export function SiteNav() {
     <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-paper">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3 sm:px-8">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <BrandMark size={44} />
+          <BrandMark size={44} priority />
           <span className="hidden font-display text-lg tracking-wide sm:inline">
             THE UNDERGROUND DRAFT
           </span>
@@ -30,7 +31,9 @@ export function SiteNav() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-sans text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:text-red"
+              className={`font-sans text-sm font-semibold uppercase tracking-wide transition-colors hover:text-red ${
+                link.href === "/the-camp" ? "text-red" : "text-ink"
+              }`}
             >
               {link.label}
             </Link>
@@ -58,7 +61,7 @@ export function SiteNav() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className={`block px-5 py-4 font-display text-2xl tracking-wide text-ink ${i > 0 ? "border-t border-ink/20" : ""}`}
+              className={`block px-5 py-4 font-display text-2xl tracking-wide ${link.href === "/the-camp" ? "text-red" : "text-ink"} ${i > 0 ? "border-t border-ink/20" : ""}`}
             >
               {link.label}
             </Link>

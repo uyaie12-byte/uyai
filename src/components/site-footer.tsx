@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: "/new-music", label: "New Music" },
   { href: "/artists", label: "Artists" },
   { href: "/archive", label: "Archive" },
+  { href: "/the-camp", label: "The Camp" },
   { href: "/about", label: "About" },
 ];
 
