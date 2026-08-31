@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/*
+ * Underground Draft design tokens (Skill §1).
+ * These are the WORKING PLACEHOLDER palette/type pairing called out as an
+ * open decision in Skill §9 — real brand colors/typeface can drop in here
+ * without touching component code, since every component consumes the
+ * Tailwind utilities generated from these variables (bg-bg, text-fg,
+ * bg-accent, border-border, etc.) rather than raw hex values.
+ *
+ * The site is dark-first by brand design (near-black canvas, off-white
+ * type, matching Deeds Magazine / Purp Kulture) rather than following the
+ * visitor's OS light/dark preference — so there is no prefers-color-scheme
+ * branch here on purpose.
+ */
+:root {
+  --bg: #0b0b0c;
+  --bg-raised: #16161a;
+  --fg: #f5f3ee;
+  --fg-muted: #9c9a96;
+  --accent: #e8a33d;
+  --accent-2: #7c5cff;
+  --border: #2a2a2e;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-border: var(--border);
+
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+
+  --animate-vinyl-spin: vinyl-spin 3.2s linear infinite;
+}
+
+@keyframes vinyl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
