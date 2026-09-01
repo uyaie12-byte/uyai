@@ -10,8 +10,14 @@ out once the main site is ready.
 
 - `index.html` — the entire landing page (self-contained HTML/CSS/JS, no
   build step, no dependencies).
-- `favicon.svg` — the site favicon (vinyl-stamp mark).
-- `og-image.png` — 1200×630 Open Graph / Twitter card image.
+- `logo-mark.png` — the real Underground Draft vinyl icon, used in the
+  header/footer.
+- `logo-badge.png` — the full wordmark badge (vinyl + "UNDERGROUND DRAFT"
+  ring text), baked into the OG image; kept as a spare asset for future use.
+- `favicon.ico`, `favicon-32x32.png`, `favicon-192.png`, `favicon-512.png`,
+  `apple-touch-icon.png` — favicon set generated from the real logo.
+- `og-image.png` — 1200×630 Open Graph / Twitter card image, built from the
+  real logo badge.
 - `site.webmanifest` — basic PWA/favicon manifest.
 
 ## Deploying
@@ -41,5 +47,7 @@ just being stored locally.
 - Replace the `https://theundergrounddraft.com/` placeholders in the
   `<head>` (canonical URL, `og:url`, `og:image`, `twitter:image`) with the
   real domain this page is deployed to.
-- Fill in the real social links in the footer (Instagram / Twitter / TikTok).
+- Social links in the footer already point to the real Instagram
+  (`instagram.com/theugdraft`) and X (`x.com/theugdraft`) accounts. Add
+  TikTok/YouTube links once those accounts exist.
 - Set `FORM_ENDPOINT` as described above.
