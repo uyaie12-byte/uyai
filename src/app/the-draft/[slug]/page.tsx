@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { articles, getArticle } from "@/content/articles";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { getAllArticles, getArticle } from "@/lib/articles";
+import { mdxComponents } from "@/components/mdx-components";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Tag } from "@/components/tag";
 import { Rule } from "@/components/rule";
@@ -9,7 +11,7 @@ import { ArticleCard } from "@/components/article-card";
 import { EmailCaptureForm } from "@/components/email-capture-form";
 
 export function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }));
+  return getAllArticles().map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({
@@ -28,7 +30,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const article = getArticle(slug);
   if (!article) notFound();
 
-  const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+  const related = getAllArticles()
+    .filter((a) => a.slug !== article.slug)
+    .slice(0, 3);
 
   return (
     <article>
@@ -51,12 +55,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       </div>
 
       <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8">
-        <ImagePlaceholder label={article.category} ratio="aspect-[16/9]" pattern="stripes" tone="ink" />
+        {/* Only show the placeholder banner when the piece has no lead image of its own. */}
+        {!article.content.trimStart().startsWith("![") && (
+          <ImagePlaceholder label={article.category} ratio="aspect-[16/9]" pattern="stripes" tone="ink" />
+        )}
 
-        <div className="mt-10 space-y-6 font-sans text-lg leading-relaxed text-ink/90">
-          {article.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+        <div className="mt-10">
+          <MDXRemote source={article.content} components={mdxComponents} />
         </div>
 
         <div className="mt-10 flex flex-wrap gap-2">

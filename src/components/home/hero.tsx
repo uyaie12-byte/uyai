@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { articles } from "@/content/articles";
+import { getAllArticles } from "@/lib/articles";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Tag } from "@/components/tag";
 import { StampBadge } from "@/components/stamp-badge";
 import { Rule } from "@/components/rule";
 
 export function Hero() {
-  const current = articles[0];
+  const current = getAllArticles()[0];
 
   return (
     <section className="relative overflow-hidden">

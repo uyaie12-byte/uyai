@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { articles } from "@/content/articles";
+import { getAllArticles } from "@/lib/articles";
 import { ArticleCard } from "@/components/article-card";
 import { HubHeader } from "@/components/hub-header";
 
@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function TheDraftPage() {
+  const articles = getAllArticles();
   return (
     <>
       <HubHeader

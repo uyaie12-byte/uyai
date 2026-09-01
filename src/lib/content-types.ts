@@ -36,18 +36,8 @@ export type Release = {
   listenHref?: string;
 };
 
-export type ArticleCategory = "Interview" | "Review" | "Culture" | "Commentary";
-
-export type Article = {
-  slug: string;
-  title: string;
-  dek: string;
-  category: ArticleCategory;
-  author: string;
-  date: string; // ISO
-  tags: string[];
-  body: string[]; // paragraphs
-};
+// Article / ArticleCategory moved to src/lib/articles.ts — articles are
+// MDX files under /content/articles now, not plain data here.
 
 export type Throwback = {
   slug: string;

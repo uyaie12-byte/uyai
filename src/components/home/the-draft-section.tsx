@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { articles } from "@/content/articles";
+import { getAllArticles } from "@/lib/articles";
 import { ArticleCard } from "@/components/article-card";
 import { SectionLabel } from "@/components/section-label";
 
 export function TheDraftSection() {
-  const featured = articles.slice(0, 3);
+  const featured = getAllArticles().slice(0, 3);
 
   return (
     <section className="border-b border-ink/20 bg-paper py-20 sm:py-28">

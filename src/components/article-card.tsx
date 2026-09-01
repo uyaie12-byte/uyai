@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Article } from "@/lib/content-types";
+import type { Article } from "@/lib/articles";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Tag } from "@/components/tag";
 
