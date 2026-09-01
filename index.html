@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Underground Draft — The first draft of what's next.</title>
+<meta name="description" content="The Underground Draft is a music and culture platform spotlighting emerging artists, new sounds and the creative movements shaping the future — before the mainstream catches on. Join the waitlist." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://theundergrounddraft.com/" />
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="mask-icon" href="/favicon.svg" color="#17130F" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#17130F" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="The Underground Draft" />
+<meta property="og:title" content="The Underground Draft — The first draft of what's next." />
+<meta property="og:description" content="A music and culture platform spotlighting emerging artists, new sounds and the movements shaping the future of African music — before the mainstream catches on." />
+<meta property="og:url" content="https://theundergrounddraft.com/" />
+<meta property="og:image" content="https://theundergrounddraft.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Underground Draft — The first draft of what's next." />
+<meta name="twitter:description" content="A music and culture platform spotlighting emerging artists, new sounds and the movements shaping the future — before the mainstream catches on." />
+<meta name="twitter:image" content="https://theundergrounddraft.com/og-image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --cream:#F0EADC;
+  --paper:#F6F1E6;
+  --ink:#17130F;
+  --brick:#B23B2E;
+  --rule:rgba(23,19,15,.15);
+  --muted:rgba(23,19,15,.6);
+
+  --display:"Archivo", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  --gut:clamp(20px, 5vw, 64px);
+  --maxw:1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--display);
+  font-size:clamp(16px,1.05vw,18px);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;}
+button{font-family:inherit;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut);}
+
+.display{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 112,"wght" 800;
+  letter-spacing:-.015em;
+  line-height:.94;
+  text-transform:uppercase;
+  margin:0;
+}
+.mono{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--brick);
+  font-weight:600;
+  margin:0 0 1.1rem;
+  display:flex;align-items:center;gap:.6em;
+}
+.eyebrow::before{
+  content:"";
+  width:.85em;height:.85em;
+  border-radius:50%;
+  background:var(--brick);
+  flex:none;
+}
+
+:focus-visible{outline:2.5px solid var(--brick);outline-offset:3px;}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  position:sticky;top:0;z-index:40;
+  background:rgba(240,234,220,.92);
+  backdrop-filter:blur(8px);
+}
+.masthead__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding-block:14px;
+}
+.logo{
+  display:flex;align-items:center;gap:.6rem;
+  text-decoration:none;
+}
+.logo__mark{width:34px;height:34px;flex:none;}
+.logo__word{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 118,"wght" 800;
+  text-transform:uppercase;letter-spacing:.005em;
+  font-size:.92rem;line-height:1.05;
+}
+.masthead .mono{color:var(--muted);}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  padding-block:clamp(56px,10vw,110px) clamp(48px,8vw,88px);
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--rule);
+}
+.hero__ring{
+  position:absolute;
+  right:clamp(-220px,-8vw,-40px);
+  top:-160px;
+  width:min(560px,60vw);
+  height:min(560px,60vw);
+  border-radius:50%;
+  border:1px dashed var(--rule);
+  pointer-events:none;
+}
+.hero__ring::after{
+  content:"";
+  position:absolute;inset:14%;
+  border-radius:50%;
+  border:1px solid var(--rule);
+}
+.hero__inner{position:relative;z-index:1;max-width:760px;}
+.hero h1{
+  font-size:clamp(2.6rem,7.4vw,4.9rem);
+  margin-bottom:.55em;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--brick);
+}
+.hero__tag{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 108,"wght" 600;
+  font-size:clamp(1.15rem,2.4vw,1.55rem);
+  margin:0 0 1.3rem;
+  color:var(--ink);
+}
+.hero__desc{
+  max-width:52ch;
+  color:var(--muted);
+  font-size:1rem;
+  margin:0 0 2.4rem;
+}
+
+/* ============================================================
+   SIGNUP FORM
+   ============================================================ */
+.signup{
+  max-width:560px;
+}
+.signup__form{
+  display:flex;
+  gap:.6rem;
+  flex-wrap:wrap;
+}
+.signup__field{
+  flex:1 1 260px;
+  position:relative;
+}
+.signup__input{
+  width:100%;
+  padding:15px 18px;
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:.85rem;
+  letter-spacing:.02em;
+  border-radius:2px;
+}
+.signup__input::placeholder{color:var(--muted);}
+.signup__input:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(178,59,46,.14);}
+.signup__input[aria-invalid="true"]{border-color:var(--brick);}
+
+.btn{
+  appearance:none;
+  border:1.5px solid var(--ink);
+  background:var(--ink);
+  color:var(--cream);
+  font-family:var(--mono);
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:15px 26px;
+  border-radius:2px;
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:.6em;
+  transition:background .15s ease, color .15s ease, transform .1s ease;
+  white-space:nowrap;
+}
+.btn:hover{background:var(--brick);border-color:var(--brick);}
+.btn:active{transform:translateY(1px);}
+.btn:disabled{opacity:.6;cursor:progress;}
+.btn--ghost{
+  background:transparent;color:var(--ink);
+}
+.btn--ghost:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+
+.signup__note{
+  margin:.9rem 0 0;
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.06em;
+  color:var(--muted);
+  text-transform:none;
+}
+.signup__error{
+  margin:.7rem 0 0;
+  font-family:var(--mono);
+  font-size:.72rem;
+  color:var(--brick);
+  display:none;
+}
+.signup__error[data-show="true"]{display:block;}
+
+/* success state */
+.signup__success{
+  display:none;
+  align-items:flex-start;
+  gap:.9rem;
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  padding:22px 24px;
+  border-radius:2px;
+}
+.signup__success[data-show="true"]{display:flex;}
+.signup__success svg{flex:none;margin-top:2px;}
+.signup__success h3{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 110,"wght" 800;
+  text-transform:uppercase;
+  font-size:1.05rem;
+  margin:0 0 .35em;
+  letter-spacing:-.01em;
+}
+.signup__success p{
+  margin:0;
+  color:var(--muted);
+  font-size:.92rem;
+}
+.signup__success .mono{color:var(--brick);}
+
+/* ============================================================
+   PILLARS
+   ============================================================ */
+.pillars{
+  padding-block:clamp(56px,9vw,96px);
+  border-bottom:1px solid var(--rule);
+}
+.pillars__head{max-width:640px;margin-bottom:clamp(36px,6vw,56px);}
+.pillars__head h2{font-size:clamp(1.9rem,4.4vw,2.7rem);}
+.pillars__head p{color:var(--muted);margin:.8rem 0 0;max-width:48ch;}
+
+.pillars__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid var(--rule);
+}
+.pillar{
+  padding:clamp(26px,3vw,34px) clamp(4px,2vw,28px) clamp(26px,3vw,34px) 0;
+  border-bottom:1px solid var(--rule);
+}
+.pillar + .pillar{border-left:1px solid var(--rule);padding-left:clamp(20px,3vw,28px);}
+.pillar__num{
+  font-family:var(--mono);
+  font-size:.72rem;
+  color:var(--muted);
+  letter-spacing:.1em;
+}
+.pillar h3{
+  font-size:clamp(1.4rem,2.6vw,1.9rem);
+  margin:.6rem 0 .5rem;
+}
+.pillar p{
+  margin:0;
+  color:var(--muted);
+  font-size:.94rem;
+}
+
+@media (max-width:820px){
+  .pillars__grid{grid-template-columns:1fr;border-top:none;}
+  .pillar{border-left:none !important;padding:22px 0 !important;border-bottom:1px solid var(--rule);}
+  .pillar:first-child{border-top:1px solid var(--rule);}
+}
+
+/* ============================================================
+   STAMP / CAMP STRIP
+   ============================================================ */
+.stamp{
+  background:var(--ink);
+  color:var(--cream);
+  padding-block:clamp(48px,8vw,80px);
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--rule);
+}
+.stamp__ring{
+  position:absolute;
+  left:clamp(-260px,-14vw,-80px);
+  bottom:-220px;
+  width:min(620px,70vw);
+  height:min(620px,70vw);
+  border-radius:50%;
+  border:1px solid rgba(240,234,220,.14);
+}
+.stamp__inner{position:relative;z-index:1;max-width:640px;}
+.stamp .eyebrow{color:var(--brick);}
+.stamp h2{
+  font-size:clamp(1.9rem,4.6vw,2.9rem);
+  color:var(--cream);
+}
+.stamp p{
+  color:rgba(240,234,220,.72);
+  max-width:48ch;
+  margin:1rem 0 0;
+  font-size:.98rem;
+}
+
+/* ============================================================
+   FOOTER / NEWSLETTER
+   ============================================================ */
+.footer{
+  padding-block:clamp(48px,8vw,80px) 40px;
+}
+.footer__top{
+  display:flex;
+  flex-wrap:wrap;
+  gap:2.4rem;
+  justify-content:space-between;
+  align-items:flex-start;
+  padding-bottom:clamp(36px,6vw,56px);
+  border-bottom:1px solid var(--rule);
+}
+.footer__brand .logo__word{font-size:1.4rem;}
+.footer__brand p{
+  color:var(--muted);
+  max-width:34ch;
+  margin:.9rem 0 0;
+  font-size:.92rem;
+}
+.footer__news{flex:1 1 340px;max-width:460px;}
+.footer__news h3{
+  font-size:1.15rem;
+  margin:0 0 .5rem;
+}
+.footer__news p{
+  color:var(--muted);
+  font-size:.88rem;
+  margin:0 0 1.1rem;
+}
+.footer__news .signup__form{gap:.5rem;}
+.footer__news .signup__input,
+.footer__news .btn{padding:12px 16px;font-size:.76rem;}
+
+.footer__bottom{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:1.6rem;
+}
+.footer__social{
+  display:flex;gap:1.3rem;
+}
+.footer__social a{
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--muted);
+  border-bottom:1px solid transparent;
+}
+.footer__social a:hover{color:var(--ink);border-color:var(--ink);}
+.footer__legal{
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+
+@media (max-width:600px){
+  .footer__bottom{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="/" aria-label="The Underground Draft — home">
+      <svg class="logo__mark" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="31" fill="#17130F"/>
+        <circle cx="32" cy="32" r="31" fill="none" stroke="#F0EADC" stroke-width="1.1" stroke-dasharray="1.4 3.4"/>
+        <circle cx="32" cy="32" r="24.5" fill="none" stroke="#F0EADC" stroke-width="1"/>
+        <circle cx="32" cy="32" r="7" fill="#B23B2E"/>
+        <circle cx="32" cy="32" r="2.1" fill="#17130F"/>
+      </svg>
+      <span class="logo__word">The Underground<br>Draft</span>
+    </a>
+    <span class="mono">Vol. 01 &mdash; Coming Soon</span>
+  </div>
+</header>
+
+<main>
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero__ring" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <p class="eyebrow">Launching Soon</p>
+      <h1 class="display">The <em>Underground</em><br>Draft</h1>
+      <p class="hero__tag">The first draft of what's next.</p>
+      <p class="hero__desc">
+        A music and culture platform built around discovery. We spotlight emerging
+        artists, unpack new sounds, and document the scenes and movements shaping
+        the future of African music &mdash; before the mainstream catches on.
+      </p>
+
+      <div class="signup" id="hero-signup">
+        <form class="signup__form" id="hero-form" novalidate>
+          <div class="signup__field">
+            <label class="mono" for="hero-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+            <input
+              class="signup__input"
+              type="email"
+              id="hero-email"
+              name="email"
+              placeholder="you@email.com"
+              autocomplete="email"
+              inputmode="email"
+              required
+            />
+          </div>
+          <button class="btn" type="submit">
+            <span class="btn__label">Notify Me</span>
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+        <p class="signup__error" id="hero-error" role="alert"></p>
+        <p class="signup__note">No spam. One email when we launch, and the occasional dispatch before that. Unsubscribe anytime.</p>
+
+        <div class="signup__success" id="hero-success" role="status">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+            <circle cx="13" cy="13" r="12.5" fill="#17130F"/>
+            <path d="M7.5 13.2L11 16.8L18.5 9" stroke="#F0EADC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <h3>You're on the draft.</h3>
+            <p>We'll email <span class="mono" id="hero-email-echo"></span> the moment The Underground Draft goes live. Keep an eye out.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PILLARS
+       ============================================================ -->
+  <section class="pillars">
+    <div class="wrap">
+      <div class="pillars__head">
+        <p class="eyebrow">What We're Building</p>
+        <h2 class="display">More than a music blog.</h2>
+        <p>Three things, done properly &mdash; discovery, documentation and community, built for the people already shaping culture.</p>
+      </div>
+
+      <div class="pillars__grid">
+        <article class="pillar">
+          <span class="pillar__num mono">01</span>
+          <h3 class="display">Discover</h3>
+          <p>New artists. New sounds. New perspectives, before the algorithm decides they're worth your time.</p>
+        </article>
+        <article class="pillar">
+          <span class="pillar__num mono">02</span>
+          <h3 class="display">Document</h3>
+          <p>The scenes, stories and movements defining a generation &mdash; told by the people living it.</p>
+        </article>
+        <article class="pillar">
+          <span class="pillar__num mono">03</span>
+          <h3 class="display">Connect</h3>
+          <p>Artists, creatives, audiences and the people building the industry around them, in one room.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STAMP STRIP
+       ============================================================ -->
+  <section class="stamp">
+    <div class="stamp__ring" aria-hidden="true"></div>
+    <div class="wrap stamp__inner">
+      <p class="eyebrow">Why Now</p>
+      <h2 class="display">Built for the underground, not the algorithm.</h2>
+      <p>The full site &mdash; features, interviews, sessions and the first artist camp &mdash; is in production. This page is the first draft. Leave your email and you'll be first through the door.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================
+     FOOTER / NEWSLETTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="logo" href="/" aria-label="The Underground Draft — home">
+          <svg class="logo__mark" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="31" fill="#17130F"/>
+            <circle cx="32" cy="32" r="31" fill="none" stroke="#F0EADC" stroke-width="1.1" stroke-dasharray="1.4 3.4"/>
+            <circle cx="32" cy="32" r="24.5" fill="none" stroke="#F0EADC" stroke-width="1"/>
+            <circle cx="32" cy="32" r="7" fill="#B23B2E"/>
+            <circle cx="32" cy="32" r="2.1" fill="#17130F"/>
+          </svg>
+          <span class="logo__word">The Underground<br>Draft</span>
+        </a>
+        <p>Est. 2026. A music and culture platform for the sounds and scenes shaping what's next.</p>
+      </div>
+
+      <div class="footer__news">
+        <h3 class="display">Join the newsletter.</h3>
+        <p>Launch updates, early access and the odd dispatch from the underground &mdash; straight to your inbox.</p>
+
+        <form class="signup__form" id="footer-form" novalidate>
+          <div class="signup__field">
+            <label class="mono" for="footer-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+            <input
+              class="signup__input"
+              type="email"
+              id="footer-email"
+              name="email"
+              placeholder="you@email.com"
+              autocomplete="email"
+              inputmode="email"
+              required
+            />
+          </div>
+          <button class="btn btn--ghost" type="submit">
+            <span class="btn__label">Subscribe</span>
+          </button>
+        </form>
+        <p class="signup__error" id="footer-error" role="alert"></p>
+
+        <div class="signup__success" id="footer-success" role="status" style="margin-top:.9rem;">
+          <svg width="22" height="22" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+            <circle cx="13" cy="13" r="12.5" fill="#17130F"/>
+            <path d="M7.5 13.2L11 16.8L18.5 9" stroke="#F0EADC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <h3 style="font-size:.9rem;">Subscribed.</h3>
+            <p style="font-size:.82rem;">You're on the list &mdash; thanks for joining early.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__legal">&copy; 2026 The Underground Draft. All rights reserved.</p>
+      <nav class="footer__social" aria-label="Social links">
+        <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="#" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+        <a href="#" target="_blank" rel="noopener noreferrer">TikTok</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // --------------------------------------------------------------
+  // CONFIG
+  // Point FORM_ENDPOINT at your email provider's form-submission
+  // endpoint (Mailchimp, Beehiiv, ConvertKit, Formspree, etc.) to
+  // go live. Until then, submissions are validated client-side and
+  // stored locally so the flow can be demoed end-to-end.
+  // --------------------------------------------------------------
+  var FORM_ENDPOINT = ""; // e.g. "https://formspree.io/f/xxxxxxx"
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function wireForm(formId, errorId, successId, echoId){
+    var form = document.getElementById(formId);
+    if (!form) return;
+    var error = document.getElementById(errorId);
+    var success = document.getElementById(successId);
+    var input = form.querySelector('input[type="email"]');
+    var button = form.querySelector('button[type="submit"]');
+    var label = button.querySelector('.btn__label');
+    var defaultLabel = label ? label.textContent : button.textContent;
+
+    function showError(msg){
+      error.textContent = msg;
+      error.setAttribute('data-show', 'true');
+      input.setAttribute('aria-invalid', 'true');
+    }
+    function clearError(){
+      error.setAttribute('data-show', 'false');
+      input.removeAttribute('aria-invalid');
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      clearError();
+
+      var email = (input.value || '').trim();
+      if (!EMAIL_RE.test(email)) {
+        showError('Enter a valid email address.');
+        input.focus();
+        return;
+      }
+
+      button.disabled = true;
+      if (label) label.textContent = 'Submitting…';
+
+      var finish = function(){
+        button.disabled = false;
+        if (label) label.textContent = defaultLabel;
+        form.style.display = 'none';
+        if (echoId) {
+          var echo = document.getElementById(echoId);
+          if (echo) echo.textContent = email;
+        }
+        success.setAttribute('data-show', 'true');
+        try {
+          var list = JSON.parse(localStorage.getItem('ugd_waitlist') || '[]');
+          if (list.indexOf(email) === -1) list.push(email);
+          localStorage.setItem('ugd_waitlist', JSON.stringify(list));
+        } catch (err) { /* storage unavailable, ignore */ }
+      };
+
+      if (FORM_ENDPOINT) {
+        fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        })
+        .then(function(res){
+          if (!res.ok) throw new Error('Request failed');
+          finish();
+        })
+        .catch(function(){
+          button.disabled = false;
+          if (label) label.textContent = defaultLabel;
+          showError("Something went wrong — please try again in a moment.");
+        });
+      } else {
+        setTimeout(finish, 500);
+      }
+    });
+  }
+
+  wireForm('hero-form', 'hero-error', 'hero-success', 'hero-email-echo');
+  wireForm('footer-form', 'footer-error', 'footer-success', null);
+})();
+</script>
+
+</body>
+</html>

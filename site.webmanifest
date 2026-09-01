@@ -1,0 +1,12 @@
+{
+  "name": "The Underground Draft",
+  "short_name": "UGD",
+  "description": "The first draft of what's next — a music and culture platform for emerging artists, sounds and movements.",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "theme_color": "#17130F",
+  "background_color": "#F0EADC",
+  "display": "standalone",
+  "start_url": "/"
+}
