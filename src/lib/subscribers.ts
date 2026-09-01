@@ -19,16 +19,13 @@ type StoredSubscriber = { email: string; source: SubscribeSource; createdAt: str
  * Local, file-based subscriber store.
  *
  * This is a deliberately zero-dependency default so the newsletter/waitlist
- * form works end-to-end (Skill §6) without picking an ESP first (Skill §9 —
- * open decision). It's queryable (`data/subscribers.json`, gitignored) for
- * local dev and demos.
+ * form works end-to-end without an ESP configured. It's queryable
+ * (`data/subscribers.json`, gitignored) for local dev and demos.
  *
  * IMPORTANT for production: most serverless hosts (Vercel included) run this
  * route on a read-only filesystem, so this file will NOT persist submissions
- * once deployed. Set SUBSCRIBE_WEBHOOK_URL to a webhook (Zapier/Make, an
- * Airtable/Google Sheets automation, or a Beehiiv/ConvertKit/Mailchimp
- * webhook) and this module posts every signup there as well — that's the
- * one env var to swap in once the real ESP is chosen, no code changes.
+ * once deployed — Beehiiv (below) is the real store once BEEHIIV_API_KEY is
+ * set. This stays as a local-dev convenience and a best-effort fallback.
  */
 async function appendToLocalFile(entry: StoredSubscriber): Promise<boolean> {
   try {
@@ -68,6 +65,66 @@ async function postToWebhook(entry: StoredSubscriber): Promise<void> {
   }
 }
 
+/**
+ * Beehiiv subscription API — the real ESP. Requires BEEHIIV_API_KEY (a
+ * publication API key from Beehiiv Settings → Integrations → API) and
+ * BEEHIIV_PUBLICATION_ID (starts with "pub_", same settings page).
+ *
+ * `utm_medium` carries our `source` (home/article/footer/about/the-camp/
+ * popup) through as a Beehiiv subscription tag, so the audience can be
+ * segmented by where someone signed up without any extra Beehiiv setup.
+ *
+ * Best-effort like the webhook above: a Beehiiv hiccup shouldn't be the
+ * reason a visitor sees an error after typing their email, so failures are
+ * logged, not thrown. The one exception is an email Beehiiv itself flags
+ * as invalid/undeliverable — our own regex check already screens most of
+ * those, but this surfaces anything it missed.
+ */
+async function postToBeehiiv(
+  entry: StoredSubscriber
+): Promise<{ configured: boolean; ok: boolean; error?: string }> {
+  const apiKey = process.env.BEEHIIV_API_KEY;
+  const publicationId = process.env.BEEHIIV_PUBLICATION_ID;
+  if (!apiKey || !publicationId) return { configured: false, ok: false };
+
+  try {
+    const res = await fetch(
+      `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          email: entry.email,
+          reactivate_existing: false,
+          send_welcome_email: true,
+          utm_source: "underground-draft-website",
+          utm_medium: entry.source,
+        }),
+      }
+    );
+
+    if (res.ok) return { configured: true, ok: true };
+
+    const body = await res.text().catch(() => "");
+    console.warn(`[subscribers] Beehiiv rejected ${entry.email}: ${res.status} ${body}`);
+
+    // 400 here is Beehiiv's own "invalid/undeliverable email" — worth
+    // telling the visitor. Anything else (auth, rate limit, outage) is
+    // our problem, not theirs, so stay silent and keep the local/webhook
+    // paths as the safety net.
+    if (res.status === 400) {
+      return { configured: true, ok: false, error: "That doesn't look like a valid email." };
+    }
+    return { configured: true, ok: false };
+  } catch (err) {
+    console.warn("[subscribers] Beehiiv request failed:", err);
+    return { configured: true, ok: false };
+  }
+}
+
 export async function addSubscriber(
   rawEmail: string,
   source: SubscribeSource
@@ -79,11 +136,18 @@ export async function addSubscriber(
 
   const entry: StoredSubscriber = { email, source, createdAt: new Date().toISOString() };
 
-  const [duplicate] = await Promise.all([
+  const [duplicate, beehiiv] = await Promise.all([
     appendToLocalFile(entry),
+    postToBeehiiv(entry),
     postToWebhook(entry),
   ]);
 
-  console.log(`[subscribers] +${email} (${source})`);
+  if (beehiiv.error) {
+    return { ok: false, error: beehiiv.error };
+  }
+
+  console.log(
+    `[subscribers] +${email} (${source})${beehiiv.configured ? (beehiiv.ok ? " → beehiiv ok" : " → beehiiv failed") : ""}`
+  );
   return { ok: true, duplicate };
 }
