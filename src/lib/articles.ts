@@ -26,9 +26,17 @@ export type ArticleMeta = {
   tags: string[];
 };
 
-export type Article = ArticleMeta & { content: string };
+export type Article = ArticleMeta & { content: string; image?: string };
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
+
+// First Markdown image anywhere in the body — used as the card thumbnail
+// (and skips the generic placeholder banner on the detail page) so an
+// imported piece's own photo shows up instead of a styled stand-in.
+function firstImage(content: string): string | undefined {
+  const match = content.match(/!\[[^\]]*\]\(([^)\s]+)\)/);
+  return match?.[1];
+}
 
 let cache: Article[] | null = null;
 
@@ -43,6 +51,7 @@ export function getAllArticles(): Article[] {
     return {
       slug,
       content,
+      image: firstImage(content),
       title: data.title,
       dek: data.dek,
       category: data.category,

@@ -6,14 +6,26 @@ import { Tag } from "@/components/tag";
 export function ArticleCard({ article, ratio = "aspect-[4/3]" }: { article: Article; ratio?: string }) {
   return (
     <Link href={`/the-draft/${article.slug}`} className="group block">
-      <ImagePlaceholder
-        label={article.category}
-        sublabel={new Date(article.date).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
-        ratio={ratio}
-        pattern="stripes"
-        tone="paper"
-        className="transition-transform duration-300 group-hover:-translate-y-1"
-      />
+      {article.image ? (
+        <div className={`overflow-hidden border border-ink ${ratio}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- external Substack-hosted image, not part of next/image's optimized domain set */}
+          <img
+            src={article.image}
+            alt=""
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-[1.03]"
+          />
+        </div>
+      ) : (
+        <ImagePlaceholder
+          label={article.category}
+          sublabel={new Date(article.date).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+          ratio={ratio}
+          pattern="stripes"
+          tone="paper"
+          className="transition-transform duration-300 group-hover:-translate-y-1"
+        />
+      )}
       <div className="mt-3">
         <Tag>{article.category}</Tag>
         <p className="mt-2 font-display text-xl leading-tight tracking-wide">{article.title}</p>

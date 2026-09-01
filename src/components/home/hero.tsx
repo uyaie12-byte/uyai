@@ -49,13 +49,20 @@ export function Hero() {
             <Link href={`/the-draft/${current.slug}`} className="group relative block md:-mb-28">
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">Current Draft</p>
               <div className="mt-2 flex items-start gap-4 border border-ink bg-paper-dim p-4">
-                <ImagePlaceholder
-                  label={current.category}
-                  ratio="aspect-square"
-                  pattern="halftone"
-                  tone="ink"
-                  className="w-24 shrink-0 sm:w-32"
-                />
+                {current.image ? (
+                  <div className="aspect-square w-24 shrink-0 overflow-hidden border border-ink sm:w-32">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- external Substack-hosted image */}
+                    <img src={current.image} alt="" loading="lazy" className="h-full w-full object-cover" />
+                  </div>
+                ) : (
+                  <ImagePlaceholder
+                    label={current.category}
+                    ratio="aspect-square"
+                    pattern="halftone"
+                    tone="ink"
+                    className="w-24 shrink-0 sm:w-32"
+                  />
+                )}
                 <div className="min-w-0">
                   <Tag tone="red">{current.category}</Tag>
                   <p className="mt-2 font-display text-xl leading-tight tracking-wide sm:text-2xl">
