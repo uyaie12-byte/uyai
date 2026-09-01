@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import crypto from "crypto";
 
 export type SubscribeSource = "home" | "article" | "footer" | "about" | "the-camp" | "popup";
 
@@ -24,8 +25,8 @@ type StoredSubscriber = { email: string; source: SubscribeSource; createdAt: str
  *
  * IMPORTANT for production: most serverless hosts (Vercel included) run this
  * route on a read-only filesystem, so this file will NOT persist submissions
- * once deployed — Beehiiv (below) is the real store once BEEHIIV_API_KEY is
- * set. This stays as a local-dev convenience and a best-effort fallback.
+ * once deployed — Mailchimp (below) is the real store once MAILCHIMP_API_KEY
+ * is set. This stays as a local-dev convenience and a best-effort fallback.
  */
 async function appendToLocalFile(entry: StoredSubscriber): Promise<boolean> {
   try {
@@ -66,61 +67,79 @@ async function postToWebhook(entry: StoredSubscriber): Promise<void> {
 }
 
 /**
- * Beehiiv subscription API — the real ESP. Requires BEEHIIV_API_KEY (a
- * publication API key from Beehiiv Settings → Integrations → API) and
- * BEEHIIV_PUBLICATION_ID (starts with "pub_", same settings page).
+ * Mailchimp Marketing API — the real ESP. Requires MAILCHIMP_API_KEY (an
+ * API key from Account → Extras → API keys — note the "-usNN" suffix,
+ * that's the datacenter this module reads the key apart to find the right
+ * host) and MAILCHIMP_AUDIENCE_ID (an Audience's ID, from Audience →
+ * Settings → Audience name and defaults).
  *
- * `utm_medium` carries our `source` (home/article/footer/about/the-camp/
- * popup) through as a Beehiiv subscription tag, so the audience can be
- * segmented by where someone signed up without any extra Beehiiv setup.
+ * Uses PUT against the member's MD5-hashed-email resource, which upserts:
+ * a first-time email is created "subscribed", a returning one is left as
+ * whatever status it already has (so a past unsubscribe isn't silently
+ * re-subscribed). Then tags the member with `source` (home/article/
+ * footer/about/the-camp/popup) so the audience can be segmented by where
+ * someone signed up.
  *
- * Best-effort like the webhook above: a Beehiiv hiccup shouldn't be the
+ * Best-effort like the webhook above: a Mailchimp hiccup shouldn't be the
  * reason a visitor sees an error after typing their email, so failures are
- * logged, not thrown. The one exception is an email Beehiiv itself flags
- * as invalid/undeliverable — our own regex check already screens most of
- * those, but this surfaces anything it missed.
+ * logged, not thrown. The one exception is an email Mailchimp itself flags
+ * as invalid — our own regex check already screens most of those, but
+ * this surfaces anything it missed.
+ *
+ * Note: unlike some ESPs, Mailchimp does NOT send a welcome email through
+ * this API call by default. To send one, turn on "Send a final welcome
+ * email" under the Audience's Signup form settings, or build an Automation
+ * (Journey) triggered on "Signs up".
  */
-async function postToBeehiiv(
+async function postToMailchimp(
   entry: StoredSubscriber
 ): Promise<{ configured: boolean; ok: boolean; error?: string }> {
-  const apiKey = process.env.BEEHIIV_API_KEY;
-  const publicationId = process.env.BEEHIIV_PUBLICATION_ID;
-  if (!apiKey || !publicationId) return { configured: false, ok: false };
+  const apiKey = process.env.MAILCHIMP_API_KEY;
+  const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
+  if (!apiKey || !audienceId) return { configured: false, ok: false };
+
+  const dc = apiKey.split("-").pop();
+  if (!dc || dc === apiKey) {
+    console.warn('[subscribers] MAILCHIMP_API_KEY is missing its datacenter suffix (e.g. "-us21")');
+    return { configured: true, ok: false };
+  }
+
+  const memberHash = crypto.createHash("md5").update(entry.email).digest("hex");
+  const auth = `Basic ${Buffer.from(`anystring:${apiKey}`).toString("base64")}`;
+  const memberUrl = `https://${dc}.api.mailchimp.com/3.0/lists/${audienceId}/members/${memberHash}`;
 
   try {
-    const res = await fetch(
-      `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          email: entry.email,
-          reactivate_existing: false,
-          send_welcome_email: true,
-          utm_source: "underground-draft-website",
-          utm_medium: entry.source,
-        }),
+    const res = await fetch(memberUrl, {
+      method: "PUT",
+      headers: { "content-type": "application/json", authorization: auth },
+      body: JSON.stringify({
+        email_address: entry.email,
+        status_if_new: "subscribed",
+      }),
+    });
+
+    if (!res.ok) {
+      const body = await res.json().catch(() => null);
+      console.warn(`[subscribers] Mailchimp rejected ${entry.email}: ${res.status}`, body);
+      // Mailchimp's "Invalid Resource" for a malformed address is the one
+      // worth telling the visitor about; auth/rate-limit/outage is ours.
+      if (res.status === 400) {
+        return { configured: true, ok: false, error: "That doesn't look like a valid email." };
       }
-    );
-
-    if (res.ok) return { configured: true, ok: true };
-
-    const body = await res.text().catch(() => "");
-    console.warn(`[subscribers] Beehiiv rejected ${entry.email}: ${res.status} ${body}`);
-
-    // 400 here is Beehiiv's own "invalid/undeliverable email" — worth
-    // telling the visitor. Anything else (auth, rate limit, outage) is
-    // our problem, not theirs, so stay silent and keep the local/webhook
-    // paths as the safety net.
-    if (res.status === 400) {
-      return { configured: true, ok: false, error: "That doesn't look like a valid email." };
+      return { configured: true, ok: false };
     }
-    return { configured: true, ok: false };
+
+    // Fire-and-forget: tag the member with its source. Doesn't block the
+    // response, and a failure here doesn't undo the subscription above.
+    fetch(`${memberUrl}/tags`, {
+      method: "POST",
+      headers: { "content-type": "application/json", authorization: auth },
+      body: JSON.stringify({ tags: [{ name: entry.source, status: "active" }] }),
+    }).catch((err) => console.warn("[subscribers] Mailchimp tag failed:", err));
+
+    return { configured: true, ok: true };
   } catch (err) {
-    console.warn("[subscribers] Beehiiv request failed:", err);
+    console.warn("[subscribers] Mailchimp request failed:", err);
     return { configured: true, ok: false };
   }
 }
@@ -136,18 +155,18 @@ export async function addSubscriber(
 
   const entry: StoredSubscriber = { email, source, createdAt: new Date().toISOString() };
 
-  const [duplicate, beehiiv] = await Promise.all([
+  const [duplicate, mailchimp] = await Promise.all([
     appendToLocalFile(entry),
-    postToBeehiiv(entry),
+    postToMailchimp(entry),
     postToWebhook(entry),
   ]);
 
-  if (beehiiv.error) {
-    return { ok: false, error: beehiiv.error };
+  if (mailchimp.error) {
+    return { ok: false, error: mailchimp.error };
   }
 
   console.log(
-    `[subscribers] +${email} (${source})${beehiiv.configured ? (beehiiv.ok ? " → beehiiv ok" : " → beehiiv failed") : ""}`
+    `[subscribers] +${email} (${source})${mailchimp.configured ? (mailchimp.ok ? " → mailchimp ok" : " → mailchimp failed") : ""}`
   );
   return { ok: true, duplicate };
 }
