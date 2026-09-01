@@ -488,6 +488,8 @@ button{font-family:inherit;}
               required
             />
           </div>
+          <!-- honeypot: hidden from real visitors, catches bots -->
+          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" aria-hidden="true" />
           <button class="btn" type="submit">
             <span class="btn__label">Join The Draft</span>
             <span aria-hidden="true">&rarr;</span>
@@ -558,6 +560,8 @@ button{font-family:inherit;}
               required
             />
           </div>
+          <!-- honeypot: hidden from real visitors, catches bots -->
+          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" aria-hidden="true" />
           <button class="btn" type="submit">
             <span class="btn__label">Subscribe</span>
             <span aria-hidden="true">&rarr;</span>
@@ -631,21 +635,22 @@ button{font-family:inherit;}
 
   // --------------------------------------------------------------
   // CONFIG
-  // Point FORM_ENDPOINT at your email provider's form-submission
-  // endpoint (Mailchimp, Beehiiv, ConvertKit, Formspree, etc.) to
-  // go live. Until then, submissions are validated client-side and
-  // stored locally so the flow can be demoed end-to-end.
+  // Both forms POST to /api/subscribe (a Vercel serverless function,
+  // see /api/subscribe.js) which adds the email to a Mailchimp
+  // audience. The Mailchimp API key lives only in server-side
+  // environment variables — see README.md for setup.
   // --------------------------------------------------------------
-  var FORM_ENDPOINT = ""; // e.g. "https://formspree.io/f/xxxxxxx"
+  var FORM_ENDPOINT = "/api/subscribe";
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  function wireForm(formId, errorId, successId, echoId){
+  function wireForm(formId, errorId, successId, echoId, source){
     var form = document.getElementById(formId);
     if (!form) return;
     var error = document.getElementById(errorId);
     var success = document.getElementById(successId);
     var input = form.querySelector('input[type="email"]');
+    var honeypot = form.querySelector('input[name="company"]');
     var button = form.querySelector('button[type="submit"]');
     var label = button.querySelector('.btn__label');
     var defaultLabel = label ? label.textContent : button.textContent;
@@ -674,45 +679,46 @@ button{font-family:inherit;}
       button.disabled = true;
       if (label) label.textContent = 'Submitting…';
 
-      var finish = function(){
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          company: honeypot ? honeypot.value : '',
+          source: source
+        })
+      })
+      .then(function(res){
+        return res.json().catch(function(){ return {}; }).then(function(data){
+          return { ok: res.ok && data.ok !== false, data: data };
+        });
+      })
+      .then(function(result){
         button.disabled = false;
         if (label) label.textContent = defaultLabel;
+
+        if (!result.ok) {
+          showError((result.data && result.data.error) || 'Something went wrong — please try again in a moment.');
+          return;
+        }
+
         form.style.display = 'none';
         if (echoId) {
           var echo = document.getElementById(echoId);
           if (echo) echo.textContent = email;
         }
         success.setAttribute('data-show', 'true');
-        try {
-          var list = JSON.parse(localStorage.getItem('ugd_waitlist') || '[]');
-          if (list.indexOf(email) === -1) list.push(email);
-          localStorage.setItem('ugd_waitlist', JSON.stringify(list));
-        } catch (err) { /* storage unavailable, ignore */ }
-      };
-
-      if (FORM_ENDPOINT) {
-        fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email })
-        })
-        .then(function(res){
-          if (!res.ok) throw new Error('Request failed');
-          finish();
-        })
-        .catch(function(){
-          button.disabled = false;
-          if (label) label.textContent = defaultLabel;
-          showError("Something went wrong — please try again in a moment.");
-        });
-      } else {
-        setTimeout(finish, 500);
-      }
+      })
+      .catch(function(){
+        button.disabled = false;
+        if (label) label.textContent = defaultLabel;
+        showError("Something went wrong — please try again in a moment.");
+      });
     });
   }
 
-  wireForm('hero-form', 'hero-error', 'hero-success', 'hero-email-echo');
-  wireForm('newsletter-form', 'newsletter-error', 'newsletter-success', null);
+  wireForm('hero-form', 'hero-error', 'hero-success', 'hero-email-echo', 'landing-hero');
+  wireForm('newsletter-form', 'newsletter-error', 'newsletter-success', null, 'landing-newsletter');
 })();
 </script>
 
