@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Underground Draft — The First Draft Of What's Next.</title>
+<meta name="description" content="A new home for emerging music, artists and culture is coming. The Underground Draft is a platform built to discover the artists worth watching, the sounds worth hearing and the culture happening beneath the surface. Get in early." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://theundergrounddraft.com/" />
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#17130F" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="The Underground Draft" />
+<meta property="og:title" content="The Underground Draft — The First Draft Of What's Next." />
+<meta property="og:description" content="A new home for emerging music, artists and culture is coming. Be the first to know when we go live." />
+<meta property="og:url" content="https://theundergrounddraft.com/" />
+<meta property="og:image" content="https://theundergrounddraft.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Underground Draft — The First Draft Of What's Next." />
+<meta name="twitter:description" content="A new home for emerging music, artists and culture is coming. Be the first to know when we go live." />
+<meta name="twitter:image" content="https://theundergrounddraft.com/og-image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --cream:#F0EADC;
+  --paper:#F6F1E6;
+  --ink:#17130F;
+  --brick:#B23B2E;
+  --rule:rgba(23,19,15,.15);
+  --muted:rgba(23,19,15,.6);
+
+  --display:"Archivo", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  --gut:clamp(20px, 5vw, 64px);
+  --maxw:1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--display);
+  font-size:clamp(16px,1.05vw,18px);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;}
+button{font-family:inherit;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut);}
+
+.display{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 112,"wght" 800;
+  letter-spacing:-.015em;
+  line-height:.94;
+  text-transform:uppercase;
+  margin:0;
+}
+.mono{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--brick);
+  font-weight:600;
+  margin:0 0 1.1rem;
+  display:flex;align-items:center;gap:.6em;
+}
+.eyebrow::before{
+  content:"";
+  width:.85em;height:.85em;
+  border-radius:50%;
+  background:var(--brick);
+  flex:none;
+}
+
+/* recurring hero-line tagline — "The first draft of what's next." */
+.tagline{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 108,"wght" 700;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  color:var(--ink);
+  margin:0;
+}
+
+:focus-visible{outline:2.5px solid var(--brick);outline-offset:3px;}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  position:sticky;top:0;z-index:40;
+  background:rgba(240,234,220,.92);
+  backdrop-filter:blur(8px);
+}
+.masthead__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding-block:14px;
+}
+.logo{
+  display:flex;align-items:center;gap:.6rem;
+  text-decoration:none;
+}
+.logo__mark{width:34px;height:34px;flex:none;}
+.logo__word{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 118,"wght" 800;
+  text-transform:uppercase;letter-spacing:.005em;
+  font-size:.92rem;line-height:1.05;
+}
+.masthead .mono{color:var(--muted);}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  padding-block:clamp(56px,10vw,110px) clamp(48px,8vw,88px);
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--rule);
+}
+.hero__ring{
+  position:absolute;
+  right:clamp(-220px,-8vw,-40px);
+  top:-160px;
+  width:min(560px,60vw);
+  height:min(560px,60vw);
+  border-radius:50%;
+  border:1px dashed var(--rule);
+  pointer-events:none;
+}
+.hero__ring::after{
+  content:"";
+  position:absolute;inset:14%;
+  border-radius:50%;
+  border:1px solid var(--rule);
+}
+.hero__inner{position:relative;z-index:1;max-width:720px;}
+.hero h1{
+  font-size:clamp(2.6rem,7.4vw,4.9rem);
+  margin-bottom:.55em;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--brick);
+}
+.hero__tag{
+  font-size:clamp(1.05rem,2.2vw,1.4rem);
+  margin:0 0 1.1rem;
+}
+.hero__desc{
+  max-width:46ch;
+  color:var(--muted);
+  font-size:1rem;
+  margin:0 0 2.2rem;
+}
+.hero__lead{
+  font-weight:600;
+  font-size:.98rem;
+  margin:0 0 1rem;
+  color:var(--ink);
+}
+
+/* ============================================================
+   SIGNUP FORM
+   ============================================================ */
+.signup{
+  max-width:560px;
+}
+.signup__form{
+  display:flex;
+  gap:.6rem;
+  flex-wrap:wrap;
+}
+.signup__field{
+  flex:1 1 260px;
+  position:relative;
+}
+.signup__input{
+  width:100%;
+  padding:15px 18px;
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:.85rem;
+  letter-spacing:.02em;
+  border-radius:2px;
+}
+.signup__input::placeholder{color:var(--muted);}
+.signup__input:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(178,59,46,.14);}
+.signup__input[aria-invalid="true"]{border-color:var(--brick);}
+
+.btn{
+  appearance:none;
+  border:1.5px solid var(--ink);
+  background:var(--ink);
+  color:var(--cream);
+  font-family:var(--mono);
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:15px 26px;
+  border-radius:2px;
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:.6em;
+  transition:background .15s ease, color .15s ease, transform .1s ease;
+  white-space:nowrap;
+}
+.btn:hover{background:var(--brick);border-color:var(--brick);}
+.btn:active{transform:translateY(1px);}
+.btn:disabled{opacity:.6;cursor:progress;}
+
+.signup__note{
+  margin:.9rem 0 0;
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.06em;
+  color:var(--muted);
+  text-transform:none;
+}
+.signup__error{
+  margin:.7rem 0 0;
+  font-family:var(--mono);
+  font-size:.72rem;
+  color:var(--brick);
+  display:none;
+}
+.signup__error[data-show="true"]{display:block;}
+
+/* success state */
+.signup__success{
+  display:none;
+  align-items:flex-start;
+  gap:.9rem;
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  padding:22px 24px;
+  border-radius:2px;
+}
+.signup__success[data-show="true"]{display:flex;}
+.signup__success svg{flex:none;margin-top:2px;}
+.signup__success h3{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 110,"wght" 800;
+  text-transform:uppercase;
+  font-size:1.05rem;
+  margin:0 0 .35em;
+  letter-spacing:-.01em;
+}
+.signup__success p{
+  margin:0;
+  color:var(--muted);
+  font-size:.92rem;
+}
+.signup__success .mono{color:var(--brick);}
+
+/* ============================================================
+   BREWING (what's coming)
+   ============================================================ */
+.brewing{
+  padding-block:clamp(56px,9vw,96px);
+  border-bottom:1px solid var(--rule);
+}
+.brewing__head{max-width:640px;}
+.brewing__head h2{font-size:clamp(1.9rem,4.4vw,2.7rem);}
+.brewing__lines{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 110,"wght" 800;
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+  line-height:1.12;
+  font-size:clamp(1.7rem,4.2vw,2.6rem);
+  margin:clamp(28px,4vw,40px) 0 clamp(24px,4vw,34px);
+  max-width:520px;
+}
+.brewing__lines span{display:block;}
+.brewing__lines span:nth-child(even){color:var(--brick);}
+.brewing__desc{
+  color:var(--muted);
+  max-width:48ch;
+  margin:0 0 1.1rem;
+  font-size:1rem;
+}
+.brewing__stay{color:var(--brick);}
+.brewing--compact{padding-block:clamp(40px,6vw,60px) clamp(24px,4vw,40px);}
+
+/* ============================================================
+   STAMP / NEWSLETTER STRIP
+   ============================================================ */
+.stamp{
+  background:var(--ink);
+  color:var(--cream);
+  padding-block:clamp(48px,8vw,80px);
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--rule);
+}
+.stamp__ring{
+  position:absolute;
+  left:clamp(-260px,-14vw,-80px);
+  bottom:-220px;
+  width:min(620px,70vw);
+  height:min(620px,70vw);
+  border-radius:50%;
+  border:1px solid rgba(240,234,220,.14);
+}
+.stamp__inner{position:relative;z-index:1;max-width:600px;}
+.stamp .eyebrow{color:var(--brick);}
+.stamp h2{
+  font-size:clamp(1.9rem,4.6vw,2.7rem);
+  color:var(--cream);
+}
+.stamp__desc{
+  color:rgba(240,234,220,.72);
+  max-width:48ch;
+  margin:1rem 0 .4rem;
+  font-size:.98rem;
+}
+.stamp .signup{margin-top:2rem;}
+.stamp .signup__input{
+  background:transparent;
+  border-color:rgba(240,234,220,.45);
+  color:var(--cream);
+}
+.stamp .signup__input::placeholder{color:rgba(240,234,220,.5);}
+.stamp .signup__input:focus{border-color:var(--brick);box-shadow:0 0 0 3px rgba(178,59,46,.28);}
+.stamp .btn{
+  background:var(--brick);
+  border-color:var(--brick);
+  color:var(--cream);
+}
+.stamp .btn:hover{background:var(--cream);color:var(--ink);border-color:var(--cream);}
+.stamp .signup__note{color:rgba(240,234,220,.55);}
+.stamp .signup__error{color:#E8877B;}
+.stamp .signup__success{
+  border-color:rgba(240,234,220,.4);
+  background:rgba(240,234,220,.07);
+}
+.stamp .signup__success h3{color:var(--cream);}
+.stamp .signup__success p{color:rgba(240,234,220,.72);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  padding-block:clamp(48px,8vw,80px) 40px;
+}
+.footer__top{
+  display:flex;
+  flex-wrap:wrap;
+  gap:2.4rem;
+  justify-content:space-between;
+  align-items:flex-start;
+  padding-bottom:clamp(36px,6vw,56px);
+  border-bottom:1px solid var(--rule);
+}
+.footer__brand .logo__word{font-size:1.4rem;}
+.footer__brand .tagline{
+  font-size:.85rem;
+  margin:.9rem 0 0;
+}
+.footer__follow{flex:1 1 300px;max-width:420px;}
+.footer__follow h3{
+  font-size:1.15rem;
+  margin:0 0 .5rem;
+}
+.footer__follow p{
+  color:var(--muted);
+  font-size:.9rem;
+  margin:0 0 1.1rem;
+}
+.footer__social{
+  display:flex;gap:1.3rem;
+  margin:0 0 .8rem;
+}
+.footer__social a{
+  font-family:var(--mono);
+  font-size:.75rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink);
+  border-bottom:1px solid var(--ink);
+}
+.footer__social a:hover{color:var(--brick);border-color:var(--brick);}
+.footer__handle{color:var(--muted);}
+
+.footer__bottom{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:1.6rem;
+}
+.footer__legal{
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+.footer__bottom .tagline{
+  font-size:.68rem;
+  letter-spacing:.1em;
+  color:var(--muted);
+}
+
+@media (max-width:600px){
+  .footer__bottom{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="/" aria-label="The Underground Draft — home">
+      <img class="logo__mark" src="/logo-mark.png" alt="" width="34" height="34" />
+      <span class="logo__word">The Underground<br>Draft</span>
+    </a>
+    <span class="mono">Vol. 01 &mdash; Coming Soon</span>
+  </div>
+</header>
+
+<main>
+  <!-- ============================================================
+       HERO — kept minimal on purpose: headline, tagline, one line
+       of context, one line of CTA, then the form. Everything else
+       lives further down the page.
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero__ring" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <h1 class="display">The <em>Underground</em><br>Draft</h1>
+      <p class="tagline hero__tag">The first draft of what's next.</p>
+      <p class="hero__desc">A new home for emerging music, artists and culture is coming.</p>
+
+      <div class="signup" id="hero-signup">
+        <p class="hero__lead">Be the first to know when we go live.</p>
+        <form class="signup__form" id="hero-form" novalidate>
+          <div class="signup__field">
+            <label class="mono" for="hero-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+            <input
+              class="signup__input"
+              type="email"
+              id="hero-email"
+              name="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              inputmode="email"
+              required
+            />
+          </div>
+          <!-- honeypot: hidden from real visitors, catches bots -->
+          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" aria-hidden="true" />
+          <button class="btn" type="submit">
+            <span class="btn__label">Join The Draft</span>
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+        <p class="signup__error" id="hero-error" role="alert"></p>
+        <p class="signup__note">No noise. Just the good stuff.</p>
+
+        <div class="signup__success" id="hero-success" role="status">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+            <circle cx="13" cy="13" r="12.5" fill="#17130F"/>
+            <path d="M7.5 13.2L11 16.8L18.5 9" stroke="#F0EADC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <h3>You're on the draft.</h3>
+            <p>We'll email <span class="mono" id="hero-email-echo"></span> the moment The Underground Draft goes live. Keep an eye out.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOMETHING IS BREWING
+       ============================================================ -->
+  <section class="brewing">
+    <div class="wrap">
+      <div class="brewing__head">
+        <p class="eyebrow">What's Coming</p>
+        <h2 class="display">Something is brewing.</h2>
+      </div>
+
+      <p class="brewing__lines">
+        <span>New artists.</span>
+        <span>New sounds.</span>
+        <span>New stories.</span>
+        <span>New perspectives.</span>
+      </p>
+
+      <p class="brewing__desc">We're building a space for the people creating culture before everyone else catches on.</p>
+      <p class="mono brewing__stay">Stay close.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEWSLETTER
+       ============================================================ -->
+  <section class="stamp">
+    <div class="stamp__ring" aria-hidden="true"></div>
+    <div class="wrap stamp__inner">
+      <p class="eyebrow">The Newsletter</p>
+      <h2 class="display">The draft, in your inbox.</h2>
+      <p class="stamp__desc">A curated look at emerging music, artists, releases and culture worth paying attention to.</p>
+      <p class="stamp__desc">No endless emails. No filler. Just the discoveries we think you should know.</p>
+
+      <div class="signup" id="newsletter-signup">
+        <form class="signup__form" id="newsletter-form" novalidate>
+          <div class="signup__field">
+            <label class="mono" for="newsletter-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+            <input
+              class="signup__input"
+              type="email"
+              id="newsletter-email"
+              name="email"
+              placeholder="Email address"
+              autocomplete="email"
+              inputmode="email"
+              required
+            />
+          </div>
+          <!-- honeypot: hidden from real visitors, catches bots -->
+          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" aria-hidden="true" />
+          <button class="btn" type="submit">
+            <span class="btn__label">Subscribe</span>
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+        <p class="signup__error" id="newsletter-error" role="alert"></p>
+
+        <div class="signup__success" id="newsletter-success" role="status">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+            <circle cx="13" cy="13" r="12.5" fill="#F0EADC"/>
+            <path d="M7.5 13.2L11 16.8L18.5 9" stroke="#17130F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <h3>Subscribed.</h3>
+            <p>You're on the list &mdash; thanks for joining early.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOLLOW THE BUILD
+       ============================================================ -->
+  <section class="brewing brewing--compact" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="brewing__head">
+        <p class="eyebrow">Follow The Build</p>
+        <h2 class="display">The site isn't live yet.</h2>
+        <p class="brewing__desc" style="margin-top:1rem;">But the conversation has already started.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="logo" href="/" aria-label="The Underground Draft — home">
+          <img class="logo__mark" src="/logo-mark.png" alt="" width="34" height="34" />
+          <span class="logo__word">The Underground<br>Draft</span>
+        </a>
+        <p class="tagline">The first draft of what's next.</p>
+      </div>
+
+      <div class="footer__follow">
+        <h3 class="display">Stay connected.</h3>
+        <p>Launch updates, artist stories and everything we're putting together behind the scenes.</p>
+        <nav class="footer__social" aria-label="Social links">
+          <a href="https://www.instagram.com/theugdraft/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://x.com/theugdraft" target="_blank" rel="noopener noreferrer">X</a>
+        </nav>
+        <p class="mono footer__handle">@theugdraft</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__legal">&copy; 2026 The Underground Draft. All rights reserved.</p>
+      <p class="tagline mono">The first draft of what's next.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // --------------------------------------------------------------
+  // CONFIG
+  // Both forms POST to /api/subscribe (a Vercel serverless function,
+  // see /api/subscribe.js) which adds the email to a Mailchimp
+  // audience. The Mailchimp API key lives only in server-side
+  // environment variables — see README.md for setup.
+  // --------------------------------------------------------------
+  var FORM_ENDPOINT = "/api/subscribe";
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function wireForm(formId, errorId, successId, echoId, source){
+    var form = document.getElementById(formId);
+    if (!form) return;
+    var error = document.getElementById(errorId);
+    var success = document.getElementById(successId);
+    var input = form.querySelector('input[type="email"]');
+    var honeypot = form.querySelector('input[name="company"]');
+    var button = form.querySelector('button[type="submit"]');
+    var label = button.querySelector('.btn__label');
+    var defaultLabel = label ? label.textContent : button.textContent;
+
+    function showError(msg){
+      error.textContent = msg;
+      error.setAttribute('data-show', 'true');
+      input.setAttribute('aria-invalid', 'true');
+    }
+    function clearError(){
+      error.setAttribute('data-show', 'false');
+      input.removeAttribute('aria-invalid');
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      clearError();
+
+      var email = (input.value || '').trim();
+      if (!EMAIL_RE.test(email)) {
+        showError('Enter a valid email address.');
+        input.focus();
+        return;
+      }
+
+      button.disabled = true;
+      if (label) label.textContent = 'Submitting…';
+
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          company: honeypot ? honeypot.value : '',
+          source: source
+        })
+      })
+      .then(function(res){
+        return res.json().catch(function(){ return {}; }).then(function(data){
+          return { ok: res.ok && data.ok !== false, data: data };
+        });
+      })
+      .then(function(result){
+        button.disabled = false;
+        if (label) label.textContent = defaultLabel;
+
+        if (!result.ok) {
+          showError((result.data && result.data.error) || 'Something went wrong — please try again in a moment.');
+          return;
+        }
+
+        form.style.display = 'none';
+        if (echoId) {
+          var echo = document.getElementById(echoId);
+          if (echo) echo.textContent = email;
+        }
+        success.setAttribute('data-show', 'true');
+      })
+      .catch(function(){
+        button.disabled = false;
+        if (label) label.textContent = defaultLabel;
+        showError("Something went wrong — please try again in a moment.");
+      });
+    });
+  }
+
+  wireForm('hero-form', 'hero-error', 'hero-success', 'hero-email-echo', 'landing-hero');
+  wireForm('newsletter-form', 'newsletter-error', 'newsletter-success', null, 'landing-newsletter');
+})();
+</script>
+
+</body>
+</html>
