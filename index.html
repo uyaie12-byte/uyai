@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Underground Draft — The first draft of what's next.</title>
-<meta name="description" content="The Underground Draft is a music and culture platform spotlighting emerging artists, new sounds and the creative movements shaping the future — before the mainstream catches on. Join the waitlist." />
+<title>The Underground Draft — The First Draft Of What's Next.</title>
+<meta name="description" content="A new home for emerging music, artists and culture is coming. The Underground Draft is a platform built to discover the artists worth watching, the sounds worth hearing and the culture happening beneath the surface. Get in early." />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://theundergrounddraft.com/" />
 
@@ -19,8 +19,8 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="The Underground Draft" />
-<meta property="og:title" content="The Underground Draft — The first draft of what's next." />
-<meta property="og:description" content="A music and culture platform spotlighting emerging artists, new sounds and the movements shaping the future of African music — before the mainstream catches on." />
+<meta property="og:title" content="The Underground Draft — The First Draft Of What's Next." />
+<meta property="og:description" content="A new home for emerging music, artists and culture is coming. Be the first to know when we go live." />
 <meta property="og:url" content="https://theundergrounddraft.com/" />
 <meta property="og:image" content="https://theundergrounddraft.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -28,8 +28,8 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="The Underground Draft — The first draft of what's next." />
-<meta name="twitter:description" content="A music and culture platform spotlighting emerging artists, new sounds and the movements shaping the future — before the mainstream catches on." />
+<meta name="twitter:title" content="The Underground Draft — The First Draft Of What's Next." />
+<meta name="twitter:description" content="A new home for emerging music, artists and culture is coming. Be the first to know when we go live." />
 <meta name="twitter:image" content="https://theundergrounddraft.com/og-image.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,6 +104,16 @@ button{font-family:inherit;}
   flex:none;
 }
 
+/* recurring hero-line tagline — "The first draft of what's next." */
+.tagline{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 108,"wght" 700;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  color:var(--ink);
+  margin:0;
+}
+
 :focus-visible{outline:2.5px solid var(--brick);outline-offset:3px;}
 
 /* ============================================================
@@ -157,7 +167,7 @@ button{font-family:inherit;}
   border-radius:50%;
   border:1px solid var(--rule);
 }
-.hero__inner{position:relative;z-index:1;max-width:760px;}
+.hero__inner{position:relative;z-index:1;max-width:720px;}
 .hero h1{
   font-size:clamp(2.6rem,7.4vw,4.9rem);
   margin-bottom:.55em;
@@ -167,17 +177,20 @@ button{font-family:inherit;}
   color:var(--brick);
 }
 .hero__tag{
-  font-family:var(--display);
-  font-variation-settings:"wdth" 108,"wght" 600;
-  font-size:clamp(1.15rem,2.4vw,1.55rem);
-  margin:0 0 1.3rem;
-  color:var(--ink);
+  font-size:clamp(1.05rem,2.2vw,1.4rem);
+  margin:0 0 1.1rem;
 }
 .hero__desc{
-  max-width:52ch;
+  max-width:46ch;
   color:var(--muted);
   font-size:1rem;
-  margin:0 0 2.4rem;
+  margin:0 0 2.2rem;
+}
+.hero__lead{
+  font-weight:600;
+  font-size:.98rem;
+  margin:0 0 1rem;
+  color:var(--ink);
 }
 
 /* ============================================================
@@ -230,10 +243,6 @@ button{font-family:inherit;}
 .btn:hover{background:var(--brick);border-color:var(--brick);}
 .btn:active{transform:translateY(1px);}
 .btn:disabled{opacity:.6;cursor:progress;}
-.btn--ghost{
-  background:transparent;color:var(--ink);
-}
-.btn--ghost:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
 
 .signup__note{
   margin:.9rem 0 0;
@@ -280,51 +289,37 @@ button{font-family:inherit;}
 .signup__success .mono{color:var(--brick);}
 
 /* ============================================================
-   PILLARS
+   BREWING (what's coming)
    ============================================================ */
-.pillars{
+.brewing{
   padding-block:clamp(56px,9vw,96px);
   border-bottom:1px solid var(--rule);
 }
-.pillars__head{max-width:640px;margin-bottom:clamp(36px,6vw,56px);}
-.pillars__head h2{font-size:clamp(1.9rem,4.4vw,2.7rem);}
-.pillars__head p{color:var(--muted);margin:.8rem 0 0;max-width:48ch;}
-
-.pillars__grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:0;
-  border-top:1px solid var(--rule);
+.brewing__head{max-width:640px;}
+.brewing__head h2{font-size:clamp(1.9rem,4.4vw,2.7rem);}
+.brewing__lines{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 110,"wght" 800;
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+  line-height:1.12;
+  font-size:clamp(1.7rem,4.2vw,2.6rem);
+  margin:clamp(28px,4vw,40px) 0 clamp(24px,4vw,34px);
+  max-width:520px;
 }
-.pillar{
-  padding:clamp(26px,3vw,34px) clamp(4px,2vw,28px) clamp(26px,3vw,34px) 0;
-  border-bottom:1px solid var(--rule);
-}
-.pillar + .pillar{border-left:1px solid var(--rule);padding-left:clamp(20px,3vw,28px);}
-.pillar__num{
-  font-family:var(--mono);
-  font-size:.72rem;
+.brewing__lines span{display:block;}
+.brewing__lines span:nth-child(even){color:var(--brick);}
+.brewing__desc{
   color:var(--muted);
-  letter-spacing:.1em;
+  max-width:48ch;
+  margin:0 0 1.1rem;
+  font-size:1rem;
 }
-.pillar h3{
-  font-size:clamp(1.4rem,2.6vw,1.9rem);
-  margin:.6rem 0 .5rem;
-}
-.pillar p{
-  margin:0;
-  color:var(--muted);
-  font-size:.94rem;
-}
-
-@media (max-width:820px){
-  .pillars__grid{grid-template-columns:1fr;border-top:none;}
-  .pillar{border-left:none !important;padding:22px 0 !important;border-bottom:1px solid var(--rule);}
-  .pillar:first-child{border-top:1px solid var(--rule);}
-}
+.brewing__stay{color:var(--brick);}
+.brewing--compact{padding-block:clamp(40px,6vw,60px) clamp(24px,4vw,40px);}
 
 /* ============================================================
-   STAMP / CAMP STRIP
+   STAMP / NEWSLETTER STRIP
    ============================================================ */
 .stamp{
   background:var(--ink);
@@ -343,21 +338,43 @@ button{font-family:inherit;}
   border-radius:50%;
   border:1px solid rgba(240,234,220,.14);
 }
-.stamp__inner{position:relative;z-index:1;max-width:640px;}
+.stamp__inner{position:relative;z-index:1;max-width:600px;}
 .stamp .eyebrow{color:var(--brick);}
 .stamp h2{
-  font-size:clamp(1.9rem,4.6vw,2.9rem);
+  font-size:clamp(1.9rem,4.6vw,2.7rem);
   color:var(--cream);
 }
-.stamp p{
+.stamp__desc{
   color:rgba(240,234,220,.72);
   max-width:48ch;
-  margin:1rem 0 0;
+  margin:1rem 0 .4rem;
   font-size:.98rem;
 }
+.stamp .signup{margin-top:2rem;}
+.stamp .signup__input{
+  background:transparent;
+  border-color:rgba(240,234,220,.45);
+  color:var(--cream);
+}
+.stamp .signup__input::placeholder{color:rgba(240,234,220,.5);}
+.stamp .signup__input:focus{border-color:var(--brick);box-shadow:0 0 0 3px rgba(178,59,46,.28);}
+.stamp .btn{
+  background:var(--brick);
+  border-color:var(--brick);
+  color:var(--cream);
+}
+.stamp .btn:hover{background:var(--cream);color:var(--ink);border-color:var(--cream);}
+.stamp .signup__note{color:rgba(240,234,220,.55);}
+.stamp .signup__error{color:#E8877B;}
+.stamp .signup__success{
+  border-color:rgba(240,234,220,.4);
+  background:rgba(240,234,220,.07);
+}
+.stamp .signup__success h3{color:var(--cream);}
+.stamp .signup__success p{color:rgba(240,234,220,.72);}
 
 /* ============================================================
-   FOOTER / NEWSLETTER
+   FOOTER
    ============================================================ */
 .footer{
   padding-block:clamp(48px,8vw,80px) 40px;
@@ -372,25 +389,35 @@ button{font-family:inherit;}
   border-bottom:1px solid var(--rule);
 }
 .footer__brand .logo__word{font-size:1.4rem;}
-.footer__brand p{
-  color:var(--muted);
-  max-width:34ch;
+.footer__brand .tagline{
+  font-size:.85rem;
   margin:.9rem 0 0;
-  font-size:.92rem;
 }
-.footer__news{flex:1 1 340px;max-width:460px;}
-.footer__news h3{
+.footer__follow{flex:1 1 300px;max-width:420px;}
+.footer__follow h3{
   font-size:1.15rem;
   margin:0 0 .5rem;
 }
-.footer__news p{
+.footer__follow p{
   color:var(--muted);
-  font-size:.88rem;
+  font-size:.9rem;
   margin:0 0 1.1rem;
 }
-.footer__news .signup__form{gap:.5rem;}
-.footer__news .signup__input,
-.footer__news .btn{padding:12px 16px;font-size:.76rem;}
+.footer__social{
+  display:flex;gap:1.3rem;
+  margin:0 0 .8rem;
+}
+.footer__social a{
+  font-family:var(--mono);
+  font-size:.75rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink);
+  border-bottom:1px solid var(--ink);
+}
+.footer__social a:hover{color:var(--brick);border-color:var(--brick);}
+.footer__handle{color:var(--muted);}
 
 .footer__bottom{
   display:flex;
@@ -400,24 +427,16 @@ button{font-family:inherit;}
   align-items:center;
   padding-top:1.6rem;
 }
-.footer__social{
-  display:flex;gap:1.3rem;
-}
-.footer__social a{
-  font-family:var(--mono);
-  font-size:.7rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  text-decoration:none;
-  color:var(--muted);
-  border-bottom:1px solid transparent;
-}
-.footer__social a:hover{color:var(--ink);border-color:var(--ink);}
 .footer__legal{
   font-family:var(--mono);
   font-size:.68rem;
   color:var(--muted);
   letter-spacing:.04em;
+}
+.footer__bottom .tagline{
+  font-size:.68rem;
+  letter-spacing:.1em;
+  color:var(--muted);
 }
 
 @media (max-width:600px){
@@ -442,21 +461,19 @@ button{font-family:inherit;}
 
 <main>
   <!-- ============================================================
-       HERO
+       HERO — kept minimal on purpose: headline, tagline, one line
+       of context, one line of CTA, then the form. Everything else
+       lives further down the page.
        ============================================================ -->
   <section class="hero">
     <div class="hero__ring" aria-hidden="true"></div>
     <div class="wrap hero__inner">
-      <p class="eyebrow">Launching Soon</p>
       <h1 class="display">The <em>Underground</em><br>Draft</h1>
-      <p class="hero__tag">The first draft of what's next.</p>
-      <p class="hero__desc">
-        A music and culture platform built around discovery. We spotlight emerging
-        artists, unpack new sounds, and document the scenes and movements shaping
-        the future of African music &mdash; before the mainstream catches on.
-      </p>
+      <p class="tagline hero__tag">The first draft of what's next.</p>
+      <p class="hero__desc">A new home for emerging music, artists and culture is coming.</p>
 
       <div class="signup" id="hero-signup">
+        <p class="hero__lead">Be the first to know when we go live.</p>
         <form class="signup__form" id="hero-form" novalidate>
           <div class="signup__field">
             <label class="mono" for="hero-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
@@ -465,19 +482,19 @@ button{font-family:inherit;}
               type="email"
               id="hero-email"
               name="email"
-              placeholder="you@email.com"
+              placeholder="Enter your email"
               autocomplete="email"
               inputmode="email"
               required
             />
           </div>
           <button class="btn" type="submit">
-            <span class="btn__label">Notify Me</span>
+            <span class="btn__label">Join The Draft</span>
             <span aria-hidden="true">&rarr;</span>
           </button>
         </form>
         <p class="signup__error" id="hero-error" role="alert"></p>
-        <p class="signup__note">No spam. One email when we launch, and the occasional dispatch before that. Unsubscribe anytime.</p>
+        <p class="signup__note">No noise. Just the good stuff.</p>
 
         <div class="signup__success" id="hero-success" role="status">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
@@ -494,51 +511,90 @@ button{font-family:inherit;}
   </section>
 
   <!-- ============================================================
-       PILLARS
+       SOMETHING IS BREWING
        ============================================================ -->
-  <section class="pillars">
+  <section class="brewing">
     <div class="wrap">
-      <div class="pillars__head">
-        <p class="eyebrow">What We're Building</p>
-        <h2 class="display">More than a music blog.</h2>
-        <p>Three things, done properly &mdash; discovery, documentation and community, built for the people already shaping culture.</p>
+      <div class="brewing__head">
+        <p class="eyebrow">What's Coming</p>
+        <h2 class="display">Something is brewing.</h2>
       </div>
 
-      <div class="pillars__grid">
-        <article class="pillar">
-          <span class="pillar__num mono">01</span>
-          <h3 class="display">Discover</h3>
-          <p>New artists. New sounds. New perspectives, before the algorithm decides they're worth your time.</p>
-        </article>
-        <article class="pillar">
-          <span class="pillar__num mono">02</span>
-          <h3 class="display">Document</h3>
-          <p>The scenes, stories and movements defining a generation &mdash; told by the people living it.</p>
-        </article>
-        <article class="pillar">
-          <span class="pillar__num mono">03</span>
-          <h3 class="display">Connect</h3>
-          <p>Artists, creatives, audiences and the people building the industry around them, in one room.</p>
-        </article>
+      <p class="brewing__lines">
+        <span>New artists.</span>
+        <span>New sounds.</span>
+        <span>New stories.</span>
+        <span>New perspectives.</span>
+      </p>
+
+      <p class="brewing__desc">We're building a space for the people creating culture before everyone else catches on.</p>
+      <p class="mono brewing__stay">Stay close.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEWSLETTER
+       ============================================================ -->
+  <section class="stamp">
+    <div class="stamp__ring" aria-hidden="true"></div>
+    <div class="wrap stamp__inner">
+      <p class="eyebrow">The Newsletter</p>
+      <h2 class="display">The draft, in your inbox.</h2>
+      <p class="stamp__desc">A curated look at emerging music, artists, releases and culture worth paying attention to.</p>
+      <p class="stamp__desc">No endless emails. No filler. Just the discoveries we think you should know.</p>
+
+      <div class="signup" id="newsletter-signup">
+        <form class="signup__form" id="newsletter-form" novalidate>
+          <div class="signup__field">
+            <label class="mono" for="newsletter-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+            <input
+              class="signup__input"
+              type="email"
+              id="newsletter-email"
+              name="email"
+              placeholder="Email address"
+              autocomplete="email"
+              inputmode="email"
+              required
+            />
+          </div>
+          <button class="btn" type="submit">
+            <span class="btn__label">Subscribe</span>
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+        <p class="signup__error" id="newsletter-error" role="alert"></p>
+
+        <div class="signup__success" id="newsletter-success" role="status">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+            <circle cx="13" cy="13" r="12.5" fill="#F0EADC"/>
+            <path d="M7.5 13.2L11 16.8L18.5 9" stroke="#17130F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <h3>Subscribed.</h3>
+            <p>You're on the list &mdash; thanks for joining early.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       STAMP STRIP
+       FOLLOW THE BUILD
        ============================================================ -->
-  <section class="stamp">
-    <div class="stamp__ring" aria-hidden="true"></div>
-    <div class="wrap stamp__inner">
-      <p class="eyebrow">Why Now</p>
-      <h2 class="display">Built for the underground, not the algorithm.</h2>
-      <p>The full site &mdash; features, interviews, sessions and the first artist camp &mdash; is in production. This page is the first draft. Leave your email and you'll be first through the door.</p>
+  <section class="brewing brewing--compact" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="brewing__head">
+        <p class="eyebrow">Follow The Build</p>
+        <h2 class="display">The site isn't live yet.</h2>
+        <p class="brewing__desc" style="margin-top:1rem;">But the conversation has already started.</p>
+      </div>
     </div>
   </section>
 </main>
 
 <!-- ============================================================
-     FOOTER / NEWSLETTER
+     FOOTER
      ============================================================ -->
 <footer class="footer">
   <div class="wrap">
@@ -548,52 +604,23 @@ button{font-family:inherit;}
           <img class="logo__mark" src="/logo-mark.png" alt="" width="34" height="34" />
           <span class="logo__word">The Underground<br>Draft</span>
         </a>
-        <p>Est. 2026. A music and culture platform for the sounds and scenes shaping what's next.</p>
+        <p class="tagline">The first draft of what's next.</p>
       </div>
 
-      <div class="footer__news">
-        <h3 class="display">Join the newsletter.</h3>
-        <p>Launch updates, early access and the odd dispatch from the underground &mdash; straight to your inbox.</p>
-
-        <form class="signup__form" id="footer-form" novalidate>
-          <div class="signup__field">
-            <label class="mono" for="footer-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
-            <input
-              class="signup__input"
-              type="email"
-              id="footer-email"
-              name="email"
-              placeholder="you@email.com"
-              autocomplete="email"
-              inputmode="email"
-              required
-            />
-          </div>
-          <button class="btn btn--ghost" type="submit">
-            <span class="btn__label">Subscribe</span>
-          </button>
-        </form>
-        <p class="signup__error" id="footer-error" role="alert"></p>
-
-        <div class="signup__success" id="footer-success" role="status" style="margin-top:.9rem;">
-          <svg width="22" height="22" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-            <circle cx="13" cy="13" r="12.5" fill="#17130F"/>
-            <path d="M7.5 13.2L11 16.8L18.5 9" stroke="#F0EADC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div>
-            <h3 style="font-size:.9rem;">Subscribed.</h3>
-            <p style="font-size:.82rem;">You're on the list &mdash; thanks for joining early.</p>
-          </div>
-        </div>
+      <div class="footer__follow">
+        <h3 class="display">Stay connected.</h3>
+        <p>Launch updates, artist stories and everything we're putting together behind the scenes.</p>
+        <nav class="footer__social" aria-label="Social links">
+          <a href="https://www.instagram.com/theugdraft/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://x.com/theugdraft" target="_blank" rel="noopener noreferrer">X</a>
+        </nav>
+        <p class="mono footer__handle">@theugdraft</p>
       </div>
     </div>
 
     <div class="footer__bottom">
       <p class="footer__legal">&copy; 2026 The Underground Draft. All rights reserved.</p>
-      <nav class="footer__social" aria-label="Social links">
-        <a href="https://www.instagram.com/theugdraft/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://x.com/theugdraft" target="_blank" rel="noopener noreferrer">X</a>
-      </nav>
+      <p class="tagline mono">The first draft of what's next.</p>
     </div>
   </div>
 </footer>
@@ -685,7 +712,7 @@ button{font-family:inherit;}
   }
 
   wireForm('hero-form', 'hero-error', 'hero-success', 'hero-email-echo');
-  wireForm('footer-form', 'footer-error', 'footer-success', null);
+  wireForm('newsletter-form', 'newsletter-error', 'newsletter-success', null);
 })();
 </script>
 
