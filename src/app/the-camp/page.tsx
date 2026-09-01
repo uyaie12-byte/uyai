@@ -1,184 +1,174 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
+import { FigureDoodle } from "@/components/figure-doodle";
 import { EmailCaptureForm } from "@/components/email-capture-form";
 import { Rule } from "@/components/rule";
 
 export const metadata: Metadata = {
   title: "The Camp",
   description:
-    "The Underground Draft Music Camp No. 01 — closed-door writing rooms. Producers, topliners and engineers drafted into new teams every morning. Dates TBA.",
+    "The Underground Draft Music Camp, Vol. 01 — three days, a room full of artists, too many ideas, no rules about what the music has to sound like. December 2026, Uyo, Akwa Ibom.",
 };
+
+const FEATURES = [
+  "Three days",
+  "A room full of artists",
+  "Too many ideas",
+  "No rules about what the music has to sound like",
+];
 
 export default function TheCampPage() {
   return (
     <article>
-      {/* HERO — poster red, echoes the Camp No. 01 flyer */}
-      <section className="relative overflow-hidden border-b-[3px] border-ink bg-red text-paper">
-        <BrandMark
-          tone="ink"
-          decorative
-          size={640}
-          className="pointer-events-none absolute -bottom-24 -left-24 opacity-[0.08] sm:size-[720px]"
-        />
-
-        <div className="relative mx-auto max-w-[1400px] px-5 pt-10 sm:px-8 sm:pt-14">
+      {/* THE FLYER — poster red, one continuous canvas top to bottom */}
+      <section className="relative overflow-hidden border-b-[3px] border-ink bg-red text-ink">
+        <div className="relative mx-auto max-w-[1400px] px-5 pt-8 sm:px-8 sm:pt-12">
+          {/* top bar */}
           <div className="flex items-start justify-between font-mono text-xs uppercase tracking-[0.2em]">
+            <p className="font-semibold">First Edition</p>
+            <p className="hidden text-center font-semibold sm:block">
+              Music Camp / Vol. 01
+            </p>
+            <p className="font-semibold">Uyo, Akwa Ibom</p>
+          </div>
+          <Rule tone="ink" className="mt-4 opacity-70" />
+
+          {/* headline */}
+          <div className="mt-8 flex flex-wrap items-start gap-x-8 gap-y-2">
+            <h1 className="text-balance font-display leading-[0.9]">
+              <span className="block text-[11vw] uppercase tracking-tight sm:text-[7vw] lg:text-[6vw]">
+                The Underground
+              </span>
+              <span className="poster-shadow block text-[16vw] uppercase tracking-tight text-paper sm:text-[10.5vw] lg:text-[9vw]">
+                Draft
+              </span>
+            </h1>
+            <p className="mt-2 font-display text-lg uppercase leading-[1.05] tracking-wide sm:text-xl">
+              Music
+              <br />
+              Camp
+            </p>
+          </div>
+
+          <h2 className="mt-4 text-balance font-display text-[9vw] uppercase leading-[0.95] tracking-tight sm:text-[5vw] lg:text-[4vw]">
+            Come make music.
+          </h2>
+
+          {/* feature list, right-aligned like the flyer */}
+          <ul className="mt-8 space-y-1.5 text-right font-mono text-sm font-semibold uppercase tracking-[0.1em] text-paper opacity-90 sm:text-base">
+            {FEATURES.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
+
+          {/* THREE-PANEL ILLUSTRATION — cream figures on the same red canvas, framed in black */}
+          <div className="relative mt-10 grid grid-cols-3 divide-x-[3px] divide-ink border-[3px] border-ink">
+            <span
+              aria-hidden="true"
+              className="animate-accent-pulse absolute left-[33%] top-4 z-10 h-2.5 w-2.5 -translate-x-1/2 bg-ink"
+            />
+            <span
+              aria-hidden="true"
+              className="animate-accent-pulse absolute left-[66%] top-10 z-10 h-2 w-2 -translate-x-1/2 bg-paper"
+              style={{ animationDelay: "0.6s" }}
+            />
+            <div className="halftone flex items-center justify-center py-10 opacity-95">
+              <FigureDoodle variant="vocalist" size={84} tone="paper" animate />
+            </div>
+            <div className="flex items-center justify-center py-10">
+              <FigureDoodle variant="writer" size={84} tone="paper" animate delay={0.4} />
+            </div>
+            <div className="flex items-center justify-center py-10">
+              <FigureDoodle variant="producer" size={84} tone="paper" animate delay={0.8} />
+            </div>
+          </div>
+
+          {/* WRITE. PRODUCE. RECORD. CONNECT. */}
+          <div className="mt-10 flex flex-wrap justify-between gap-x-6 gap-y-2 text-paper">
+            {["Write.", "Produce.", "Record.", "Connect."].map((w) => (
+              <span key={w} className="font-display text-3xl uppercase tracking-wide sm:text-5xl">
+                {w}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-10 grid gap-8 pb-12 sm:grid-cols-2">
+            <p className="max-w-md text-balance font-sans text-lg leading-relaxed text-paper">
+              The Underground Draft Music Camp brings together emerging artists, producers and
+              songwriters to create, collaborate and experiment outside the usual studio routine.
+            </p>
+            <p className="text-balance font-display text-2xl uppercase leading-tight tracking-wide sm:text-3xl">
+              Come with your sound.
+              <br />
+              Leave with something new.
+            </p>
+          </div>
+        </div>
+
+        {/* FOR / EXPECT bar */}
+        <div className="border-y-[3px] border-ink bg-red-deep text-paper">
+          <div className="mx-auto grid max-w-[1400px] gap-4 px-5 py-6 sm:grid-cols-2 sm:gap-0 sm:divide-x-2 sm:divide-paper/30 sm:px-8">
+            <p className="font-mono text-sm uppercase tracking-[0.1em] sm:pr-8">
+              <span className="text-muted-2">For </span>
+              <span className="font-semibold">Artists · Producers · Songwriters</span>
+            </p>
+            <p className="font-mono text-sm uppercase tracking-[0.1em] sm:pl-8">
+              <span className="text-muted-2">Expect </span>
+              <span className="font-semibold">
+                Creative sessions · Collaborations · Workshops · Listening sessions · Industry
+                conversations · New music
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div className="relative mx-auto max-w-[1400px] px-5 py-10 sm:px-8 sm:py-14">
+          <p className="max-w-2xl text-balance font-display text-[9vw] uppercase leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl">
+            The underground is where
+            <br />
+            <span className="poster-shadow text-paper">the next sound starts.</span>
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-end justify-between gap-6 border-t border-ink/30 pt-6">
             <div>
-              <p className="font-semibold">First Edition</p>
-              <p className="mt-1 opacity-80">Est. 2026</p>
-            </div>
-            <BrandMark tone="ink" size={72} />
-            <div className="text-right">
-              <p className="font-semibold">Invite + Open Call</p>
-              <p className="mt-1 opacity-80">
-                <Link href="#waitlist" className="underline underline-offset-2 hover:no-underline">
-                  Join the waitlist
-                </Link>
+              <p className="font-mono text-sm font-semibold uppercase tracking-[0.15em] text-paper">
+                December 2026 · Uyo, Akwa Ibom
               </p>
-            </div>
-          </div>
-
-          <Rule tone="ink" className="mt-6 opacity-70" />
-
-          <div className="mt-6 flex flex-wrap justify-between gap-2 font-mono text-sm font-semibold uppercase tracking-[0.15em] sm:text-base">
-            <span>Two</span>
-            <span>Days</span>
-            <span>Three</span>
-            <span>Rooms</span>
-            <span>One</span>
-            <span>Draft</span>
-          </div>
-
-          <h1 className="poster-shadow mt-4 text-balance font-display text-[16vw] uppercase leading-[0.86] tracking-tight text-paper sm:text-[10vw] lg:text-[8.5vw]">
-            THE
-            <br />
-            UNDERGROUND
-            <br />
-            DRAFT
-          </h1>
-
-          <div className="relative z-10 mt-8 grid gap-10 pb-16 sm:pb-24 md:grid-cols-12 md:items-start">
-            <div className="md:col-span-7">
-              <p className="max-w-md text-balance font-sans text-lg leading-relaxed">
-                Closed-door writing rooms. Producers, topliners and engineers drafted into new
-                teams every morning. One record out of every room, mixed on site.
-              </p>
-
-              <dl className="mt-8 max-w-sm space-y-2 border-t border-ink/30 pt-6 font-mono text-sm uppercase tracking-[0.1em]">
-                <div className="flex justify-between gap-4">
-                  <dt className="opacity-70">Dates</dt>
-                  <dd className="font-semibold">TBA</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="opacity-70">Venue</dt>
-                  <dd className="font-semibold">TBA</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="opacity-70">Draft</dt>
-                  <dd className="font-semibold">TBA</dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className="relative md:col-span-5">
-              <p className="mb-6 font-display text-2xl leading-none tracking-wide sm:text-3xl">
-                MUSIC
-                <br />
-                CAMP
-                <br />
-                NO. 01
-              </p>
-
-              {/* the-rooms-live illustration card */}
-              <div className="relative -rotate-2 border-[3px] border-ink bg-ink p-5 text-paper">
-                {/* APPLY sticker — corner badge, clear of the caption row below */}
+              <div className="mt-3 flex flex-wrap items-center gap-3">
                 <Link
                   href="#waitlist"
-                  className="absolute -right-5 -top-6 z-10 rotate-[6deg] border-2 border-ink bg-paper px-4 py-2 shadow-[3px_3px_0_var(--ink)] transition-transform hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 border-2 border-ink bg-paper px-5 py-2.5 font-mono text-sm font-semibold uppercase tracking-[0.15em] text-ink shadow-[3px_3px_0_var(--ink)] transition-transform hover:-translate-y-0.5"
                 >
-                  <p className="font-display text-xl leading-none tracking-wide text-ink">APPLY</p>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-ink/70">Waitlist open</p>
+                  Apply / RSVP
                 </Link>
-
-                <svg viewBox="0 0 200 110" className="w-full" role="img" aria-label="Two people at a mixing desk">
-                  <line x1="10" y1="95" x2="190" y2="95" stroke="var(--paper)" strokeWidth="2.5" />
-                  {/* figure 1 */}
-                  <circle cx="35" cy="45" r="12" fill="none" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="35" y1="57" x2="35" y2="88" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="35" y1="70" x2="55" y2="62" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="35" y1="88" x2="24" y2="95" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="35" y1="88" x2="46" y2="95" stroke="var(--paper)" strokeWidth="2.5" />
-                  {/* figure 2 */}
-                  <circle cx="82" cy="48" r="12" fill="none" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="82" y1="60" x2="82" y2="88" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="82" y1="72" x2="60" y2="66" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="82" y1="72" x2="104" y2="66" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="82" y1="88" x2="71" y2="95" stroke="var(--paper)" strokeWidth="2.5" />
-                  <line x1="82" y1="88" x2="93" y2="95" stroke="var(--paper)" strokeWidth="2.5" />
-                  {/* dial */}
-                  <circle cx="150" cy="60" r="26" fill="none" stroke="var(--paper)" strokeWidth="2.5" />
-                  <circle cx="150" cy="60" r="10" fill="var(--red)" />
-                  <rect x="140" y="20" width="8" height="8" fill="var(--paper)" />
-                  <rect x="98" y="30" width="6" height="6" fill="var(--red)" />
-                </svg>
-                <div className="mt-3 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.15em] text-muted-2">
-                  <span>The Rooms, Live</span>
-                  <span>2 Days / 3 Rooms</span>
-                </div>
+                <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-2">
+                  [ Submission link coming soon ]
+                </span>
               </div>
+              <p className="mt-2 font-mono text-xs uppercase tracking-[0.15em] text-paper">
+                @theundergrounddraft
+              </p>
             </div>
+            <BrandMark tone="ink" size={110} className="hidden sm:block" />
           </div>
         </div>
       </section>
 
-      {/* BACKED BY */}
-      <section className="border-b-[3px] border-ink bg-ink py-8 text-paper">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4 px-5 sm:px-8">
-          <div className="flex flex-wrap items-baseline gap-4">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-2">Backed By</span>
-            <span className="font-display text-2xl tracking-wide">ESTLON</span>
-            <span className="text-red">/</span>
-            <span className="font-display text-2xl tracking-wide">SONGDIS</span>
-          </div>
-          <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-2">+ More Partners TBA</span>
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section className="border-b border-ink/20 bg-paper py-16 sm:py-24">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">About The Camp</p>
-          <p className="mt-6 text-balance font-display text-3xl leading-[1.15] tracking-wide sm:text-4xl">
-            The Underground Draft&apos;s first artist-development residency.
-          </p>
-          <div className="mt-6 space-y-5 font-sans text-lg leading-relaxed text-ink/85">
-            <p>
-              Two days, three rooms, one draft. Producers, vocalists, songwriters and engineers
-              are drafted into new teams each morning — strangers on day one, a finished record
-              by the end of the room.
-            </p>
-            <p>
-              This is edition No. 01: closed-door by design, invite plus a limited open call.
-              Curriculum, mentors and the final showcase format will be announced alongside
-              dates and venue.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* WAITLIST */}
+      {/* WAITLIST — the actual functional capture, since the submission link isn't live yet */}
       <section id="waitlist" className="scroll-mt-20 bg-paper-dim py-20 sm:py-28">
         <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">Apply — Closes TBA</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">
+            Apply / RSVP — December 2026, Uyo, Akwa Ibom
+          </p>
           <p className="mt-6 max-w-2xl text-balance font-display text-4xl leading-[1.05] tracking-wide sm:text-6xl">
-            Applications aren&apos;t open yet.
+            The submission link isn&apos;t live yet.
             <br />
-            <span className="text-red">Be first when they are.</span>
+            <span className="text-red">Get it the moment it is.</span>
           </p>
           <p className="mt-4 max-w-md font-sans text-base text-muted">
-            Join the waitlist and we&apos;ll email you the moment dates, venue and the
-            application open — before it&apos;s posted anywhere else.
+            Join the list and we&apos;ll send the RSVP link directly, before it&apos;s posted
+            anywhere else.
           </p>
           <div className="mt-8">
             <EmailCaptureForm source="the-camp" buttonLabel="Join The Waitlist" />
