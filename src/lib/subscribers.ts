@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-export type SubscribeSource = "home" | "article" | "footer" | "about" | "the-camp";
+export type SubscribeSource = "home" | "article" | "footer" | "about" | "the-camp" | "popup";
 
 export type SubscribeResult =
   | { ok: true; duplicate: boolean }

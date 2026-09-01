@@ -7,10 +7,12 @@ import { TheDraftSection } from "@/components/home/the-draft-section";
 import { ArtistPickSection } from "@/components/home/artist-pick-section";
 import { ThrowbackSection } from "@/components/home/throwback-section";
 import { NewsletterSection } from "@/components/home/newsletter-section";
+import { JoinDraftAutoOpen } from "@/components/home/join-draft-auto-open";
 
 export default function HomePage() {
   return (
     <>
+      <JoinDraftAutoOpen />
       <Hero />
       <CampPromo />
       <AboutBand />

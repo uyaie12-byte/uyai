@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
+import { useJoinDraftModal } from "@/components/join-draft-modal";
 
 const NAV_LINKS = [
   { href: "/the-draft", label: "The Draft" },
@@ -15,6 +16,7 @@ const NAV_LINKS = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
+  const { open: openJoinModal } = useJoinDraftModal();
 
   return (
     <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-paper">
@@ -40,18 +42,28 @@ export function SiteNav() {
           ))}
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 border border-ink md:hidden"
-        >
-          <span className={`h-[2px] w-5 bg-ink transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`} />
-          <span className={`h-[2px] w-5 bg-ink transition-opacity ${open ? "opacity-0" : ""}`} />
-          <span className={`h-[2px] w-5 bg-ink transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={openJoinModal}
+            className="hidden shrink-0 items-center border-2 border-ink bg-ink px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.15em] text-paper transition-colors hover:border-red hover:bg-red md:inline-flex"
+          >
+            Join The Draft
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 border border-ink md:hidden"
+          >
+            <span className={`h-[2px] w-5 bg-ink transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`} />
+            <span className={`h-[2px] w-5 bg-ink transition-opacity ${open ? "opacity-0" : ""}`} />
+            <span className={`h-[2px] w-5 bg-ink transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -66,6 +78,16 @@ export function SiteNav() {
               {link.label}
             </Link>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              openJoinModal();
+            }}
+            className="block w-full border-t border-ink/20 px-5 py-4 text-left font-display text-2xl tracking-wide text-red"
+          >
+            Join The Draft
+          </button>
         </nav>
       )}
     </header>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Archivo, IBM_Plex_Mono } from "next/font/google";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { JoinDraftModalProvider } from "@/components/join-draft-modal";
 import "./globals.css";
 
 const anton = Anton({
@@ -47,9 +48,11 @@ export default function RootLayout({
       className={`${anton.variable} ${archivo.variable} ${plexMono.variable} h-full`}
     >
       <body className="grain min-h-full flex flex-col bg-paper text-ink font-sans antialiased selection:bg-red selection:text-paper">
-        <SiteNav />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <JoinDraftModalProvider>
+          <SiteNav />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </JoinDraftModalProvider>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addSubscriber, type SubscribeSource } from "@/lib/subscribers";
 
-const VALID_SOURCES: SubscribeSource[] = ["home", "article", "footer", "about", "the-camp"];
+const VALID_SOURCES: SubscribeSource[] = ["home", "article", "footer", "about", "the-camp", "popup"];
 
 export async function POST(req: NextRequest) {
   let body: unknown;
