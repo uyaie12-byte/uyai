@@ -19,9 +19,65 @@
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function serverPrefixFromKey(key) {
-  const parts = String(key || "").split("-");
-  return parts.length > 1 ? parts[parts.length - 1] : null;
+function inferServerPrefix(apiKey) {
+  const key = String(apiKey || "");
+  const dash = key.lastIndexOf("-");
+  return dash === -1 ? null : key.slice(dash + 1);
+}
+
+function readMailchimpConfig() {
+  const apiKey = process.env.MAILCHIMP_API_KEY;
+  return {
+    apiKey,
+    audienceId: process.env.MAILCHIMP_AUDIENCE_ID,
+    serverPrefix: process.env.MAILCHIMP_SERVER_PREFIX || inferServerPrefix(apiKey),
+    doubleOptIn: String(process.env.MAILCHIMP_DOUBLE_OPTIN || "").toLowerCase() === "true",
+  };
+}
+
+function parseBody(req) {
+  if (!req.body) return {};
+  if (typeof req.body === "object") return req.body;
+  try {
+    return JSON.parse(req.body);
+  } catch (err) {
+    return {};
+  }
+}
+
+async function addToMailchimp({ apiKey, audienceId, serverPrefix, doubleOptIn }, email, tags) {
+  const auth = Buffer.from("anystring:" + apiKey).toString("base64");
+  const res = await fetch(
+    `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${auth}`,
+      },
+      body: JSON.stringify({
+        email_address: email,
+        status: doubleOptIn ? "pending" : "subscribed",
+        ...(tags && tags.length ? { tags } : {}),
+      }),
+    }
+  );
+
+  if (res.ok) return { ok: true };
+
+  const errBody = await res.json().catch(() => ({}));
+
+  // Already on the list — that's a success from the visitor's point of view.
+  if (errBody.title === "Member Exists") {
+    return { ok: true, alreadySubscribed: true };
+  }
+
+  return {
+    ok: false,
+    status: 502,
+    error: errBody.detail || "Something went wrong — please try again in a moment.",
+    detail: errBody,
+  };
 }
 
 module.exports = async function handler(req, res) {
@@ -30,32 +86,19 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ ok: false, error: "Method not allowed." });
   }
 
-  const apiKey = process.env.MAILCHIMP_API_KEY;
-  const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
-  const serverPrefix =
-    process.env.MAILCHIMP_SERVER_PREFIX || serverPrefixFromKey(apiKey);
-  const doubleOptIn = String(process.env.MAILCHIMP_DOUBLE_OPTIN || "").toLowerCase() === "true";
-
-  if (!apiKey || !audienceId || !serverPrefix) {
-    console.error("Mailchimp env vars missing: check MAILCHIMP_API_KEY / MAILCHIMP_AUDIENCE_ID.");
+  const config = readMailchimpConfig();
+  if (!config.apiKey || !config.audienceId || !config.serverPrefix) {
+    console.error("Mailchimp isn't configured — set MAILCHIMP_API_KEY and MAILCHIMP_AUDIENCE_ID.");
     return res.status(500).json({
       ok: false,
       error: "Signups aren't connected yet. Try again shortly.",
     });
   }
 
-  let body = req.body;
-  if (typeof body === "string") {
-    try {
-      body = JSON.parse(body);
-    } catch (err) {
-      body = {};
-    }
-  }
-  body = body || {};
+  const body = parseBody(req);
 
   // Honeypot: a hidden field real visitors never fill in. If it's set,
-  // silently pretend success without calling Mailchimp.
+  // pretend success without ever calling Mailchimp.
   if (body.company) {
     return res.status(200).json({ ok: true });
   }
@@ -66,41 +109,14 @@ module.exports = async function handler(req, res) {
   }
 
   const source = typeof body.source === "string" ? body.source.slice(0, 40) : "";
-  const tags = source ? [source] : undefined;
 
   try {
-    const mcRes = await fetch(
-      `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Basic " + Buffer.from("anystring:" + apiKey).toString("base64"),
-        },
-        body: JSON.stringify({
-          email_address: email,
-          status: doubleOptIn ? "pending" : "subscribed",
-          ...(tags ? { tags } : {}),
-        }),
-      }
-    );
-
-    if (mcRes.ok) {
-      return res.status(200).json({ ok: true });
+    const result = await addToMailchimp(config, email, source ? [source] : []);
+    if (!result.ok) {
+      console.error("Mailchimp error:", result.detail);
+      return res.status(result.status || 502).json({ ok: false, error: result.error });
     }
-
-    const errBody = await mcRes.json().catch(() => ({}));
-
-    // Already on the list — treat as success, not an error.
-    if (errBody.title === "Member Exists") {
-      return res.status(200).json({ ok: true, alreadySubscribed: true });
-    }
-
-    console.error("Mailchimp error:", mcRes.status, errBody);
-    return res.status(502).json({
-      ok: false,
-      error: errBody.detail || "Something went wrong — please try again in a moment.",
-    });
+    return res.status(200).json({ ok: true, alreadySubscribed: !!result.alreadySubscribed });
   } catch (err) {
     console.error("Mailchimp request failed:", err);
     return res.status(502).json({
