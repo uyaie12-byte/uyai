@@ -6,7 +6,7 @@
 <title>The Underground Draft — The First Draft Of What's Next.</title>
 <meta name="description" content="A new home for emerging music, artists and culture is coming. The Underground Draft is a platform built to discover the artists worth watching, the sounds worth hearing and the culture happening beneath the surface. Get in early." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://theundergrounddraft.com/" />
+<link rel="canonical" href="https://uyai-p48u.vercel.app/" />
 
 <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -21,8 +21,8 @@
 <meta property="og:site_name" content="The Underground Draft" />
 <meta property="og:title" content="The Underground Draft — The First Draft Of What's Next." />
 <meta property="og:description" content="A new home for emerging music, artists and culture is coming. Be the first to know when we go live." />
-<meta property="og:url" content="https://theundergrounddraft.com/" />
-<meta property="og:image" content="https://theundergrounddraft.com/og-image.png" />
+<meta property="og:url" content="https://uyai-p48u.vercel.app/" />
+<meta property="og:image" content="https://uyai-p48u.vercel.app/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="The Underground Draft — The First Draft Of What's Next." />
 <meta name="twitter:description" content="A new home for emerging music, artists and culture is coming. Be the first to know when we go live." />
-<meta name="twitter:image" content="https://theundergrounddraft.com/og-image.png" />
+<meta name="twitter:image" content="https://uyai-p48u.vercel.app/og-image.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,6 +113,21 @@ button{font-family:inherit;}
 }
 
 :focus-visible{outline:2.5px solid var(--brick);outline-offset:3px;}
+
+.skip-link{
+  position:absolute;
+  left:-999px;top:0;
+  background:var(--ink);
+  color:var(--cream);
+  padding:12px 18px;
+  z-index:100;
+  font-family:var(--mono);
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  text-decoration:none;
+}
+.skip-link:focus{left:16px;top:16px;}
 
 /* ============================================================
    SIGNATURE MOTIF — corner brackets (from the brand's album-cover
@@ -470,6 +485,8 @@ button{font-family:inherit;}
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to content</a>
+
 <!-- ============================================================
      MARQUEE
      ============================================================ -->
@@ -503,7 +520,7 @@ button{font-family:inherit;}
   </div>
 </header>
 
-<main>
+<main id="main-content">
   <!-- ============================================================
        HERO
        ============================================================ -->

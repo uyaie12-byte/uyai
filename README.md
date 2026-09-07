@@ -90,9 +90,10 @@ values) and serves `index.html` plus `api/subscribe.js` together on
 
 ## Before going fully live
 
-- Replace the `https://theundergrounddraft.com/` placeholders in
-  `index.html`'s `<head>` (canonical URL, `og:url`, `og:image`,
-  `twitter:image`) with the real domain this page is deployed to.
+- `index.html`'s `<head>` (canonical URL, `og:url`, `og:image`,
+  `twitter:image`) currently points at the live Vercel URL,
+  `https://uyai-p48u.vercel.app/`. If you later attach a custom domain,
+  update those four values to match.
 - Social links in the footer already point to the real Instagram
   (`instagram.com/theugdraft`) and X (`x.com/theugdraft`) accounts. Add
   TikTok/YouTube links once those accounts exist.
