@@ -34,14 +34,25 @@ export function ArtistSpotlightSection() {
             <div className="absolute -top-6 -left-4 z-10 hidden animate-figure-bob sm:block">
               <StampBadge text="Spotlight" tone="red" size={92} />
             </div>
-            <ImagePlaceholder
-              label={artist.name}
-              sublabel={`${artist.discipline} — ${artist.location}`}
-              ratio="aspect-[4/5]"
-              pattern="halftone"
-              tone="paper"
-              className="card-media-paper"
-            />
+            {artist.image ? (
+              <div className="card-media-paper aspect-[4/5] overflow-hidden border border-paper/40">
+                {/* eslint-disable-next-line @next/next/no-img-element -- external press/CDN-hosted image, not part of next/image's optimized domain set */}
+                <img
+                  src={artist.image}
+                  alt=""
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+              </div>
+            ) : (
+              <ImagePlaceholder
+                label={artist.name}
+                sublabel={`${artist.discipline} — ${artist.location}`}
+                ratio="aspect-[4/5]"
+                pattern="halftone"
+                tone="paper"
+                className="card-media-paper"
+              />
+            )}
           </Link>
 
           <div className="md:col-span-6">

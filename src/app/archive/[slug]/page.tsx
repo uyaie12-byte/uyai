@@ -26,7 +26,14 @@ export default async function ThrowbackPage({ params }: { params: Promise<{ slug
   return (
     <article className="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
       <div className="grid gap-10 md:grid-cols-2 md:items-center">
-        <ImagePlaceholder label={throwback.artistName} sublabel={throwback.year} ratio="aspect-square" tone="ink" />
+        {throwback.image ? (
+          <div className="aspect-square overflow-hidden border border-ink">
+            {/* eslint-disable-next-line @next/next/no-img-element -- external press/CDN-hosted cover art, not part of next/image's optimized domain set */}
+            <img src={throwback.image} alt="" className="h-full w-full object-cover" />
+          </div>
+        ) : (
+          <ImagePlaceholder label={throwback.artistName} sublabel={throwback.year} ratio="aspect-square" tone="ink" />
+        )}
         <div>
           <p className="font-mono text-sm uppercase tracking-[0.2em] text-red">{throwback.year}</p>
           <h1 className="mt-3 text-balance font-display text-5xl leading-[0.95] tracking-wide sm:text-6xl">

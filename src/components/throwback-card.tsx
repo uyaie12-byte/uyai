@@ -17,14 +17,28 @@ export function ThrowbackCard({
 }) {
   return (
     <Link href={`/archive/${throwback.slug}`} className="group block">
-      <ImagePlaceholder
-        label={throwback.artistName}
-        sublabel={throwback.year}
-        ratio="aspect-square"
-        pattern="stripes"
-        tone={imageTone}
-        className={`opacity-90 transition-opacity duration-300 group-hover:opacity-100 ${sectionTone === "ink" ? "card-media-paper" : "card-media"}`}
-      />
+      {throwback.image ? (
+        <div
+          className={`aspect-square overflow-hidden border border-ink ${sectionTone === "ink" ? "card-media-paper" : "card-media"}`}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- external press/CDN-hosted cover art, not part of next/image's optimized domain set */}
+          <img
+            src={throwback.image}
+            alt=""
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+          />
+        </div>
+      ) : (
+        <ImagePlaceholder
+          label={throwback.artistName}
+          sublabel={throwback.year}
+          ratio="aspect-square"
+          pattern="stripes"
+          tone={imageTone}
+          className={`opacity-90 transition-opacity duration-300 group-hover:opacity-100 ${sectionTone === "ink" ? "card-media-paper" : "card-media"}`}
+        />
+      )}
       <div className="mt-3">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] opacity-70">{throwback.year}</p>
         <p className="font-display text-xl leading-tight tracking-wide">{throwback.title}</p>

@@ -34,12 +34,19 @@ export default async function ArtistPage({ params }: { params: Promise<{ slug: s
       <div className="border-b-[3px] border-ink bg-ink py-16 text-paper sm:py-24">
         <div className="mx-auto grid max-w-[1400px] gap-10 px-5 sm:px-8 md:grid-cols-12 md:items-end">
           <div className="md:col-span-5">
-            <ImagePlaceholder
-              label={artist.name}
-              sublabel={`${artist.discipline} — ${artist.location}`}
-              ratio="aspect-[3/4]"
-              tone="paper"
-            />
+            {artist.image ? (
+              <div className="aspect-[3/4] overflow-hidden border border-paper/40">
+                {/* eslint-disable-next-line @next/next/no-img-element -- external press/CDN-hosted image, not part of next/image's optimized domain set */}
+                <img src={artist.image} alt="" className="h-full w-full object-cover" />
+              </div>
+            ) : (
+              <ImagePlaceholder
+                label={artist.name}
+                sublabel={`${artist.discipline} — ${artist.location}`}
+                ratio="aspect-[3/4]"
+                tone="paper"
+              />
+            )}
           </div>
           <div className="md:col-span-7">
             <Tag tone="red">{artist.discipline}</Tag>

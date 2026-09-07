@@ -20,6 +20,8 @@ export type Artist = {
   tags: string[];
   spotlight?: boolean;
   links?: { label: string; href: string }[];
+  /** Real photo URL — falls back to the styled ImagePlaceholder when unset. */
+  image?: string;
 };
 
 export type ReleaseType = "Single" | "EP" | "Album";
@@ -34,6 +36,8 @@ export type Release = {
   blurb: string;
   tags: string[];
   listenHref?: string;
+  /** Real cover art URL — falls back to the styled ImagePlaceholder when unset. */
+  image?: string;
 };
 
 // Article / ArticleCategory moved to src/lib/articles.ts — articles are
@@ -46,6 +50,8 @@ export type Throwback = {
   year: string;
   blurb: string;
   whyItMatters: string;
+  /** Real cover art URL — falls back to the styled ImagePlaceholder when unset. */
+  image?: string;
 };
 
 export type ArtistPick = {

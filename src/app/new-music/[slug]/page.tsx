@@ -28,7 +28,14 @@ export default async function ReleasePage({ params }: { params: Promise<{ slug: 
   return (
     <article className="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
       <div className="grid gap-10 md:grid-cols-2 md:items-center">
-        <ImagePlaceholder label={release.artistName} sublabel={release.type} ratio="aspect-square" tone="ink" />
+        {release.image ? (
+          <div className="aspect-square overflow-hidden border border-ink">
+            {/* eslint-disable-next-line @next/next/no-img-element -- external press/CDN-hosted cover art, not part of next/image's optimized domain set */}
+            <img src={release.image} alt="" className="h-full w-full object-cover" />
+          </div>
+        ) : (
+          <ImagePlaceholder label={release.artistName} sublabel={release.type} ratio="aspect-square" tone="ink" />
+        )}
         <div>
           <Tag tone="red">{release.type}</Tag>
           <h1 className="mt-5 text-balance font-display text-5xl leading-[0.95] tracking-wide sm:text-6xl">
