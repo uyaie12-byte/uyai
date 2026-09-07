@@ -12,7 +12,7 @@ export function ReleaseCard({ release }: { release: Release }) {
         ratio="aspect-square"
         pattern="halftone"
         tone="ink"
-        className="transition-transform duration-300 group-hover:-translate-y-1"
+        className="card-media"
       />
       <div className="mt-3 flex items-start justify-between gap-3">
         <div>

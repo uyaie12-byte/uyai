@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { HubHeader } from "@/components/hub-header";
 import { Rule } from "@/components/rule";
 import { EmailCaptureForm } from "@/components/email-capture-form";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "About",
@@ -20,7 +21,7 @@ export default function AboutPage() {
       />
 
       <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8">
-        <div className="space-y-6 font-sans text-lg leading-relaxed text-ink/90">
+        <Reveal className="space-y-6 font-sans text-lg leading-relaxed text-ink/90">
           <p>
             We exist in the space between discovery and recognition — finding the artists
             before they&apos;re everywhere, exploring the sounds before they have names, and
@@ -46,11 +47,11 @@ export default function AboutPage() {
             <br />
             We&apos;re here to help you find what&apos;s next.
           </p>
-        </div>
+        </Reveal>
 
         <Rule className="my-14" />
 
-        <div>
+        <Reveal>
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">Our Vision</p>
           <p className="mt-4 text-balance font-display text-3xl leading-[1.1] tracking-wide sm:text-4xl">
             To build a leading African music and culture platform that becomes a trusted home
@@ -61,21 +62,24 @@ export default function AboutPage() {
             programming, The Underground Draft aims to document the culture of today while
             helping shape the culture of tomorrow.
           </p>
-        </div>
+        </Reveal>
 
         <Rule className="my-14" />
 
-        <div>
+        <Reveal>
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">Get In Touch</p>
           <p className="mt-4 max-w-md font-sans text-base text-muted">
             Press, partnerships, advertising, or you just want to say hi —{" "}
-            <a href="mailto:hello@theundergrounddraft.com" className="text-ink underline hover:text-red">
+            <a
+              href="mailto:hello@theundergrounddraft.com"
+              className="link-underline text-ink hover:text-red"
+            >
               hello@theundergrounddraft.com
             </a>
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-14 border border-ink p-6 sm:p-8">
+        <Reveal className="mt-14 border border-ink p-6 sm:p-8">
           <p className="font-display text-2xl tracking-wide">Stay in the loop.</p>
           <p className="mt-2 max-w-md font-sans text-sm text-muted">
             The music worth knowing, delivered straight to your inbox.
@@ -83,7 +87,7 @@ export default function AboutPage() {
           <div className="mt-5">
             <EmailCaptureForm source="about" buttonLabel="Join The Draft" />
           </div>
-        </div>
+        </Reveal>
       </div>
     </>
   );

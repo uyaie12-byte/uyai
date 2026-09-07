@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { releases } from "@/content/releases";
 import { ReleaseCard } from "@/components/release-card";
 import { HubHeader } from "@/components/hub-header";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "New Music",
@@ -19,8 +20,10 @@ export default function NewMusicPage() {
       />
       <section className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8">
         <div className="grid grid-cols-2 gap-x-6 gap-y-14 sm:grid-cols-3 lg:grid-cols-4">
-          {releases.map((r) => (
-            <ReleaseCard key={r.slug} release={r} />
+          {releases.map((r, i) => (
+            <Reveal key={r.slug} delay={(i % 4) * 80}>
+              <ReleaseCard release={r} />
+            </Reveal>
           ))}
         </div>
       </section>

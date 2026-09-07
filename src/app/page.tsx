@@ -8,12 +8,14 @@ import { ArtistPickSection } from "@/components/home/artist-pick-section";
 import { ThrowbackSection } from "@/components/home/throwback-section";
 import { NewsletterSection } from "@/components/home/newsletter-section";
 import { JoinDraftAutoOpen } from "@/components/home/join-draft-auto-open";
+import { Ticker } from "@/components/ticker";
 
 export default function HomePage() {
   return (
     <>
       <JoinDraftAutoOpen />
       <Hero />
+      <Ticker />
       <CampPromo />
       <AboutBand />
       <NewMusicSection />

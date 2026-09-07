@@ -4,6 +4,7 @@ import { BrandMark } from "@/components/brand-mark";
 import { FigureDoodle } from "@/components/figure-doodle";
 import { EmailCaptureForm } from "@/components/email-capture-form";
 import { Rule } from "@/components/rule";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "The Camp",
@@ -138,7 +139,7 @@ export default function TheCampPage() {
               <div className="mt-3 flex flex-wrap items-center gap-3">
                 <Link
                   href="#waitlist"
-                  className="inline-flex items-center gap-2 border-2 border-ink bg-paper px-5 py-2.5 font-mono text-sm font-semibold uppercase tracking-[0.15em] text-ink shadow-[3px_3px_0_var(--ink)] transition-transform hover:-translate-y-0.5"
+                  className="btn-press inline-flex items-center gap-2 border-2 border-ink bg-paper px-5 py-2.5 font-mono text-sm font-semibold uppercase tracking-[0.15em] text-ink shadow-[3px_3px_0_var(--ink)]"
                 >
                   Apply / RSVP
                 </Link>
@@ -157,7 +158,7 @@ export default function TheCampPage() {
 
       {/* WAITLIST — the actual functional capture, since the submission link isn't live yet */}
       <section id="waitlist" className="scroll-mt-20 bg-paper-dim py-20 sm:py-28">
-        <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+        <Reveal className="mx-auto max-w-[1400px] px-5 sm:px-8">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">
             Apply / RSVP — December 2026, Uyo, Akwa Ibom
           </p>
@@ -173,7 +174,7 @@ export default function TheCampPage() {
           <div className="mt-8">
             <EmailCaptureForm source="the-camp" buttonLabel="Join The Waitlist" />
           </div>
-        </div>
+        </Reveal>
       </section>
     </article>
   );

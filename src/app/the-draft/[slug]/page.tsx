@@ -9,6 +9,7 @@ import { Tag } from "@/components/tag";
 import { Rule } from "@/components/rule";
 import { ArticleCard } from "@/components/article-card";
 import { EmailCaptureForm } from "@/components/email-capture-form";
+import { Reveal } from "@/components/reveal";
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
@@ -86,14 +87,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
             <div className="flex items-center justify-between">
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">Keep Reading</p>
-              <Link href="/the-draft" className="font-mono text-sm font-semibold uppercase tracking-[0.15em] hover:text-red">
+              <Link
+                href="/the-draft"
+                className="link-underline font-mono text-sm font-semibold uppercase tracking-[0.15em] hover:text-red"
+              >
                 All stories →
               </Link>
             </div>
             <Rule className="mt-4" />
             <div className="mt-10 grid gap-10 sm:grid-cols-3">
-              {related.map((a) => (
-                <ArticleCard key={a.slug} article={a} />
+              {related.map((a, i) => (
+                <Reveal key={a.slug} delay={i * 90}>
+                  <ArticleCard article={a} />
+                </Reveal>
               ))}
             </div>
           </div>

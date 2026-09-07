@@ -11,7 +11,7 @@ export function ArtistCard({ artist }: { artist: Artist }) {
         ratio="aspect-[3/4]"
         pattern="grid"
         tone="red"
-        className="transition-transform duration-300 group-hover:-translate-y-1"
+        className="card-media"
       />
       <div className="mt-3">
         <p className="font-display text-2xl leading-tight tracking-wide">{artist.name}</p>

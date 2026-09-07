@@ -40,7 +40,7 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="font-sans text-sm hover:text-red">
+                  <Link href={l.href} className="link-underline font-sans text-sm hover:text-red">
                     {l.label}
                   </Link>
                 </li>
@@ -57,7 +57,7 @@ export function SiteFooter() {
                     href={s.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-sans text-sm hover:text-red"
+                    className="link-underline font-sans text-sm hover:text-red"
                   >
                     {s.label}
                   </a>
@@ -70,12 +70,12 @@ export function SiteFooter() {
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-2">Contact</p>
             <ul className="mt-4 space-y-2 font-sans text-sm">
               <li>
-                <a href="mailto:hello@theundergrounddraft.com" className="hover:text-red">
+                <a href="mailto:hello@theundergrounddraft.com" className="link-underline hover:text-red">
                   hello@theundergrounddraft.com
                 </a>
               </li>
               <li>
-                <Link href="/about" className="hover:text-red">
+                <Link href="/about" className="link-underline hover:text-red">
                   Press &amp; partnerships
                 </Link>
               </li>

@@ -53,8 +53,10 @@ export function EmailCaptureForm({
 
   if (status === "success") {
     return (
-      <p className={`font-display text-xl ${textColor}`}>
-        YOU&apos;RE ON THE LIST. — check your inbox.
+      <p className="line-mask">
+        <span className={`line-in block font-display text-xl ${textColor}`}>
+          YOU&apos;RE ON THE LIST. — check your inbox.
+        </span>
       </p>
     );
   }
@@ -79,14 +81,14 @@ export function EmailCaptureForm({
         <button
           type="submit"
           disabled={status === "loading"}
-          className="shrink-0 border border-red bg-red px-6 py-3 font-mono text-sm font-semibold uppercase tracking-[0.15em] text-paper transition-opacity hover:opacity-85 disabled:opacity-60"
+          className="shrink-0 border border-red bg-red px-6 py-3 font-mono text-sm font-semibold uppercase tracking-[0.15em] text-paper transition-all duration-150 hover:opacity-85 active:scale-[0.97] disabled:opacity-60 disabled:active:scale-100"
         >
           {status === "loading" ? "Sending…" : buttonLabel}
         </button>
       </form>
       {error && (
-        <p role="alert" className="mt-2 inline-block bg-red px-2 py-1 font-mono text-xs text-paper">
-          {error}
+        <p role="alert" className="line-mask mt-2 inline-block">
+          <span className="line-in block bg-red px-2 py-1 font-mono text-xs text-paper">{error}</span>
         </p>
       )}
     </div>

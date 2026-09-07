@@ -68,7 +68,7 @@ function JoinDraftModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/80 p-5 backdrop-blur-[2px]"
+      className="animate-overlay-in fixed inset-0 z-[100] flex items-center justify-center bg-ink/80 p-5 backdrop-blur-[2px]"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -79,13 +79,13 @@ function JoinDraftModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         role="dialog"
         aria-modal="true"
         aria-labelledby="join-draft-modal-title"
-        className="relative w-full max-w-md border-[3px] border-ink bg-paper p-6 shadow-[6px_6px_0_var(--red)] sm:p-8"
+        className="animate-modal-card-in relative w-full max-w-md border-[3px] border-ink bg-paper p-6 shadow-[6px_6px_0_var(--red)] sm:p-8"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center border border-ink font-display text-lg leading-none transition-colors hover:border-red hover:text-red"
+          className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center border border-ink font-display text-lg leading-none transition-all hover:border-red hover:text-red active:scale-90"
         >
           ×
         </button>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllArticles } from "@/lib/articles";
 import { ArticleCard } from "@/components/article-card";
 import { SectionLabel } from "@/components/section-label";
+import { Reveal } from "@/components/reveal";
 
 export function TheDraftSection() {
   const featured = getAllArticles().slice(0, 3);
@@ -9,7 +10,7 @@ export function TheDraftSection() {
   return (
     <section className="border-b border-ink/20 bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <SectionLabel index="04" title="The Draft" />
             <p className="mt-6 max-w-2xl text-balance font-display text-4xl leading-[1.05] tracking-wide sm:text-6xl">
@@ -21,15 +22,17 @@ export function TheDraftSection() {
           </div>
           <Link
             href="/the-draft"
-            className="font-mono text-sm font-semibold uppercase tracking-[0.15em] hover:text-red"
+            className="link-underline font-mono text-sm font-semibold uppercase tracking-[0.15em] hover:text-red"
           >
             Read The Draft →
           </Link>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid gap-10 sm:grid-cols-3">
-          {featured.map((a) => (
-            <ArticleCard key={a.slug} article={a} />
+          {featured.map((a, i) => (
+            <Reveal key={a.slug} delay={i * 90}>
+              <ArticleCard article={a} />
+            </Reveal>
           ))}
         </div>
       </div>

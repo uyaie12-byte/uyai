@@ -39,6 +39,8 @@
   --animate-marquee: marquee 22s linear infinite;
   --animate-figure-bob: figure-bob 2.6s ease-in-out infinite;
   --animate-accent-pulse: accent-pulse 1.8s ease-in-out infinite;
+  --animate-overlay-in: overlay-in 0.2s ease both;
+  --animate-modal-card-in: modal-card-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes vinyl-spin {
@@ -136,7 +138,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-figure-bob,
   .animate-accent-pulse,
-  .animate-vinyl-spin {
+  .animate-vinyl-spin,
+  .animate-marquee {
     animation: none;
   }
 }
@@ -149,4 +152,187 @@ body {
 .rule-heavy {
   border-color: var(--ink);
   border-width: 3px;
+}
+
+/*
+ * Micro-interaction layer — the site reads flat without it. Everything
+ * here is CSS-driven (a tiny bit of JS just toggles classes/state), no
+ * animation library: keeps the bundle predictable and every effect a
+ * one-line opt-in on existing markup.
+ */
+
+/* Scroll reveal — <Reveal> toggles .is-visible via IntersectionObserver.
+   Starts "visible" with no transform so content isn't hidden if JS never
+   runs (no-JS, or the observer fires before paint). */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+.reveal[data-armed="true"] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal[data-armed="true"].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animated underline sweep — nav links, "View all →" style CTAs. */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -3px;
+  height: 2px;
+  background: currentColor;
+  transition: right 0.28s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  right: 0;
+}
+
+/* Shared card-image hover: a hard offset shadow "lifts" the frame off the
+   page, echoing the button/stamp treatment used elsewhere in the brand. */
+.card-media {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .card-media {
+  transform: translate(-3px, -5px);
+  box-shadow: 5px 7px 0 var(--ink);
+}
+/* Same lift, but a paper-colored shadow — for cards sitting on a dark
+   (bg-ink) section, where an ink shadow would vanish into the background. */
+.group:hover .card-media-paper {
+  transform: translate(-3px, -5px);
+  box-shadow: 5px 7px 0 var(--paper);
+}
+
+/* Stamped-paper button press — shifts into its own drop shadow instead of
+   lifting away, like a rubber stamp coming down. */
+.btn-press {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.btn-press:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 transparent !important;
+}
+.btn-press:active {
+  transform: translate(3px, 3px) scale(0.97);
+}
+
+/* Custom cursor (desktop/fine-pointer only — see CustomCursor component,
+   which adds body.has-custom-cursor only after confirming pointer:fine
+   and no prefers-reduced-motion). */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 200;
+  opacity: 0;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--red);
+}
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--ink);
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+.cursor-ring.is-active {
+  width: 52px;
+  height: 52px;
+  border-color: var(--red);
+}
+body.has-custom-cursor {
+  cursor: none;
+}
+body.has-custom-cursor a,
+body.has-custom-cursor button {
+  cursor: none;
+}
+body.has-custom-cursor input,
+body.has-custom-cursor textarea,
+body.has-custom-cursor select {
+  cursor: auto;
+}
+body.has-custom-cursor .cursor-dot,
+body.has-custom-cursor .cursor-ring {
+  opacity: 1;
+}
+
+/* Hero headline line-reveal — a masked wipe, staggered per line via
+   inline animation-delay set in the component. */
+.line-mask {
+  display: block;
+  overflow: hidden;
+}
+.line-in {
+  display: block;
+  animation: line-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes line-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+/* Join The Draft modal entrance. */
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modal-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line-in {
+    animation: none;
+  }
+  .reveal[data-armed="true"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-overlay-in,
+  .animate-modal-card-in {
+    animation: none;
+  }
 }
