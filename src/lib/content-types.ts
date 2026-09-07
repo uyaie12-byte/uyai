@@ -56,7 +56,8 @@ export type Throwback = {
 
 export type ArtistPick = {
   slug: string;
-  artistName: string;
+  /** Set only when this round is framed around one artist (links to their profile). Unset = our own pick, no artist tie-in. */
+  artistName?: string;
   artistSlug?: string;
   month: string; // e.g. "August 2026"
   intro: string;

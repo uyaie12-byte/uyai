@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getLatestArtistPick } from "@/content/artist-picks";
-import { ImagePlaceholder } from "@/components/image-placeholder";
+import { BrandMark } from "@/components/brand-mark";
 import { SectionLabel } from "@/components/section-label";
 import { StampBadge } from "@/components/stamp-badge";
 import { Reveal } from "@/components/reveal";
@@ -13,20 +13,16 @@ export function ArtistPickSection() {
     <section className="border-b border-ink/20 bg-paper-dim py-20 sm:py-28">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <Reveal>
-          <SectionLabel index="05" title="Artist Pick" />
+          <SectionLabel index="05" title="On Rotation" />
         </Reveal>
 
         <div className="mt-8 grid gap-10 md:grid-cols-12">
           <Reveal delay={80} className="md:col-span-4">
-            <ImagePlaceholder
-              label={pick.artistName}
-              sublabel={pick.month}
-              ratio="aspect-square"
-              tone="red"
-              className="card-media"
-            />
+            <div className="card-media flex aspect-square items-center justify-center border border-ink bg-red">
+              <BrandMark size={140} tone="paper" decorative className="animate-figure-bob" />
+            </div>
             <div className="mt-4 flex items-center gap-4">
-              <StampBadge text="Artist Pick" sub={pick.month.split(" ")[0]} size={72} className="animate-figure-bob" />
+              <StampBadge text="On Rotation" sub={pick.month.split(" ")[0]} size={72} />
               {pick.artistSlug && (
                 <Link
                   href={`/artists/${pick.artistSlug}`}
@@ -40,7 +36,7 @@ export function ArtistPickSection() {
 
           <Reveal delay={160} className="md:col-span-8">
             <p className="max-w-2xl text-balance font-display text-3xl leading-[1.1] tracking-wide sm:text-5xl">
-              What {pick.artistName} is playing right now.
+              What we&apos;re playing right now.
             </p>
             <p className="mt-4 max-w-xl font-sans text-base text-ink/80">{pick.intro}</p>
 
