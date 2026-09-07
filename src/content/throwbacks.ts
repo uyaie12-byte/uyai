@@ -1,41 +1,66 @@
 import type { Throwback } from "@/lib/content-types";
 
+/**
+ * Real tracks worth another listen (researched, not invented) — replaced
+ * the earlier placeholder catalog. The first four are the picks Uyai
+ * named directly; the last two are hidden gems pulled in from the wider
+ * underground/alté scene. Homepage shows the first four via slice(0,4),
+ * so keep that order intentional.
+ */
 export const throwbacks: Throwback[] = [
   {
-    slug: "midnight-transit",
-    title: "Midnight Transit",
-    artistName: "Larry Uche",
-    year: "2011",
-    blurb: "A one-off single that never got a proper release and still shows up on the right playlists.",
+    slug: "odunsi-the-engine-star-signs",
+    title: "Star Signs",
+    artistName: "Odunsi (The Engine) ft. Runtown",
+    year: "2018",
+    blurb: "Two verses of nascent love hedged entirely in zodiac talk, from Odunsi's debut album Rare.",
     whyItMatters:
-      "Before 'alté' had a name, records like this were already doing the work — guitar-driven, unhurried, allergic to the trends around it. Fifteen years on it sounds less dated than most of what charted that year.",
+      "Rare helped define what \"alté\" even meant before the word was doing overtime online — Star Signs is the least serious-sounding track on it and one of the most quietly influential.",
   },
   {
-    slug: "iron-gate",
-    title: "Iron Gate",
-    artistName: "The Recess Collective",
-    year: "2015",
-    blurb: "A five-piece live band's only recorded output, self-released on a burned CD-R.",
+    slug: "elestee-poisn",
+    title: "POISN",
+    artistName: "Elestee",
+    year: "2023",
+    blurb: "The EP that leaned harder into Afropop after her more alternative debut, released the same year she signed to Mavin.",
     whyItMatters:
-      "The Recess Collective broke up before anyone outside their campus knew they existed. What's left is one recording, badly mixed, that a generation of producers still quietly cite as an influence.",
+      "POISN is the hinge in Elestee's catalogue — proof a mechanical engineering graduate turned musical chameleon could write a hook as easily as she could write around one.",
   },
   {
-    slug: "harmattan-freestyle",
-    title: "Harmattan Freestyle",
-    artistName: "Debo Vintage",
-    year: "2013",
-    blurb: "A radio freestyle that outlived the show it aired on.",
+    slug: "mavo-tumo-weto",
+    title: "Tumo Weto",
+    artistName: "Mavo",
+    year: "2023",
+    blurb: "A deep cut off his debut album Ukanigbe that took over two years to actually become a hit.",
     whyItMatters:
-      "The station shut down in 2016. The freestyle survived as a ripped MP3 passed around Bluetooth and, later, WhatsApp — a reminder that distribution doesn't have to be official to work.",
+      "Tumo Weto reached No. 1 on Apple Music Nigeria in January 2026 — more than two years after release. A reminder that a real song doesn't need a release-week push to eventually find its audience.",
   },
   {
-    slug: "second-hand-smoke",
-    title: "Second Hand Smoke",
-    artistName: "Yewande Cole",
-    year: "2017",
-    blurb: "An EP that sold out its only vinyl pressing in a week and was never repressed.",
+    slug: "odumodublvck-woto-woto-seasoning",
+    title: "Woto Woto Seasoning",
+    artistName: "Odumodublvck ft. Black Sherif",
+    year: "2025",
+    blurb: "The Eziokwu deluxe cut that paired Nigeria's loudest rapper with Ghana's most melodic one.",
     whyItMatters:
-      "Yewande Cole stepped away from music two years later. 'Second Hand Smoke' is the clearest evidence of what could have been next — and proof the underground doesn't always get a second act.",
+      "Odumodublvck already redefined what Nigerian rap could sound like on Eziokwu proper — Woto Woto Seasoning is the victory-lap bonus track that still hits like an album opener.",
+  },
+  {
+    slug: "tim-lyre-i-do",
+    title: "I Do",
+    artistName: "Tim Lyre",
+    year: "2024",
+    blurb: "A log-drum-powered alté cut from one of Lagos alté's most consistent voices, part of the Chop Life Crew.",
+    whyItMatters:
+      "Tim Lyre traded a law degree for the alté underground and has been one of its steadiest songwriters since — I Do is the kind of unflashy record that keeps a scene's foundation solid.",
+  },
+  {
+    slug: "oluwamillar-alubarika",
+    title: "Alubarika",
+    artistName: "OluwaMillar",
+    year: "2024",
+    blurb: "A Yoruba-language rap breakthrough single that reads as much like a prayer as a flex.",
+    whyItMatters:
+      "OluwaMillar raps in the lineage of Olamide and Reminisce at a moment when Afrobeats has mostly moved past rap — Alubarika is proof that lineage isn't finished.",
   },
 ];
 

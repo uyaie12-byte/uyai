@@ -1,65 +1,49 @@
 import type { Release } from "@/lib/content-types";
 
+/**
+ * Real releases from Nigerian indie/underground artists (researched, not
+ * invented) — replaced the earlier placeholder catalog once there was
+ * actual current music worth pointing at. Ordered newest first.
+ */
 export const releases: Release[] = [
   {
-    slug: "kaeya-low-light",
-    title: "Low Light",
-    artistName: "KAEYA",
-    artistSlug: "kaeya",
+    slug: "osa-feels",
+    title: "FEELS",
+    artistName: "OSÁ",
+    artistSlug: "osa",
+    type: "EP",
+    date: "2026-09-07",
+    blurb:
+      "Seven tracks about caring too much, losing the plot, and finding your way back — with Toyé, Stomy, Aema and Nosa along for parts of the ride.",
+    tags: ["R&B", "Afrobeat"],
+  },
+  {
+    slug: "lodu-wine-and-honey",
+    title: "Wine & Honey",
+    artistName: "Lodù",
+    type: "EP",
+    date: "2026-07-31",
+    blurb: "A seven-track debut that settles into Afro-soul and doesn't rush it — a confident first real introduction.",
+    tags: ["Afro-soul", "Afro-fusion"],
+  },
+  {
+    slug: "reespect-r-is-for-romance",
+    title: "R Is for Romance",
+    artistName: "Reespect",
+    type: "EP",
+    date: "2026-02-13",
+    blurb:
+      "Bar-heavy rap loosened up with R&B vocals, released alongside a docu-series and a comic book. Ambitious, and it mostly lands.",
+    tags: ["Rap", "R&B"],
+  },
+  {
+    slug: "danpapa-gta-ikeja-no-go-thief",
+    title: "Ikeja (No Go Thief)",
+    artistName: "Danpapa GTA",
     type: "Single",
-    date: "2026-08-14",
-    blurb: "Three minutes of church-loft harmony over a bassline that refuses to resolve.",
-    tags: ["Alté", "Soul"],
-  },
-  {
-    slug: "obinna-dread-ancestor-log",
-    title: "Ancestor Log",
-    artistName: "Obinna Dread",
-    artistSlug: "obinna-dread",
-    type: "EP",
-    date: "2026-08-09",
-    blurb: "Five tracks of amapiano log drum built entirely from a highlife sample crate.",
-    tags: ["Amapiano", "Highlife"],
-  },
-  {
-    slug: "tega-low-tide",
-    title: "Low Tide",
-    artistName: "Tega In Stereo",
-    artistSlug: "tega-in-stereo",
-    type: "EP",
-    date: "2026-08-02",
-    blurb: "Recorded in a week, in a living room. Sounds like it. In the best way.",
-    tags: ["R&B"],
-  },
-  {
-    slug: "nnamdi-x-draft-one",
-    title: "Draft One",
-    artistName: "Nnamdi X",
-    artistSlug: "nnamdi-x",
-    type: "Album",
-    date: "2026-07-27",
-    blurb: "The tape that leaked before it was finished — now the finished version, officially.",
-    tags: ["Drill", "Rap"],
-  },
-  {
-    slug: "moyo-analog-tape-no-4",
-    title: "Tape No. 4",
-    artistName: "Moyo Analog",
-    artistSlug: "moyo-analog",
-    type: "Single",
-    date: "2026-07-19",
-    blurb: "Live horns, hiss and all — pressed to a run of 100 before it ever went digital.",
-    tags: ["Experimental"],
-  },
-  {
-    slug: "shortwave-radio-edit-vol-2",
-    title: "Radio Edit, Vol. 2",
-    artistName: "Shortwave",
-    artistSlug: "shortwave",
-    type: "EP",
-    date: "2026-07-11",
-    blurb: "Four afro-house edits from sets she's played but never posted.",
-    tags: ["Afro-house", "DJ"],
+    date: "2026-01-09",
+    blurb: "Gritty, specific, very Lagos — a single that sounds like it was written on a danfo.",
+    tags: ["Rap"],
   },
 ];
 

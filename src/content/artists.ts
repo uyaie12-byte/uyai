@@ -2,6 +2,16 @@ import type { Artist } from "@/lib/content-types";
 
 export const artists: Artist[] = [
   {
+    slug: "osa",
+    name: "OSÁ",
+    discipline: "Multi-disciplinary",
+    location: "New York, NY",
+    tagline: "Nigerian-American songcraft that doesn't rush to explain itself.",
+    bio: "OSÁ is a Nigerian-American singer-songwriter and producer based in New York, blending Afrobeat with R&B, hip-hop and electronic textures — influences he traces to Wizkid on one side and Frank Ocean on the other. He started producing during the pandemic, put out his debut single \"Ijoya\" in 2021, and released his first EP, Roll Bounce, in 2023. His second project, FEELS, arrived in September 2026 after a phone-free listening session in Brooklyn — seven tracks about caring about someone, losing your way in it, and finding yourself again.",
+    tags: ["Afrobeat", "R&B", "New York"],
+    spotlight: true,
+  },
+  {
     slug: "kaeya",
     name: "KAEYA",
     discipline: "Vocalist",
@@ -9,7 +19,6 @@ export const artists: Artist[] = [
     tagline: "Alté-soul with a drum-and-bass undertow.",
     bio: "KAEYA writes like she's narrating a diary she doesn't expect anyone to read — which is exactly why people can't stop listening. Raised between Surulere and a church choir loft, she folds gospel harmony into low-slung, bass-heavy production that never quite sits still. Her live sets are word-of-mouth only; there's no tour poster, just a group chat that grows every time she plays.",
     tags: ["Alté", "Soul", "Lagos"],
-    spotlight: true,
     links: [{ label: "Instagram", href: "https://instagram.com" }],
   },
   {
@@ -20,7 +29,6 @@ export const artists: Artist[] = [
     tagline: "Amapiano log drums built from highlife samples.",
     bio: "Obinna started sampling his grandfather's highlife record collection because he couldn't afford new sample packs. Three years later that's the whole sound — amapiano low end under chopped guitar licks that sound decades older than the beat around them. He builds everything on headphones in a one-room studio and refuses to explain the process.",
     tags: ["Amapiano", "Highlife", "Production"],
-    spotlight: true,
   },
   {
     slug: "tega-in-stereo",
